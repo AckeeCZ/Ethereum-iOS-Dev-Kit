@@ -1,4 +1,4 @@
-# EthereumProjectTemplate
+# Ethereum Project Template
 
 The Ackee Ethereum project template is a collection of Swift boilerplate intended to serve as a basis for starting new blockchain oriented iOS projects. It combines Ackee’s long time know-how in creating iOS apps based on reactive technlogies and the MVVM architecture with a few extra Ethereum related tools designed for seamless interaction with SmartContracts..
 
