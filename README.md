@@ -1,6 +1,6 @@
-# Ethereum Project Template
+# Ackee Ethereum Project Template
 
-The Ackee Ethereum project template is a collection of Swift boilerplate intended to serve as a basis for starting new blockchain oriented iOS projects. It combines Ackee’s long time know-how in creating iOS apps based on reactive technlogies and the MVVM architecture with a few extra Ethereum related tools designed for seamless interaction with SmartContracts..
+The Ackee Ethereum Project Template is a collection of Swift boilerplate intended to serve as a basis for starting new blockchain oriented iOS projects. It combines Ackee’s long time know-how in creating iOS apps based on reactive technlogies and the MVVM architecture with a few extra Ethereum related tools designed for seamless interaction with SmartContracts..
 
 The project template will include a Swift script for generating a typesafe Swift API to individual SmartContracts, based on their ABI. A simple example app will be implemented, e.g. an app that can call 1 method of a simple smart contract and observe 1 event. VaultIO’s EtherKit will be used for the underlying logic (sendRawTransaction). Note that codegen is on the roadmap of EtherKit as well, however, we feel like it fits our assignment very well, plus we can design our solution to be nicely usable from ReactiveSwift, which we use heavily throughout our project template. We will also participate in improving EtherKit to make it an ideal fit for our project template.
 
