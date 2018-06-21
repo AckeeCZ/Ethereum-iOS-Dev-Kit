@@ -1,3 +1,6 @@
+Currently, the ackee project template with some basic experimentation with the EtherKit framework is on branch `ps/ethereum`. It's been pushed just as we use it at Ackee. We'll be making changes, integrating more Ethereum functionality and possibly renaming some stuff before we make it available in `master`.
+Branch `master` contains experimentation with SmartContract ABI parsing and codegen. This will be developed separately as a swift script and then integrated into the ProjectTemplate.
+
 # Ackee Ethereum Project Template
 
 The Ackee Ethereum Project Template is a collection of Swift boilerplate intended to serve as a basis for starting new blockchain oriented iOS projects. It combines Ackee’s long time know-how in creating iOS apps based on reactive technlogies and the MVVM architecture with a few extra Ethereum related tools designed for seamless interaction with SmartContracts..
