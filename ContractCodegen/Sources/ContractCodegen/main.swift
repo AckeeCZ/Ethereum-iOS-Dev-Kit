@@ -40,6 +40,7 @@ struct Function: Decodable {
     let name: String
     let inputs: [Param]
     let outputs: [Param]
+    // TODO: Same as isIndexed
     let isConstant: Bool?
     let isPayable: Bool?
 }
@@ -49,7 +50,8 @@ struct Event: Decodable {
     struct Param: Decodable {
         let name: String
         let type: String
-        let isIndexed: Bool
+        // TODO: indexed -> isIndexed
+        let isIndexed: Bool?
     }
 
     let name: String
@@ -202,56 +204,50 @@ extension Run: ExampleSmartContract {
 //
 //ViewModel()
 
-class GenerateCommand: Command {
+class GenerateCommand: SwiftCLI.Command {
 
     let name = "generate"
-    let shortDescription = "Generates the contract code"
+    let shortDescription = "Generates Swift code for contract"
 
-    let file = Parameter()
+    let file = Parameter(completion: .filename)
     // TODO: Add second parameter for output directory (or Flag ... ?)
 
     func execute() throws {
         let arguments = CommandLine.arguments
         if arguments.count == 2 {
 
-            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/" + arguments[1])
+            do {
+                print(fileURL)
+                let abiData = try Data(contentsOf: fileURL, options: .mappedIfSafe)
+                let contractHeaders = try JSONDecoder().decode([ABIElement].self, from: abiData)
 
-                do {
-                    let fileURL = dir.appendingPathComponent(arguments[1])
-                    print(fileURL.absoluteString)
-                    let abiData = try Data(contentsOf: fileURL, options: .mappedIfSafe)
-                    let contractHeaders = try! JSONDecoder().decode([ABIElement].self, from: abiData)
-
-                    let swiftCode = contractHeaders.reduce("""
+                let swiftCode = contractHeaders.reduce("""
                 protocol FooContract: EthereumCommand {
-
             """
-                    ) {
-                        $0 + $1.renderToSwift()
-                        } + "\n}"
+                ) {
+                    $0 + $1.renderToSwift()
+                    } + "\n}"
 
-                    print("HELLO")
-                    print(swiftCode)
+                let swiftCodeURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/" + "contract.swift")
+                try swiftCode.write(to: swiftCodeURL, atomically: true, encoding: .utf8)
+                print(swiftCode)
 
-                    stdout <<< "✅"
-                } catch {
-                    // handle error
-                }
-
-
+                stdout <<< "✅"
+            } catch {
+                // handle error
             }
         } else {
-            // TODO: Ask user to enter just a different name
+            // TODO: Ask user to enter a different name
             stdout <<< "Hello world!"
         }
     }
 }
 
+//let generatorCLI = CLI(singleCommand: GenerateCommand())
 let generatorCLI = CLI(singleCommand: GenerateCommand())
 
 let generator = ZshCompletionGenerator(cli: generatorCLI)
 generator.writeCompletions()
 
-generatorCLI.go()
-
-
+generatorCLI.goAndExit()

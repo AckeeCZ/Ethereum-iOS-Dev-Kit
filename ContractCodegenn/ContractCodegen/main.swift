@@ -188,9 +188,7 @@ extension Run: ExampleSmartContract {
 
 let arguments = CommandLine.arguments
 if arguments.count == 2 {
-
     if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-
         do {
             let fileURL = dir.appendingPathComponent(arguments[1])
             print(fileURL.absoluteString)
@@ -207,6 +205,8 @@ if arguments.count == 2 {
 
             print("HELLO")
             print(swiftCode)
+
+            
 
             print("✅")
         } catch {
