@@ -1,6 +1,7 @@
-//: Playground - noun: a place where people can play
+#!/usr/bin/swift
 
-import Cocoa
+import Foundation
+import SwiftCLI
 
 //contract Test {
 //    function Test(){ b = 0x12345678901234567890123456789012; }
@@ -27,20 +28,6 @@ let abi =
         "outputs": [{"name":"result", "type":"Bar"}]
     }]
     """.data(using: .utf8)!
-
-struct Function: Decodable {
-
-    struct Param: Decodable {
-        let name: String
-        let type: String
-    }
-
-    let name: String
-    let inputs: [Param]
-    let outputs: [Param]
-    let isConstant: Bool?
-    let isPayable: Bool?
-}
 
 struct Event: Decodable {
     struct Param: Decodable {
@@ -85,9 +72,9 @@ extension ABIElement {
 
 extension Event {
     func renderToSwift() -> String {
-        let params = inputs.map { $0.renderToSwift() }.joined(separator: ",")
+        //        let params = inputs.map { $0.renderToSwift() }.joined(separator: ",")
 
-        return "" ¨
+        return ""
     }
 }
 
@@ -104,11 +91,11 @@ extension Function {
 
         return """
         static func \(name)(\(params)) -> (\(returnType)) {
-            //TODO: just serialize parameters and call sendRawTransaction
-            guard let data = params.data(using: .utf8) else { fatalError() }
-            Run.send(rawTransaction: data, onSuccess: { _ in })
+        //TODO: just serialize parameters and call sendRawTransaction
+        guard let data = params.data(using: .utf8) else { fatalError() }
+        Run.send(rawTransaction: data, onSuccess: { _ in })
         }
-    """
+        """
     }
 }
 
@@ -139,14 +126,14 @@ protocol Command { //TODO: Monoid
 
 struct Run<Message>: Command {
     typealias Context = EtherKit
-//    public static var empty: Run<Action> { return Run { _ in }}
-//
-//    public static func <> (lhs: Run<Message>, rhs: Run<Message>) -> Run<Action> {
-//        return Run { callback in
-//            lhs.run(callback)
-//            rhs.run(callback)
-//        }
-//    }
+    //    public static var empty: Run<Action> { return Run { _ in }}
+    //
+    //    public static func <> (lhs: Run<Message>, rhs: Run<Message>) -> Run<Action> {
+    //        return Run { callback in
+    //            lhs.run(callback)
+    //            rhs.run(callback)
+    //        }
+    //    }
 
     public let run: (_ context: Context, _ callback: @escaping (Message) -> ()) -> ()
     public init(run: @escaping (Context, @escaping (Message) -> ()) -> ()) {
@@ -180,23 +167,6 @@ extension Run: ExampleSmartContract {
     }
 }
 
-
-
-
-let contractHeaders = try! JSONDecoder().decode([ABIElement].self, from: abi)
-
-let swiftCode = contractHeaders.reduce("""
-    protocol FooContract: EthereumCommand {
-
-    """
-) {
-    $0 + $1.renderToSwift()
-    } + "\n}"
-
-print(swiftCode)
-
-print("✅")
-
 //class ViewModel {
 //    let etherKit: EtherKit = .init()
 //
@@ -215,3 +185,36 @@ print("✅")
 //}
 //
 //ViewModel()
+
+let arguments = CommandLine.arguments
+if arguments.count == 2 {
+
+    if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+        do {
+            let fileURL = dir.appendingPathComponent(arguments[1])
+            print(fileURL.absoluteString)
+            let abiData = try Data(contentsOf: fileURL, options: .mappedIfSafe)
+            let contractHeaders = try! JSONDecoder().decode([ABIElement].self, from: abiData)
+
+            let swiftCode = contractHeaders.reduce("""
+                protocol FooContract: EthereumCommand {
+
+            """
+            ) {
+                $0 + $1.renderToSwift()
+                } + "\n}"
+
+            print("HELLO")
+            print(swiftCode)
+
+            print("✅")
+        } catch {
+            // handle error
+        }
+
+
+    }
+} else {
+    print("Invalid arguments.")
+}

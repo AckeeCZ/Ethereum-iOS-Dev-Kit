@@ -1,6 +1,7 @@
-//: Playground - noun: a place where people can play
+#!/usr/bin/swift
 
-import Cocoa
+import Foundation
+import SwiftCLI
 
 //contract Test {
 //    function Test(){ b = 0x12345678901234567890123456789012; }
@@ -28,6 +29,7 @@ let abi =
     }]
     """.data(using: .utf8)!
 
+// TODO: Move to another file
 struct Function: Decodable {
 
     struct Param: Decodable {
@@ -41,6 +43,7 @@ struct Function: Decodable {
     let isConstant: Bool?
     let isPayable: Bool?
 }
+
 
 struct Event: Decodable {
     struct Param: Decodable {
@@ -85,9 +88,9 @@ extension ABIElement {
 
 extension Event {
     func renderToSwift() -> String {
-        let params = inputs.map { $0.renderToSwift() }.joined(separator: ",")
+        //        let params = inputs.map { $0.renderToSwift() }.joined(separator: ",")
 
-        return "" ¨
+        return ""
     }
 }
 
@@ -104,11 +107,11 @@ extension Function {
 
         return """
         static func \(name)(\(params)) -> (\(returnType)) {
-            //TODO: just serialize parameters and call sendRawTransaction
-            guard let data = params.data(using: .utf8) else { fatalError() }
-            Run.send(rawTransaction: data, onSuccess: { _ in })
+        //TODO: just serialize parameters and call sendRawTransaction
+        guard let data = params.data(using: .utf8) else { fatalError() }
+        Run.send(rawTransaction: data, onSuccess: { _ in })
         }
-    """
+        """
     }
 }
 
@@ -139,14 +142,14 @@ protocol Command { //TODO: Monoid
 
 struct Run<Message>: Command {
     typealias Context = EtherKit
-//    public static var empty: Run<Action> { return Run { _ in }}
-//
-//    public static func <> (lhs: Run<Message>, rhs: Run<Message>) -> Run<Action> {
-//        return Run { callback in
-//            lhs.run(callback)
-//            rhs.run(callback)
-//        }
-//    }
+    //    public static var empty: Run<Action> { return Run { _ in }}
+    //
+    //    public static func <> (lhs: Run<Message>, rhs: Run<Message>) -> Run<Action> {
+    //        return Run { callback in
+    //            lhs.run(callback)
+    //            rhs.run(callback)
+    //        }
+    //    }
 
     public let run: (_ context: Context, _ callback: @escaping (Message) -> ()) -> ()
     public init(run: @escaping (Context, @escaping (Message) -> ()) -> ()) {
@@ -180,23 +183,6 @@ extension Run: ExampleSmartContract {
     }
 }
 
-
-
-
-let contractHeaders = try! JSONDecoder().decode([ABIElement].self, from: abi)
-
-let swiftCode = contractHeaders.reduce("""
-    protocol FooContract: EthereumCommand {
-
-    """
-) {
-    $0 + $1.renderToSwift()
-    } + "\n}"
-
-print(swiftCode)
-
-print("✅")
-
 //class ViewModel {
 //    let etherKit: EtherKit = .init()
 //
@@ -215,3 +201,57 @@ print("✅")
 //}
 //
 //ViewModel()
+
+class GenerateCommand: Command {
+
+    let name = "generate"
+    let shortDescription = "Generates the contract code"
+
+    let file = Parameter()
+    // TODO: Add second parameter for output directory (or Flag ... ?)
+
+    func execute() throws {
+        let arguments = CommandLine.arguments
+        if arguments.count == 2 {
+
+            if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+                do {
+                    let fileURL = dir.appendingPathComponent(arguments[1])
+                    print(fileURL.absoluteString)
+                    let abiData = try Data(contentsOf: fileURL, options: .mappedIfSafe)
+                    let contractHeaders = try! JSONDecoder().decode([ABIElement].self, from: abiData)
+
+                    let swiftCode = contractHeaders.reduce("""
+                protocol FooContract: EthereumCommand {
+
+            """
+                    ) {
+                        $0 + $1.renderToSwift()
+                        } + "\n}"
+
+                    print("HELLO")
+                    print(swiftCode)
+
+                    stdout <<< "✅"
+                } catch {
+                    // handle error
+                }
+
+
+            }
+        } else {
+            // TODO: Ask user to enter just a different name
+            stdout <<< "Hello world!"
+        }
+    }
+}
+
+let generatorCLI = CLI(singleCommand: GenerateCommand())
+
+let generator = ZshCompletionGenerator(cli: generatorCLI)
+generator.writeCompletions()
+
+generatorCLI.go()
+
+
