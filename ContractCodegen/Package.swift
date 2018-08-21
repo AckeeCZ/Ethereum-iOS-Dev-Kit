@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "ContractCodegen",
+    products: [
+        .library(name: "ContractCodegen", targets: ["ContractCodegenFramework"]),
+        .executable(name: "contractgen", targets: ["contractgen"]),
+    ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/jakeheis/SwiftCLI", .upToNextMinor(from: "5.2.0")),
@@ -13,11 +17,13 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "ContractCodegen",
-            dependencies: [
-                "SwiftCLI"]),
-        .target(
-            name: "Codegen",
+            name: "ContractCodegenFramework",
             dependencies: []),
+        .target(
+            name: "contractgen",
+            dependencies: [
+                "SwiftCLI",
+                .target(name: "ContractCodegenFramework")
+            ]),
     ]
 )
