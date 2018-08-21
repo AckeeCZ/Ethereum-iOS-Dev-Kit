@@ -267,6 +267,32 @@ private func generateFuncStringIfNecessary(with element: ABIElement) -> String {
     }
 }
 
+private func generateExtensionFuncString(with function: Function) -> String {
+    return """
+        \nfunc \(function.name)(\(function.inputs.map { $0.renderToSwift() }.joined(separator: ", "))) -> (_ using: EtherKeyManager, _ from: Address, _ to: Address, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError> {
+            return { using, from, to, amount in
+                return SignalProducer<Hash, EtherKitError> { observer, disposable in
+                    //pass the params representing calling this function in the proper format to etherkit
+                    guard let paramsData = "foo(bar: barrrrrrrrrrr".data(using: .utf8) else {
+                        observer.send(error: EtherKitError.web3Failure(reason: .parsingFailure))
+                        return
+                    }
+                    self.send(using: using, from: from, to: to, value: amount, data: GeneralData(data: paramsData), completion: { result in
+                        switch result {
+                        case .success(let hash):
+                            observer.send(value: hash)
+                        case .failure(let error):
+                            observer.send(error: error)
+                            observer.sendCompleted()
+                        }
+                    })
+                }
+            }
+        }
+    }
+    """
+}
+
 class GenerateCommand: SwiftCLI.Command {
 
     let name = "generate"
@@ -293,12 +319,15 @@ class GenerateCommand: SwiftCLI.Command {
                 let abiData = try Data(contentsOf: fileURL, options: .mappedIfSafe)
                 let contractHeaders = try JSONDecoder().decode([ABIElement].self, from: abiData)
 
-                let renderedFuncs = contractHeaders
-                    .filter {
-                        isFunction($0)
+
+                let funcs: [Function] = contractHeaders.compactMap {
+                    switch $0 {
+                    case .function(let f): return f
+                    case .event(_): return nil
                     }
-                    .map { $0.renderToSwift() }
-                let protocolFuncDeclarations = renderedFuncs.joined(separator: "\n")
+                }
+                let renderedFuncs = funcs.map { $0.renderToSwift() }
+                let protocolFuncDeclarations = renderedFuncs.map { "static " + $0 }.joined(separator: "\n")
                 let protocolCode = renderedFuncs.reduce(
                     // TODO: Can this string be better formatted for the alignment of the other code?
                     """
@@ -309,24 +338,25 @@ class GenerateCommand: SwiftCLI.Command {
                     extension \(contractName.value) {\n
                     """
                 ) {
-                    "static " + $0 + $1 + """
+                    $0 + "static " + $1 + """
                      {
                         guard let data = params.data(using: .utf8) else { fatalError() }
                         Run.send(rawTransaction: data, onSuccess: { _ in })
                     }
                     """
-                }
+                    } + "\n}"
 
                 // TODO: Add events to string here
 
-                let extensionCode = """
+                var extensionCode = """
                 \n
                 extension EtherQuery {
                     func \(contractName.value)(at: String) -> EtherQuery {
                     return self
                 }
             """
-                
+
+                extensionCode += funcs.map { generateExtensionFuncString(with: $0) }.joined(separator: "\n")
 
                 let swiftCode = importModulesString + protocolCode + extensionCode
                 // TODO: Add to real project
