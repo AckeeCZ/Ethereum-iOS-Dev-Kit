@@ -3,6 +3,7 @@
 protocol {{ contractName}}: EthereumCommand {
     static func foo(bar: String, amount: Wei, onSuccess: @escaping () -> Message) -> Self
 }
+
 extension {{ contractName }} {
 {% for function in functions %}
   static func {{ function.name }}({{ function.params }}, amount: BigInt, onSuccess: @escaping () -> Message) {
@@ -10,4 +11,10 @@ extension {{ contractName }} {
     Run.send(rawTransaction: data, onSuccess: { _ in })
   }
 {% endfor %}
+}
+
+extension EtherQuery {
+  func {% filter lowerFirstLetter %}{{ contractName }}{% endfilter %}(at: String) -> EtherQuery {
+    return self
+  }
 }

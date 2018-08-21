@@ -2,6 +2,7 @@ import Foundation
 import SwiftCLI
 import ContractCodegenFramework
 import PathKit
+import StencilSwiftKit
 import Stencil
 
 class GenerateCommand: SwiftCLI.Command {
@@ -18,13 +19,13 @@ class GenerateCommand: SwiftCLI.Command {
         guard arguments.count == 3  else {
             // TODO: Ask user to enter a different name
             stdout <<< "Hello world!"
-            fatalError()
+            return
         }
 
         let filePath = Path.current + Path(arguments[2])
         guard filePath.exists else {
             stdout <<< "File at given path does not exist."
-            fatalError()
+            return
         }
 
         let contractHeaders: [ABIElement]
@@ -35,7 +36,7 @@ class GenerateCommand: SwiftCLI.Command {
         } catch {
             // TODO: handle error
             stdout <<< "Error!"
-            fatalError()
+            return
         }
 
         let funcs: [Function] = contractHeaders.compactMap {
@@ -80,18 +81,21 @@ class GenerateCommand: SwiftCLI.Command {
         // let swiftCodeURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/" + "contract.swift")
         let swiftCodePath = Path("/Users/marekfort/Development/ackee/EthereumProjectTemplate_copy/Skeleton/contract.swift")
 
+        let stencilSwiftExtension = Extension()
+        stencilSwiftExtension.registerStencilSwiftExtensions()
         let fsLoader = FileSystemLoader(paths: ["templates/"])
-        let environment = Environment(loader: fsLoader)
-        let context = ["contractName": contractName.value]
+        let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
+        let functionsDictArray = funcs.map { ["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", ")] }
+        let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]
 
         do {
-            let rendered = try environment.renderTemplate(name: "contractgen.stencilě", context: context)
+            let rendered = try environment.renderTemplate(name: "contractgen.stencil", context: context)
             stdout <<< rendered
             try swiftCodePath.write(rendered)
             stdout <<< "✅"
         } catch {
-            stdout <<< "Error!"
-            fatalError()
+            stdout <<< "Write Error!"
+            return
         }
     }
 
