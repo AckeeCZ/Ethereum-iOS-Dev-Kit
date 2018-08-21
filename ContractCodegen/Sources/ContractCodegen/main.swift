@@ -108,11 +108,7 @@ extension Function {
         let returnType = outputs.map { $0.renderToSwift()}.joined(separator: ",")
 
         return """
-        static func \(name)(\(params)) -> (\(returnType)) {
-        //TODO: just serialize parameters and call sendRawTransaction
-        guard let data = params.data(using: .utf8) else { fatalError() }
-        Run.send(rawTransaction: data, onSuccess: { _ in })
-        }
+        func \(name)(\(params)) -> (\(returnType))
         """
     }
 }
@@ -204,37 +200,145 @@ extension Run: ExampleSmartContract {
 //
 //ViewModel()
 
+//import ReactiveSwift
+//import EtherKit
+//import Foundation
+//import BigInt
+//
+//extension EtherQuery {
+//    func helloWorldContract(at: String) -> EtherQuery {
+//        return self
+//    }
+//
+//    func foo(bar: String) -> (_ using: EtherKeyManager, _ from: Address, _ to: Address, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError> {
+//        return { using, from, to, amount in
+//            return SignalProducer<Hash, EtherKitError> { observer, disposable in
+//                //pass the params representing calling this function in the proper format to etherkit
+//                guard let paramsData = "foo(bar: \(bar)".data(using: .utf8) else {
+//                    observer.send(error: EtherKitError.web3Failure(reason: .parsingFailure))
+//                    return
+//                }
+//                self.send(using: using, from: from, to: to, value: amount, data: GeneralData(data: paramsData), completion: { result in
+//                    switch result {
+//                    case .success(let hash):
+//                        observer.send(value: hash)
+//                    case .failure(let error):
+//                        observer.send(error: error)
+//                        observer.sendCompleted()
+//                    }
+//                })
+//            }
+//        }
+//    }
+//}
+//
+//protocol HelloWorldContract: EthereumCommand {
+//    static func foo(bar: String, amount: Wei, onSuccess: @escaping () -> Message) -> Self
+//}
+//
+//extension HelloWorldContract {
+//    static func foo(bar: String, amount: Wei, onSuccess: @escaping () -> Message) -> Self {
+//        guard let data = params.data(using: .utf8) else { fatalError() }
+//        Run.send(rawTransaction: data, onSuccess: { _ in })
+//        return self
+//    }
+//}
+
+
+private func isFunction(_ element: ABIElement) -> Bool {
+    switch element {
+    case .function(_):
+        return true
+    case .event(_):
+        return false
+    }
+}
+
+private func generateFuncStringIfNecessary(with element: ABIElement) -> String {
+    if isFunction(element) {
+        return """
+         {
+        guard let data = params.data(using: .utf8) else { fatalError() }
+        Run.send(rawTransaction: data, onSuccess: { _ in })
+        }
+        """
+    } else {
+        return ""
+    }
+}
+
 class GenerateCommand: SwiftCLI.Command {
 
     let name = "generate"
     let shortDescription = "Generates Swift code for contract"
 
+    let contractName = Parameter(completion: .none)
     let file = Parameter(completion: .filename)
     // TODO: Add second parameter for output directory (or Flag ... ?)
 
     func execute() throws {
         let arguments = CommandLine.arguments
-        if arguments.count == 2 {
+        if arguments.count == 3 {
 
-            let fileURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/" + arguments[1])
+            let fileURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/" + arguments[2])
             do {
-                print(fileURL)
+                let importModulesString = """
+                import ReactiveSwift
+                import EtherKit
+                import Foundation
+                import BigInt\n\n
+                """
+
+
                 let abiData = try Data(contentsOf: fileURL, options: .mappedIfSafe)
                 let contractHeaders = try JSONDecoder().decode([ABIElement].self, from: abiData)
 
-                let swiftCode = contractHeaders.reduce("""
-                protocol FooContract: EthereumCommand {
-            """
-                ) {
-                    $0 + $1.renderToSwift()
-                    } + "\n}"
+                let renderedFuncs = contractHeaders
+                    .filter {
+                        isFunction($0)
+                    }
+                    .map { $0.renderToSwift() }
+                let protocolFuncDeclarations = renderedFuncs.joined(separator: "\n")
+                let protocolCode = renderedFuncs.reduce(
+                    // TODO: Can this string be better formatted for the alignment of the other code?
+                    """
+                    protocol \(contractName.value): EthereumCommand {
+                        \(protocolFuncDeclarations)
+                    }
 
-                let swiftCodeURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/" + "contract.swift")
+                    extension \(contractName.value) {\n
+                    """
+                ) {
+                    "static " + $0 + $1 + """
+                     {
+                        guard let data = params.data(using: .utf8) else { fatalError() }
+                        Run.send(rawTransaction: data, onSuccess: { _ in })
+                    }
+                    """
+                }
+
+                // TODO: Add events to string here
+
+                let extensionCode = """
+                \n
+                extension EtherQuery {
+                    func \(contractName.value)(at: String) -> EtherQuery {
+                    return self
+                }
+            """
+                
+
+                let swiftCode = importModulesString + protocolCode + extensionCode
+                // TODO: Add to real project
+                // let swiftCodeURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/" + "contract.swift")
+                let swiftCodeURL = URL(fileURLWithPath: "/Users/marekfort/Development/ackee/EthereumProjectTemplate_copy/Skeleton/contract.swift")
+
                 try swiftCode.write(to: swiftCodeURL, atomically: true, encoding: .utf8)
-                print(swiftCode)
+                print(FileManager.default.currentDirectoryPath + "/" + "contract.swift")
 
                 stdout <<< "✅"
             } catch {
+                stdout <<< "Error!"
                 // handle error
             }
         } else {
@@ -244,7 +348,6 @@ class GenerateCommand: SwiftCLI.Command {
     }
 }
 
-//let generatorCLI = CLI(singleCommand: GenerateCommand())
 let generatorCLI = CLI(singleCommand: GenerateCommand())
 
 let generator = ZshCompletionGenerator(cli: generatorCLI)
