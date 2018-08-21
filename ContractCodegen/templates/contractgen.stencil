@@ -1,0 +1,13 @@
+// Generated using ContractGen
+
+protocol {{ contractName}}: EthereumCommand {
+    static func foo(bar: String, amount: Wei, onSuccess: @escaping () -> Message) -> Self
+}
+extension {{ contractName }} {
+{% for function in functions %}
+  static func {{ function.name }}({{ function.params }}, amount: BigInt, onSuccess: @escaping () -> Message) {
+    guard let data = params.data(using: .utf8) else { fatalError() }
+    Run.send(rawTransaction: data, onSuccess: { _ in })
+  }
+{% endfor %}
+}
