@@ -6,10 +6,21 @@ public struct Function: Decodable {
     }
 
     public let name: String
-    public let inputs: [ParameterType]
-    public let outputs: [ParameterType]
-    public let isConstant: Bool?
-    public let isPayable: Bool?
+    public let inputs: [Input]
+    public let outputs: [Output]
+    public let isConstant: Bool
+    public let isPayable: Bool
+
+    public struct Output {
+        /// FunctionOutput names can also be empty strings.
+        let name: String
+        let type: ParameterType
+    }
+
+    public struct Input {
+        let name: String
+        let type: ParameterType
+    }
 
     /// Specifies the type that parameters in a contract have.
     public enum ParameterType {
@@ -49,21 +60,141 @@ public struct Function: Decodable {
             case array(StaticType)
         }
     }
+
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case inputs = "inputs"
+        case outputs = "outputs"
+        case isConstant = "constant"
+        case isPayable = "payable"
+    }
+
+    // TODO: Is this necessary here?
+    public init(name: String, inputs: [Input], outputs: [Output], isConstant: Bool, isPayable: Bool) {
+        self.name = name
+        self.inputs = inputs
+        self.outputs = outputs
+        self.isConstant = isConstant
+        self.isPayable = isPayable
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let name = try values.decode(String.self, forKey: .name)
+        let inputJson = try values.decode([[String: String]].self, forKey: .inputs)
+        let inputs = try Function.parseFunctionInputs(from: inputJson)
+        let isConstant = try values.decodeIfPresent(Bool.self, forKey: .isConstant) ?? false
+        let isPayable = try values.decodeIfPresent(Bool.self, forKey: .isPayable) ?? false 
+        self.init(name: name, inputs: inputs, outputs: [], isConstant: isConstant, isPayable: isPayable)
+    }
+
+    /// Parses the list of function inputs contained in a Json dictionary.
+    ///
+    /// - Parameter json: Dictionary describing a function. This dictionary should
+    ///     include the key `inputs`. Otherwise an empty list is returned.
+    /// - Returns: The list of `FunctionInput`s or an empty list.
+    /// - Throws: Throws a BivrostError in case the json was malformed or there
+    ///     was an error.
+    private static func parseFunctionInputs(from json: [[String: String]]) throws -> [Function.Input] {
+//        let jsonInputs = json["inputs"] as? [[String: String]] ?? []
+        return try json.map { try Function.parseFunctionInput(from: $0) }
+    }
+
+    /// Parses the function input contained in the Json dictionary.
+    ///
+    /// - Parameter json: Dictionary describing an Input to a function.
+    /// - Returns: The corresponding FunctionInput.
+    /// - Throws: Throws a BivrostError in case the json was malformed or there
+    ///     was an error.
+    private static func parseFunctionInput(from json: [String: String]) throws -> Function.Input {
+        guard let name = json["name"] else {
+            throw ParsingError.elementNameInvalid
+        }
+        let type = try ParameterParser.parseParameterType(from: json)
+        return Function.Input(name: name, type: type)
+    }
+}
+
+// MARK: Render to swift
+extension Function.ParameterType {
+    var generatedTypeString: String {
+        switch self {
+        case let .staticType(wrappedType):
+            return wrappedType.generatedTypeString
+        case let .dynamicType(wrappedType):
+            return wrappedType.generatedTypeString
+        }
+    }
+
+    var isDynamic: Bool {
+        switch self {
+        case .dynamicType(_):
+            return true
+        case .staticType(_):
+            return false
+        }
+    }
+}
+
+extension Function.ParameterType.StaticType {
+    var generatedTypeString: String {
+        let nonPrefixedTypeString: String
+        switch self {
+        case .uint(let bits):
+            nonPrefixedTypeString = "UInt\(bits)"
+        case .int(let bits):
+            nonPrefixedTypeString = "Int\(bits)"
+        case .address:
+            nonPrefixedTypeString = "Address"
+        case .bool:
+            nonPrefixedTypeString = "Bool"
+        case .bytes(let length):
+            nonPrefixedTypeString = "Bytes\(length)"
+        case .function:
+            nonPrefixedTypeString = "Function"
+        case let .array(type, length: length):
+            let innerType = type.generatedTypeString
+            nonPrefixedTypeString = "Array<\(innerType)>\(length)"
+        }
+        return nonPrefixedTypeString
+    }
+}
+
+extension Function.ParameterType.DynamicType {
+    var generatedTypeString: String {
+        let nonPrefixedTypeString: String
+        switch self {
+        case .bytes:
+            nonPrefixedTypeString = "Bytes"
+        case .string:
+            nonPrefixedTypeString = "String"
+        case .array(let type):
+            let innerType = type.generatedTypeString
+            nonPrefixedTypeString = "VariableArray<\(innerType)>"
+        }
+        return nonPrefixedTypeString
+    }
+}
+
+extension Function.Output {
+    public func renderToSwift() -> String {
+        return name + ": " + type.generatedTypeString
+    }
+}
+
+extension Function.Input {
+    public func renderToSwift() -> String {
+        return name + ": " + type.generatedTypeString
+    }
 }
 
 extension Function {
     public func renderToSwift() -> String {
         let params = inputs.map { $0.renderToSwift() }.joined(separator: ",")
-        let returnType = outputs.map { $0.renderToSwift()}.joined(separator: ",")
+        let returnType = outputs.map { $0.renderToSwift() }.joined(separator: ",")
 
         return """
         func \(name)(\(params)) -> (\(returnType))
         """
-    }
-}
-
-extension Function.Param {
-    public func renderToSwift() -> String {
-        return name + ": " + type
     }
 }

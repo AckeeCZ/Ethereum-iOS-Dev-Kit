@@ -9,7 +9,7 @@
 
 import Foundation
 
-fileprivate typealias ParameterType = Contract.Element.ParameterType
+fileprivate typealias ParameterType = Function.ParameterType
 
 public struct ParameterParser {
     /// Parses the parameter type contained in a Input/Output dictionary.
@@ -19,8 +19,8 @@ public struct ParameterParser {
     /// - Returns: The corresponding parameter type.
     /// - Throws: Throws a BivrostError in case the json was malformed or there
     ///     was an error.
-    static func parseParameterType(from json: [String: Any]) throws -> Contract.Element.ParameterType {
-        guard let typeString = json[.type] as? String else {
+    static func parseParameterType(from json: [String: Any]) throws -> Function.ParameterType {
+        guard let typeString = json["type"] as? String else {
             throw ParsingError.parameterTypeNotFound
         }
         return try parameterType(from: typeString)
@@ -65,13 +65,14 @@ fileprivate func parameterType(from string: String) throws -> ParameterType {
         ?? matchFixedArray(from: string)
 
     // Step 5
-    guard let foundType = possibleType,
-        foundType.isValid else {
-            throw ParsingError.parameterTypeInvalid
-    }
+    // TODO: Solve this
+//    guard let foundType = possibleType,
+//        foundType.isValid else {
+//            throw ParsingError.parameterTypeInvalid
+//    }
 
     // Step 6:
-    return foundType
+    return possibleType!
 }
 
 /// Types that are "atomic" can be matched exactly to these strings
@@ -232,7 +233,7 @@ fileprivate func matchFixedArray(from string: String) throws -> ParameterType? {
 
 // MARK: - AbiEncoding
 public protocol AbiEncoding {
-    public var abiRepresentation: String { get }
+    var abiRepresentation: String { get }
 }
 
 extension ParameterType: AbiEncoding {

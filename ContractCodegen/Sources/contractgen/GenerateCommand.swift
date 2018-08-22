@@ -16,11 +16,7 @@ class GenerateCommand: SwiftCLI.Command {
 
     func execute() throws {
         let arguments = CommandLine.arguments
-        guard arguments.count == 3  else {
-            // TODO: Ask user to enter a different name
-            stdout <<< "Hello world!"
-            return
-        }
+
 
         let filePath = Path.current + Path(arguments[2])
         guard filePath.exists else {
