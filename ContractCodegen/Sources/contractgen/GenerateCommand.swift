@@ -12,7 +12,7 @@ class GenerateCommand: SwiftCLI.Command {
 
     let contractName = Parameter(completion: .none)
     let file = Parameter(completion: .filename)
-    // TODO: Add second parameter for output directory (or Flag ... ?)
+    // TODO: Add another parameter for output directory (or Flag ... ?)
 
     func execute() throws {
         let arguments = CommandLine.arguments
@@ -45,37 +45,8 @@ class GenerateCommand: SwiftCLI.Command {
             case .event(_): return nil
             }
         }
-        let renderedFuncs = funcs.map { $0.renderToSwift() }
-        let protocolFuncDeclarations = renderedFuncs.map { "static " + $0 }.joined(separator: "\n")
-        let protocolCode = renderedFuncs.reduce(
-            // TODO: Can this string be better formatted for the alignment of the other code?
-            """
-            protocol \(contractName.value): EthereumCommand {
-            \(protocolFuncDeclarations)
-            }
 
-            extension \(contractName.value) {\n
-            """
-        ) {
-            $0 + "static " + $1 + """
-            {
-            guard let data = params.data(using: .utf8) else { fatalError() }
-            Run.send(rawTransaction: data, onSuccess: { _ in })
-            }
-            """
-            } + "\n}"
-
-        // TODO: Add events to string here
-
-        var extensionCode = """
-        \n
-        extension EtherQuery {
-        func \(contractName.value)(at: String) -> EtherQuery {
-        return self
-        }
-        """
-
-        extensionCode += funcs.map { generateExtensionFuncString(with: $0) }.joined(separator: "\n")
+        // TODO: Add events
 
         // TODO: Add to real project
         // let swiftCodeURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/" + "contract.swift")
@@ -97,53 +68,5 @@ class GenerateCommand: SwiftCLI.Command {
             stdout <<< "Write Error!"
             return
         }
-    }
-
-    private func isFunction(_ element: ABIElement) -> Bool {
-        switch element {
-        case .function(_):
-            return true
-        case .event(_):
-            return false
-        }
-    }
-
-    private func generateFuncStringIfNecessary(with element: ABIElement) -> String {
-        if isFunction(element) {
-            return """
-            {
-            guard let data = params.data(using: .utf8) else { fatalError() }
-            Run.send(rawTransaction: data, onSuccess: { _ in })
-            }
-            """
-        } else {
-            return ""
-        }
-    }
-
-    private func generateExtensionFuncString(with function: Function) -> String {
-        return """
-        \nfunc \(function.name)(\(function.inputs.map { $0.renderToSwift() }.joined(separator: ", "))) -> (_ using: EtherKeyManager, _ from: Address, _ to: Address, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError> {
-            return { using, from, to, amount in
-                return SignalProducer<Hash, EtherKitError> { observer, disposable in
-        //pass the params representing calling this function in the proper format to etherkit
-        guard let paramsData = "foo(bar: barrrrrrrrrrr".data(using: .utf8) else {
-        observer.send(error: EtherKitError.web3Failure(reason: .parsingFailure))
-        return
-        }
-        self.send(using: using, from: from, to: to, value: amount, data: GeneralData(data: paramsData), completion: { result in
-        switch result {
-        case .success(let hash):
-        observer.send(value: hash)
-        case .failure(let error):
-        observer.send(error: error)
-        observer.sendCompleted()
-        }
-        })
-        }
-        }
-        }
-        }
-        """
     }
 }
