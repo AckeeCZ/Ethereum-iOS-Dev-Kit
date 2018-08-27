@@ -3,18 +3,17 @@
 import ReactiveSwift
 import EtherKit
 import BigInt
+import ContractCodegenFramework
 
 protocol {{ contractName}}: EthereumCommand {
-    static func foo(bar: String, amount: BigInt, onSuccess: @escaping () -> Message) -> Self
+  static func foo(bar: String, amount: BigInt, onSuccess: @escaping () -> Message) -> Self
 }
 
-extension {{ contractName }} {
-{% for function in functions %}
+extension {{ contractName }} { {% for function in functions %}
   static func {{ function.name }}({{ function.params }}, amount: BigInt, onSuccess: @escaping () -> Message) {
     guard let data = params.data(using: .utf8) else { fatalError() }
     Run.send(rawTransaction: data, onSuccess: { _ in })
-  }
-{% endfor %}
+  }{% endfor %}
 }
 
 extension EtherQuery {
@@ -22,15 +21,16 @@ extension EtherQuery {
     return self
   }
   {% for function in functions %}
-  func {{ function.name }}({{ function.params}}) -> (_ using: EtherKeyManager, _ from: Address, _ to: Address, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError> {
+  func {{ function.name }}({{ function.params }}) -> (_ using: EtherKeyManager, _ from: Address, _ to: Address, _ amount: UInt256) -> SignalProducer<ContractCodegenFramework.Hash, EtherKitError> {
         return { using, from, to, amount in
-            return SignalProducer<Hash, EtherKitError> { observer, disposable in
+            return SignalProducer<ContractCodegenFramework.Hash, EtherKitError> { observer, disposable in
                 //pass the params representing calling this function in the proper format to etherkit
-                guard let paramsData = "foo(bar: \(bar)".data(using: .utf8) else {
+                guard let paramsData = "{{ function.name }}({{ function.callingParams }})".data(using: .utf8) else {
                     observer.send(error: EtherKitError.web3Failure(reason: .parsingFailure))
                     return
                 }
-                self.send(using: using, from: from, to: to, value: amount, data: GeneralData(data: paramsData), completion: { result in
+                let value = UInt256(amount.magnitude)
+                self.send(using: using, from: from, to: to, value: value, data: GeneralData(data: paramsData), completion: { result in
                     switch result {
                     case .success(let hash):
                         observer.send(value: hash)

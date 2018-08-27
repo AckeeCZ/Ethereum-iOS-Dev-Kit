@@ -13,13 +13,13 @@ public struct Function: Decodable {
 
     public struct Output {
         /// FunctionOutput names can also be empty strings.
-        let name: String
-        let type: ParameterType
+        public let name: String
+        public let type: ParameterType
     }
 
     public struct Input {
-        let name: String
-        let type: ParameterType
+        public let name: String
+        public let type: ParameterType
     }
 
     /// Specifies the type that parameters in a contract have.
@@ -62,9 +62,9 @@ public struct Function: Decodable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case inputs = "inputs"
-        case outputs = "outputs"
+        case name
+        case inputs
+        case outputs
         case isConstant = "constant"
         case isPayable = "payable"
     }
@@ -84,7 +84,7 @@ public struct Function: Decodable {
         let inputJson = try values.decode([[String: String]].self, forKey: .inputs)
         let inputs = try Function.parseFunctionInputs(from: inputJson)
         let isConstant = try values.decodeIfPresent(Bool.self, forKey: .isConstant) ?? false
-        let isPayable = try values.decodeIfPresent(Bool.self, forKey: .isPayable) ?? false 
+        let isPayable = try values.decodeIfPresent(Bool.self, forKey: .isPayable) ?? false
         self.init(name: name, inputs: inputs, outputs: [], isConstant: isConstant, isPayable: isPayable)
     }
 
@@ -96,7 +96,6 @@ public struct Function: Decodable {
     /// - Throws: Throws a BivrostError in case the json was malformed or there
     ///     was an error.
     private static func parseFunctionInputs(from json: [[String: String]]) throws -> [Function.Input] {
-//        let jsonInputs = json["inputs"] as? [[String: String]] ?? []
         return try json.map { try Function.parseFunctionInput(from: $0) }
     }
 
@@ -141,20 +140,21 @@ extension Function.ParameterType.StaticType {
         let nonPrefixedTypeString: String
         switch self {
         case .uint(let bits):
-            nonPrefixedTypeString = "UInt\(bits)"
+            nonPrefixedTypeString = bits > 64 ? "BigInt" : "Int"
         case .int(let bits):
-            nonPrefixedTypeString = "Int\(bits)"
+            nonPrefixedTypeString = bits > 64 ? "BigInt" : "Int"
         case .address:
             nonPrefixedTypeString = "Address"
         case .bool:
             nonPrefixedTypeString = "Bool"
         case .bytes(let length):
-            nonPrefixedTypeString = "Bytes\(length)"
+            // TODO: Bytes => Data ???
+            nonPrefixedTypeString = "Data"
         case .function:
             nonPrefixedTypeString = "Function"
         case let .array(type, length: length):
             let innerType = type.generatedTypeString
-            nonPrefixedTypeString = "Array<\(innerType)>\(length)"
+            nonPrefixedTypeString = "Array<\(innerType)>"
         }
         return nonPrefixedTypeString
     }
@@ -165,12 +165,14 @@ extension Function.ParameterType.DynamicType {
         let nonPrefixedTypeString: String
         switch self {
         case .bytes:
-            nonPrefixedTypeString = "Bytes"
+            // TODO: Bytes => Data ???
+            nonPrefixedTypeString = "Data"
         case .string:
             nonPrefixedTypeString = "String"
         case .array(let type):
             let innerType = type.generatedTypeString
-            nonPrefixedTypeString = "VariableArray<\(innerType)>"
+            // TODO: VariableArray ... ?
+            nonPrefixedTypeString = "Array<\(innerType)>"
         }
         return nonPrefixedTypeString
     }
