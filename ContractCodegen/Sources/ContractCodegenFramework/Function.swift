@@ -1,3 +1,5 @@
+import EtherKit
+
 public struct Function: Decodable {
 
     public struct Param: Decodable {
@@ -6,7 +8,7 @@ public struct Function: Decodable {
     }
 
     public let name: String
-    public let inputs: [Input]
+    public let inputs: [ABIType]
     public let outputs: [Output]
     public let isConstant: Bool
     public let isPayable: Bool

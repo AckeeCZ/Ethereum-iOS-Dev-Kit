@@ -5,6 +5,7 @@ import PathKit
 import StencilSwiftKit
 import Stencil
 
+// TODO: Limit number of words for contract to only one
 class GenerateCommand: SwiftCLI.Command {
 
     let name = "generate"
@@ -53,7 +54,7 @@ class GenerateCommand: SwiftCLI.Command {
         let fsLoader = FileSystemLoader(paths: ["templates/"])
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
         let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "callingParams": $0.inputs.map { "\($0.name): \\(\($0.name))" }.joined(separator: ", "), "paramsDict": $0.inputs.map { "\"\($0.name)\": \"\\(\($0.name))\"" }.joined(separator: ", ")]}
-        let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]
+        let context: [String: Any] = ["contractName": contractName.value, "lowercasedContractName": contractName.value.lowercased() "functions": functionsDictArray]
 
         do {
             let rendered = try environment.renderTemplate(name: "contractgen.stencil", context: context)
