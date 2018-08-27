@@ -5,14 +5,18 @@ import EtherKit
 import BigInt
 import ContractCodegenFramework
 
-protocol {{ contractName}}: EthereumCommand {
-  static func foo(bar: String, amount: BigInt, onSuccess: @escaping () -> Message) -> Self
-}
+protocol {{ contractName }}: EthereumCommand { {% for function in functions %}
+  static func {{ function.name }}({{ function.params }}, amount: BigInt, onSuccess: @escaping () -> Message) -> Run<Message>
+} {% endfor %}
 
 extension {{ contractName }} { {% for function in functions %}
-  static func {{ function.name }}({{ function.params }}, amount: BigInt, onSuccess: @escaping () -> Message) {
-    guard let data = params.data(using: .utf8) else { fatalError() }
-    Run.send(rawTransaction: data, onSuccess: { _ in })
+  static func {{ function.name }}({{ function.params }}, amount: BigInt, onSuccess: @escaping () -> Message) -> Run<Message> {
+    return Run { etherKit, callback in
+      print("calling foo")
+      let data: Data = NSKeyedArchiver.archivedData(withRootObject: [{{ function.paramsDict }}])
+      Run.send(rawTransaction: data, onSuccess: { _ in onSuccess()}).run(etherKit, callback)
+      print("did call foo")
+    }
   }{% endfor %}
 }
 
@@ -21,16 +25,15 @@ extension EtherQuery {
     return self
   }
   {% for function in functions %}
-  func {{ function.name }}({{ function.params }}) -> (_ using: EtherKeyManager, _ from: Address, _ to: Address, _ amount: UInt256) -> SignalProducer<ContractCodegenFramework.Hash, EtherKitError> {
+  func {{ function.name }}({{ function.params }}) -> (_ using: EtherKeyManager, _ from: Address, _ to: Address, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError> {
         return { using, from, to, amount in
-            return SignalProducer<ContractCodegenFramework.Hash, EtherKitError> { observer, disposable in
+            return SignalProducer<Hash, EtherKitError> { observer, disposable in
                 //pass the params representing calling this function in the proper format to etherkit
                 guard let paramsData = "{{ function.name }}({{ function.callingParams }})".data(using: .utf8) else {
                     observer.send(error: EtherKitError.web3Failure(reason: .parsingFailure))
                     return
                 }
-                let value = UInt256(amount.magnitude)
-                self.send(using: using, from: from, to: to, value: value, data: GeneralData(data: paramsData), completion: { result in
+                self.send(using: using, from: from, to: to, value: amount, data: GeneralData(data: paramsData), completion: { result in
                     switch result {
                     case .success(let hash):
                         observer.send(value: hash)

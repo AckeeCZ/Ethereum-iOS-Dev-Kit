@@ -18,7 +18,7 @@ public struct Run<Message>: Command {
 }
 
 extension Run: EthereumCommand {
-    public static func send(rawTransaction data: Data, onSuccess: @escaping (Hash) -> Message) -> Run<Message> {
+    public static func send(rawTransaction data: Data, onSuccess: @escaping (EtherHash) -> Message) -> Run<Message> {
         return Run { etherKit, callback in
             etherKit.send(rawTransaction: data) { callback(onSuccess($0)) }
         }
@@ -26,13 +26,14 @@ extension Run: EthereumCommand {
 }
 
 // TODO: Mock for now
-public struct Hash { let value: String }
+// TODO: Rename
+public struct EtherHash { let value: String }
 public class EtherKit {
-    func send(rawTransaction data: Data, completion: (Hash) -> ()) {
+    func send(rawTransaction data: Data, completion: (EtherHash) -> ()) {
         print("sending transaction")
         print("--------------------")
         print(data)
         print("--------------------")
-        completion(Hash(value: "zhulenejHash"))
+        completion(EtherHash(value: "zhulenejHash"))
     }
 }
