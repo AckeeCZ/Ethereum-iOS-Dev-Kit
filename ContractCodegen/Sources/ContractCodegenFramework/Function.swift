@@ -69,7 +69,6 @@ public struct Function: Decodable {
         case isPayable = "payable"
     }
 
-    // TODO: Is this necessary here?
     public init(name: String, inputs: [Input], outputs: [Output], isConstant: Bool, isPayable: Bool) {
         self.name = name
         self.inputs = inputs
@@ -189,9 +188,9 @@ extension Function.ParameterType.StaticType {
         case .bytes(let length):
             abiString = "(count: .bytes(.constrained(\(length)), value: \(value))"
         case .function:
-            abiString = ".functionSelector(name: \(value), parameterTypes: \(value).functionSelector.parameterTypes, contract: \(value).functionSelector.contract"
+            abiString = ".functionSelector(name: \(value).functionSelector.name, parameterTypes: \(value).functionSelector.parameterTypes, contract: \(value).functionSelector.contract"
         case let .array(type, length: length):
-            abiString = ".array(count: .constrained(\(length)), type: \(type.abiTypeString), contract: nil)"
+            abiString = ".array(count: .constrained(\(length)), type: \(type.abiTypeString), contract: self.at)"
         }
         return abiString
     }

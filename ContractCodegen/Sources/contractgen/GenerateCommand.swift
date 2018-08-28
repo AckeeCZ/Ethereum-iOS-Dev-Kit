@@ -18,7 +18,6 @@ class GenerateCommand: SwiftCLI.Command {
     func execute() throws {
         let arguments = CommandLine.arguments
 
-
         let filePath = Path.current + Path(arguments[2])
         guard filePath.exists else {
             stdout <<< "File at given path does not exist."
@@ -44,10 +43,7 @@ class GenerateCommand: SwiftCLI.Command {
         }
 
         // TODO: Add events
-
-        // TODO: Add to real project
-        // let swiftCodeURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath + "/" + "contract.swift")
-        let swiftCodePath = Path("/Users/marekfort/Development/ackee/EthereumProjectTemplate_copy/Skeleton/contract.swift")
+        let swiftCodePath = Path.current + Path("../GeneratedContracts")
 
         let stencilSwiftExtension = Extension()
         stencilSwiftExtension.registerStencilSwiftExtensions()
@@ -57,12 +53,20 @@ class GenerateCommand: SwiftCLI.Command {
         let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]
 
         do {
+            if !swiftCodePath.exists {
+                try FileManager.default.createDirectory(atPath: "\(swiftCodePath.absolute())", withIntermediateDirectories: false, attributes: nil)
+            }
+            let commonRendered = try environment.renderTemplate(name: "shared_contractgen.stencil")
+            let sharedSwiftCodePath = swiftCodePath + Path("SharedContract.swift")
+            if !sharedSwiftCodePath.exists {
+                try sharedSwiftCodePath.write(commonRendered)
+            }
             let rendered = try environment.renderTemplate(name: "contractgen.stencil", context: context)
-            stdout <<< rendered
-            try swiftCodePath.write(rendered)
-            stdout <<< "✅"
+            let contractCodePath = swiftCodePath + Path(arguments[1] + ".swift")
+            try contractCodePath.write(rendered)
+            stdout <<< "Code generation: ✅"
         } catch {
-            stdout <<< "Write Error!"
+            stdout <<< "Write Error! 😱"
             return
         }
     }

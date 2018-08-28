@@ -4,26 +4,6 @@ import ReactiveSwift
 import EtherKit
 import BigInt
 
-typealias Send = (_ using: EtherKeyManager, _ from: Address, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError>
-
-struct ContractMethodInvocation {
-    private let send: Send
-
-    init(send: @escaping Send) {
-        self.send = send
-    }
-
-    func send(using: EtherKeyManager, from: Address, amount: UInt256) -> SignalProducer<Hash, EtherKitError> {
-        return self.send(using, from, amount)
-    }
-}
-
-extension EtherQuery {
-    func {% filter lowerFirstLetter %}{{ contractName }}{% endfilter %}(at: Address) -> {{ contractName }}Box {
-        return {{ contractName }}Box(etherQuery: self, at: at)
-    }
-}
-
 struct {{ contractName }}Box {
     fileprivate let etherQuery: EtherQuery
     fileprivate let at: Address
@@ -50,6 +30,5 @@ struct {{ contractName }}Box {
             }
         }
         return ContractMethodInvocation(send: send)
-      }
-    {% endfor %}
+      }{% endfor %}
 }
