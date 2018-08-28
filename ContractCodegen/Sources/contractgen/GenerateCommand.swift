@@ -47,7 +47,8 @@ class GenerateCommand: SwiftCLI.Command {
 
         let stencilSwiftExtension = Extension()
         stencilSwiftExtension.registerStencilSwiftExtensions()
-        let fsLoader = FileSystemLoader(paths: ["templates/"])
+        // TODO: Is there a more suitable place?s
+        let fsLoader = FileSystemLoader(paths: ["/usr/local/share/templates/"])
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
         let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "parameterTypes": $0.inputs.map { $0.abiTypeString }.joined(separator: ", "), "values": $0.inputs.map { $0.name }.joined(separator: ", ")]}
         let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]

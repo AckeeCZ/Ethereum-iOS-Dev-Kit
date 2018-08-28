@@ -17,3 +17,4 @@ build:
 install: clean
 	swift build -c release
 	mv .build/release/contractgen /usr/local/bin/contractgen
+	cp -R templates /usr/local/share/templates
