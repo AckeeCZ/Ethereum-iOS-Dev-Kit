@@ -53,8 +53,8 @@ class GenerateCommand: SwiftCLI.Command {
         stencilSwiftExtension.registerStencilSwiftExtensions()
         let fsLoader = FileSystemLoader(paths: ["templates/"])
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
-        let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "callingParams": $0.inputs.map { "\($0.name): \\(\($0.name))" }.joined(separator: ", "), "paramsDict": $0.inputs.map { "\"\($0.name)\": \"\\(\($0.name))\"" }.joined(separator: ", ")]}
-        let context: [String: Any] = ["contractName": contractName.value, "lowercasedContractName": contractName.value.lowercased() "functions": functionsDictArray]
+        let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "parameterTypes": $0.inputs.map { $0.abiTypeString }.joined(separator: ", "), "values": $0.inputs.map { "\"\\(\($0.name))\"" }.joined(separator: ", ")]}
+        let context: [String: Any] = ["contractName": contractName.value, "lowercasedContractName": contractName.value.lowercased(), "functions": functionsDictArray]
 
         do {
             let rendered = try environment.renderTemplate(name: "contractgen.stencil", context: context)

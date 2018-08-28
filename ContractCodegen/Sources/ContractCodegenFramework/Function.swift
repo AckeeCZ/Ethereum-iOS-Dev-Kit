@@ -1,4 +1,4 @@
-import EtherKit
+// import EtherKit
 
 public struct Function: Decodable {
 
@@ -8,7 +8,7 @@ public struct Function: Decodable {
     }
 
     public let name: String
-    public let inputs: [ABIType]
+    public let inputs: [Input]
     public let outputs: [Output]
     public let isConstant: Bool
     public let isPayable: Bool
@@ -97,7 +97,7 @@ public struct Function: Decodable {
     /// - Returns: The list of `FunctionInput`s or an empty list.
     /// - Throws: Throws a BivrostError in case the json was malformed or there
     ///     was an error.
-    private static func parseFunctionInputs(from json: [[String: String]]) throws -> [Function.Input] {
+    private static func parseFunctionInputs(from json: [[String: String]]) throws -> [Input] {
         return try json.map { try Function.parseFunctionInput(from: $0) }
     }
 
@@ -116,6 +116,12 @@ public struct Function: Decodable {
     }
 }
 
+extension Function.Input {
+    public var abiTypeString: String {
+        return type.abiTypeString(value: name)
+    }
+}
+
 // MARK: Render to swift
 extension Function.ParameterType {
     var generatedTypeString: String {
@@ -124,6 +130,15 @@ extension Function.ParameterType {
             return wrappedType.generatedTypeString
         case let .dynamicType(wrappedType):
             return wrappedType.generatedTypeString
+        }
+    }
+
+    func abiTypeString(value: String) -> String {
+        switch self {
+        case let .staticType(wrappedType):
+            return wrappedType.abiTypeString(value: value)
+        case let .dynamicType(wrappedType):
+            return wrappedType.abiTypeString(value: value)
         }
     }
 
@@ -142,23 +157,45 @@ extension Function.ParameterType.StaticType {
         let nonPrefixedTypeString: String
         switch self {
         case .uint(let bits):
-            nonPrefixedTypeString = bits > 64 ? "BigInt" : "Int"
+            nonPrefixedTypeString = bits > 64 ? "BigUInt" : "UInt"
         case .int(let bits):
             nonPrefixedTypeString = bits > 64 ? "BigInt" : "Int"
         case .address:
             nonPrefixedTypeString = "Address"
         case .bool:
             nonPrefixedTypeString = "Bool"
-        case .bytes(let length):
-            // TODO: Bytes => Data ???
+        case .bytes(_):
             nonPrefixedTypeString = "Data"
         case .function:
             nonPrefixedTypeString = "Function"
-        case let .array(type, length: length):
+        case let .array(type, length: _):
             let innerType = type.generatedTypeString
             nonPrefixedTypeString = "Array<\(innerType)>"
         }
         return nonPrefixedTypeString
+    }
+}
+
+extension Function.ParameterType.StaticType {
+    func abiTypeString(value: String) -> String {
+        let abiString: String
+        switch self {
+        case .uint(let bits):
+            abiString = ".uint(size: \(bits), value: \(value))"
+        case .int(let bits):
+            abiString = ".int(size: \(bits), value: \(value))"
+        case .address:
+            abiString = ".address(value: \(value))"
+        case .bool:
+            abiString = ".bool(value: \(value))"
+        case .bytes(let length):
+            abiString = "(count: .bytes(.constrained(\(length)), value: \(value))"
+        case .function:
+            abiString = ".functionSelector(name: String, parameterTypes: [ABIType], contract: nil)"
+        case let .array(type, length: length):
+            abiString = ".array(count: .constrained(\(length)), type: \(type.abiTypeString), contract: nil)"
+        }
+        return abiString
     }
 }
 
@@ -167,18 +204,32 @@ extension Function.ParameterType.DynamicType {
         let nonPrefixedTypeString: String
         switch self {
         case .bytes:
-            // TODO: Bytes => Data ???
             nonPrefixedTypeString = "Data"
         case .string:
             nonPrefixedTypeString = "String"
         case .array(let type):
             let innerType = type.generatedTypeString
-            // TODO: VariableArray ... ?
             nonPrefixedTypeString = "Array<\(innerType)>"
         }
         return nonPrefixedTypeString
     }
 }
+
+extension Function.ParameterType.DynamicType {
+    func abiTypeString(value: String) -> String {
+        let abiString: String
+        switch self {
+        case .bytes:
+            abiString = ".bytes(count: .unlimited, value: \(value))"
+        case .string:
+            abiString = ".string(value)"
+        case .array(let type):
+            abiString = ".array(count: .unlimited, type: \(type.abiTypeString), value: [values])"
+        }
+        return abiString
+    }
+}
+
 
 extension Function.Output {
     public func renderToSwift() -> String {
