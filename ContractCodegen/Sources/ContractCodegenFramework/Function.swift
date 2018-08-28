@@ -189,9 +189,7 @@ extension Function.ParameterType.StaticType {
         case .bytes(let length):
             abiString = "(count: .bytes(.constrained(\(length)), value: \(value))"
         case .function:
-            // TODO: Handle error?
-            abiString = ""
-//            abiString = ".functionSelector(name: String, parameterTypes: [ABIType], contract: nil)"
+            abiString = ".functionSelector(name: \(value), parameterTypes: \(value).functionSelector.parameterTypes, contract: \(value).functionSelector.contract"
         case let .array(type, length: length):
             abiString = ".array(count: .constrained(\(length)), type: \(type.abiTypeString), contract: nil)"
         }
