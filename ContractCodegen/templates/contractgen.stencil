@@ -19,7 +19,7 @@ struct ContractMethodInvocation {
 }
 
 extension EtherQuery {
-    func {{ lowercasedContractName }}(at: Address) -> {{ contractName }}Box {
+    func {% filter lowerFirstLetter %}{{ contractName }}{% endfilter %}(at: Address) -> {{ contractName }}Box {
         return {{ contractName }}Box(etherQuery: self, at: at)
     }
 }
@@ -32,7 +32,6 @@ struct {{ contractName }}Box {
         self.etherQuery = etherQuery
         self.at = at
     }
-
     {% for function in functions %}
     func {{ function.name }}({{ function.params }}) -> ContractMethodInvocation {
       let send: Send = { using, from, amount in

@@ -1,5 +1,3 @@
-// import EtherKit
-
 public struct Function: Decodable {
 
     public struct Param: Decodable {
@@ -191,7 +189,9 @@ extension Function.ParameterType.StaticType {
         case .bytes(let length):
             abiString = "(count: .bytes(.constrained(\(length)), value: \(value))"
         case .function:
-            abiString = ".functionSelector(name: String, parameterTypes: [ABIType], contract: nil)"
+            // TODO: Handle error?
+            abiString = ""
+//            abiString = ".functionSelector(name: String, parameterTypes: [ABIType], contract: nil)"
         case let .array(type, length: length):
             abiString = ".array(count: .constrained(\(length)), type: \(type.abiTypeString), contract: nil)"
         }
@@ -222,9 +222,9 @@ extension Function.ParameterType.DynamicType {
         case .bytes:
             abiString = ".bytes(count: .unlimited, value: \(value))"
         case .string:
-            abiString = ".string(value)"
+            abiString = ".string(\(value))"
         case .array(let type):
-            abiString = ".array(count: .unlimited, type: \(type.abiTypeString), value: [values])"
+            abiString = ".array(count: .unlimited, type: \(type.abiTypeString), value: \(value))"
         }
         return abiString
     }
