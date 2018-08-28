@@ -92,7 +92,7 @@ public struct Function: Decodable {
     /// - Parameter json: Dictionary describing a function. This dictionary should
     ///     include the key `inputs`. Otherwise an empty list is returned.
     /// - Returns: The list of `FunctionInput`s or an empty list.
-    /// - Throws: Throws a BivrostError in case the json was malformed or there
+    /// - Throws: Throws a ParsingError in case the json was malformed or there
     ///     was an error.
     private static func parseFunctionInputs(from json: [[String: String]]) throws -> [Input] {
         return try json.map { try Function.parseFunctionInput(from: $0) }
@@ -102,7 +102,7 @@ public struct Function: Decodable {
     ///
     /// - Parameter json: Dictionary describing an Input to a function.
     /// - Returns: The corresponding FunctionInput.
-    /// - Throws: Throws a BivrostError in case the json was malformed or there
+    /// - Throws: Throws a ParsingError in case the json was malformed or there
     ///     was an error.
     private static func parseFunctionInput(from json: [String: String]) throws -> Function.Input {
         guard let name = json["name"] else {
