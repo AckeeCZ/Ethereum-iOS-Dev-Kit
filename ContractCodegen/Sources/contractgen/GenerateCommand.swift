@@ -31,8 +31,7 @@ class GenerateCommand: SwiftCLI.Command {
             let abiData: Data = try filePath.read()
             contractHeaders = try JSONDecoder().decode([ABIElement].self, from: abiData)
         } catch {
-            // TODO: handle error
-            stdout <<< "Error!"
+            stdout <<< "ABI JSON decode error! ⛔️"
             return
         }
 
@@ -56,7 +55,7 @@ class GenerateCommand: SwiftCLI.Command {
         let stencilSwiftExtension = Extension()
         stencilSwiftExtension.registerStencilSwiftExtensions()
         // TODO: Is there a more suitable place?
-        let fsLoader = FileSystemLoader(paths: ["/usr/local/share/templates/"])
+        let fsLoader = FileSystemLoader(paths: ["/usr/local/share/contractgen/templates/"])
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
         let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "parameterTypes": $0.inputs.map { $0.abiTypeString }.joined(separator: ", "), "values": $0.inputs.map { $0.name }.joined(separator: ", ")]}
         let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]
@@ -82,7 +81,7 @@ class GenerateCommand: SwiftCLI.Command {
         if let xcodeValue = xcode.value {
             xcodePath = Path(xcodeValue)
         } else {
-            guard let path = Path.glob("../*.xcodeproj").first else {
+            guard let path = Path.glob("../../*.xcodeproj").first else {
                 stdout <<< "Could not find Xcode project! 😓"
                 return
             }
@@ -97,10 +96,10 @@ class GenerateCommand: SwiftCLI.Command {
             }
             let parentGroupName = separatedPath[separatedPath.index(separatedPath.endIndex, offsetBy: -2)]
             print("rake \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute())")
-            try run(bash: "rake \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute()) --tasks")
+            try run(bash: "rake -f /usr/local/share/contractgen/Rakefile \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute()) --tasks")
             stdout <<< "Code generation: ✅"
         } catch {
-            stdout <<< "Rake error"
+            stdout <<< "Rakefile error"
         }
     }
 }

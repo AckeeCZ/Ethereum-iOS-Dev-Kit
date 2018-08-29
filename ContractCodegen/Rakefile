@@ -2,17 +2,12 @@ require 'xcodeproj'
 
 inputs = ARGV
 
-project_path = "#{inputs[0]}"
+# First to arguments reserved to -f /path/to/Rakefile
+project_path = "#{inputs[2]}"
 project = Xcodeproj::Project.open(project_path)
-
-project.targets.each do |target|
-  puts target.name
-end
-
-target = project.targets.first
-group_name = "#{inputs[1]}"
-parent_name = "#{inputs[2]}"
-output_folder = "#{inputs[3]}"
+group_name = "#{inputs[3]}"
+parent_name = "#{inputs[4]}"
+output_folder = "#{inputs[5]}"
 
 parent_group = nil
 
