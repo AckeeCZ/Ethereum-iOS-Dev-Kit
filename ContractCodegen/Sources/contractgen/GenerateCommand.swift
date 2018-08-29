@@ -13,7 +13,8 @@ class GenerateCommand: SwiftCLI.Command {
 
     let contractName = Parameter(completion: .none)
     let file = Parameter(completion: .filename)
-    // TODO: Add another parameter for output directory (or Flag ... ?)
+    let output = Key<String>("-o", "--output", description: "Define output directory")
+    let xcode = Key<String>("-x", "--xcode", description: "Define location of .xcodeproj")
 
     func execute() throws {
         let arguments = CommandLine.arguments
@@ -43,11 +44,18 @@ class GenerateCommand: SwiftCLI.Command {
         }
 
         // TODO: Add events
-        let swiftCodePath = Path.current + Path("../GeneratedContracts")
+        let swiftCodePath: Path
+
+        if let outputValue = output.value {
+            swiftCodePath = Path(outputValue)
+        } else {
+            swiftCodePath = Path.current + Path("../GeneratedContracts")
+        }
+
 
         let stencilSwiftExtension = Extension()
         stencilSwiftExtension.registerStencilSwiftExtensions()
-        // TODO: Is there a more suitable place?s
+        // TODO: Is there a more suitable place?
         let fsLoader = FileSystemLoader(paths: ["/usr/local/share/templates/"])
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
         let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "parameterTypes": $0.inputs.map { $0.abiTypeString }.joined(separator: ", "), "values": $0.inputs.map { $0.name }.joined(separator: ", ")]}
