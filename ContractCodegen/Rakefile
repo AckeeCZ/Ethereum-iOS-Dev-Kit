@@ -1,0 +1,10 @@
+require 'xcodeproj'
+
+inputs = ARGV
+
+project_path = "#{inputs[0]}"
+project = Xcodeproj::Project.open(project_path)
+
+project.targets.each do |target|
+  puts target.name
+end

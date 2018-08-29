@@ -78,5 +78,17 @@ class GenerateCommand: SwiftCLI.Command {
             stdout <<< "Write Error! 😱"
             return
         }
+
+        let xcodePath: Path
+        if let xcodeValue = xcode.value {
+            xcodePath = Path(xcodeValue)
+        } else {
+            guard let path = Path.glob("../*.xcodeproj").first else {
+                stdout <<< "Could not find Xcode project! 😓"
+                return
+            }
+            xcodePath = path
+        }
+        try run(bash: "rake \(xcodePath.absolute())")
     }
 }
