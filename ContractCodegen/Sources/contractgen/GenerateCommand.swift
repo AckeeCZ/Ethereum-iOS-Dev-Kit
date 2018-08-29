@@ -73,7 +73,6 @@ class GenerateCommand: SwiftCLI.Command {
             let rendered = try environment.renderTemplate(name: "contractgen.stencil", context: context)
             let contractCodePath = swiftCodePath + Path(arguments[1] + ".swift")
             try contractCodePath.write(rendered)
-            stdout <<< "Code generation: ✅"
         } catch {
             stdout <<< "Write Error! 😱"
             return
@@ -89,6 +88,19 @@ class GenerateCommand: SwiftCLI.Command {
             }
             xcodePath = path
         }
-        try run(bash: "rake \(xcodePath.absolute())")
+
+        do {
+            let separatedPath = "\(swiftCodePath.absolute())".components(separatedBy: "/")
+            guard let groupName = separatedPath.last else {
+                stdout <<< "Xcode path error"
+                return
+            }
+            let parentGroupName = separatedPath[separatedPath.index(separatedPath.endIndex, offsetBy: -2)]
+            print("rake \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute())")
+            try run(bash: "rake \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute()) --tasks")
+            stdout <<< "Code generation: ✅"
+        } catch {
+            stdout <<< "Rake error"
+        }
     }
 }

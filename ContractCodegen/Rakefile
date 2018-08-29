@@ -8,3 +8,25 @@ project = Xcodeproj::Project.open(project_path)
 project.targets.each do |target|
   puts target.name
 end
+
+target = project.targets.first
+group_name = "#{inputs[1]}"
+parent_name = "#{inputs[2]}"
+output_folder = "#{inputs[3]}"
+
+parent_group = nil
+
+project.groups.each do |group|
+  if group.path == parent_name
+    parent_group = group
+    break
+  end
+end
+
+new_group = parent_group.find_subpath(group_name, should_create = true)
+
+Dir.glob(output_folder) do |item|
+    puts item
+end
+
+project.save(project_path)
