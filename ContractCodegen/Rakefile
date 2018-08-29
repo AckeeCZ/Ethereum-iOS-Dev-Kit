@@ -23,10 +23,18 @@ project.groups.each do |group|
   end
 end
 
-new_group = parent_group.find_subpath(group_name, should_create = true)
+output_group = parent_group.find_subpath(group_name, should_create = true)
 
-Dir.glob(output_folder) do |item|
-    puts item
+current_files = Array.new
+output_group.files.each do |file_reference|
+  current_files.push(file_reference.display_name)
+end
+
+Dir[output_folder + "/*.swift"].each do |item|
+  item_name = item.split("/").last
+  if (current_files.include? item_name) == false
+    output_group.new_reference(item)
+  end
 end
 
 project.save(project_path)
