@@ -1,9 +1,11 @@
 # ContractCodegen
 
 ## Installation
-1. Install zip file
+1. Install zip file from the latest release (for development just git clone)
+2. cd into ContractCodegen
+3. make install
+4. Navigate to your Resources folder
+5. Run contractgen HelloContract abi.json
+Alternatively, if you have/want a different project structure, you can use options -x for .xcodeproj path and -o for output location of GeneratedContracts
 
-Do NOT forget to tell the user to put all the contracts into Resources/ and run the script from there, so no conflicts appear 🙂
-
-
-Add mention of bivrost-swift.
+Parts of project were inspired by https://github.com/gnosis/bivrost-swift.
