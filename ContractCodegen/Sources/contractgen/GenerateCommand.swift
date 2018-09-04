@@ -30,20 +30,15 @@ class GenerateCommand: SwiftCLI.Command {
         do {
             let abiData: Data = try filePath.read()
             contractHeaders = try JSONDecoder().decode([ABIElement].self, from: abiData)
-        } catch DecodingError.dataCorrupted(let context){
-            print(context)
+        } catch {
             stdout <<< "ABI JSON decode error! ⛔️"
-            return
-        }
-        catch {
-            stdout <<< "Other errrroooooor"
             return
         }
 
         let funcs: [Function] = contractHeaders.compactMap {
             switch $0 {
             case .function(let f): return f
-            case .event(_): return nil
+            default: return nil
             }
         }
 
@@ -71,9 +66,10 @@ class GenerateCommand: SwiftCLI.Command {
             }
             let commonRendered = try environment.renderTemplate(name: "shared_contractgen.stencil")
             let sharedSwiftCodePath = swiftCodePath + Path("SharedContract.swift")
-            if !sharedSwiftCodePath.exists {
-                try sharedSwiftCodePath.write(commonRendered)
+            if sharedSwiftCodePath.exists {
+                try sharedSwiftCodePath.delete()
             }
+            try sharedSwiftCodePath.write(commonRendered)
             let rendered = try environment.renderTemplate(name: "contractgen.stencil", context: context)
             let contractCodePath = swiftCodePath + Path(arguments[1] + ".swift")
             try contractCodePath.write(rendered)
