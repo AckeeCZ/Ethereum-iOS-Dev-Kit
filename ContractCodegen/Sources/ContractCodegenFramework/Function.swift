@@ -219,7 +219,7 @@ extension Function.ParameterType.DynamicType {
         case .bytes:
             abiString = ".bytes(count: .unlimited, value: \(value))"
         case .string:
-            abiString = ".string(\(value))"
+            abiString = ".string(value: \(value))"
         case .array(let type):
             abiString = ".array(count: .unlimited, type: \(type.abiTypeString), value: \(value))"
         }
