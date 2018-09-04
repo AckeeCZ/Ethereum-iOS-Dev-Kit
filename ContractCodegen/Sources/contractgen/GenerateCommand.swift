@@ -30,8 +30,13 @@ class GenerateCommand: SwiftCLI.Command {
         do {
             let abiData: Data = try filePath.read()
             contractHeaders = try JSONDecoder().decode([ABIElement].self, from: abiData)
-        } catch {
+        } catch DecodingError.dataCorrupted(let context){
+            print(context)
             stdout <<< "ABI JSON decode error! ⛔️"
+            return
+        }
+        catch {
+            stdout <<< "Other errrroooooor"
             return
         }
 
