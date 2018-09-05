@@ -96,8 +96,24 @@ class GenerateCommand: SwiftCLI.Command {
                 return
             }
             let parentGroupName = separatedPath[separatedPath.index(separatedPath.endIndex, offsetBy: -2)]
-            print("rake \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute())")
-            try run(bash: "rake -f /usr/local/share/contractgen/Rakefile \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute()) --tasks")
+
+            let targetsString = try capture(bash: "rake -f /usr/local/share/contractgen/Rakefile find_targets \(xcodePath.absolute())").stdout
+            let targets = targetsString.components(separatedBy: "\n")
+            for (index, target) in targets.enumerated() {
+                print("\(index + 1). " + target)
+            }
+
+            // - 1 to get index from 0
+            let index = Input.readInt(
+                prompt: "Choose target for the generated contract code:",
+                validation: { $0 > 0 && $0 < targets.count },
+                errorResponse: { input in
+                    self.stderr <<< "'\(input)' is invalid; must be a number between 1 and \(targets.count)"
+                }
+            ) - 1
+
+//            print("rake -f /usr/local/share/contractgen/Rakefile add_files_to_group \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute()) \(index)")
+            try run(bash: "rake -f /usr/local/share/contractgen/Rakefile add_files_to_group \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute())")
             stdout <<< "Code generation: ✅"
         } catch {
             stdout <<< "Rakefile error"
