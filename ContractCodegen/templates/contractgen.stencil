@@ -16,7 +16,7 @@ struct {{ contractName }}Box {
     func {{ function.name }}({{ function.params }}) -> ContractMethodInvocation {
       let send: Send = { using, from, amount in
             return SignalProducer<Hash, EtherKitError> { observer, disposable in
-                let {{ function.name }}FunctionCall = Function(functionSelector: FunctionSelector(name: "{{ function.name }}", parameterTypes: [{{ function.parameterTypes }}]), parameters: [{{ function.values }}])
+                let {{ function.name }}FunctionCall = Function(functionSelector: FunctionSelector(name: "{{ function.name }}", parameters: [{{ function.values }}])
                 let {{ function.name }}Data = GeneralData(data: {{ function.name }}FunctionCall.encodeToCall())
                 self.etherQuery.send(using: using, from: from, to: self.at, value: amount, data: {{ function.name }}Data, completion: { result in
                     switch result {

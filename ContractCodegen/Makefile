@@ -20,5 +20,6 @@ install: clean
 	mkdir -p /usr/local/share/contractgen
 	rm -rf /usr/local/share/contractgen/templates
 	cp -R templates /usr/local/share/contractgen/templates
-	rm /usr/local/share/contractgen/Rakefile
+	rm -f /usr/local/share/contractgen/Rakefile
 	cp Rakefile /usr/local/share/contractgen/Rakefile
+	bundle install

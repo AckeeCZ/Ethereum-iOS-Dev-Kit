@@ -1,8 +1,9 @@
 require 'xcodeproj'
+require 'thor'
 
 inputs = ARGV
 
-# First to arguments reserved to -f /path/to/Rakefile
+# First two arguments reserved to -f /path/to/Rakefile
 project_path = "#{inputs[2]}"
 project = Xcodeproj::Project.open(project_path)
 group_name = "#{inputs[3]}"
@@ -31,5 +32,16 @@ Dir[output_folder + "/*.swift"].each do |item|
     output_group.new_reference(item)
   end
 end
+
+class Test < Thor::Group
+  def foo
+    project.targets.each do |target|
+      puts target.name
+    end
+    puts "bar"
+  end
+end
+
+Test.start()
 
 project.save(project_path)
