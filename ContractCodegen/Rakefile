@@ -1,101 +1,54 @@
 require 'xcodeproj'
-# require 'thor'
-require 'clamp'
-require "highline"
 
+namespace :xcode do  
 
-task :find_targets do 
-  inputs = ARGV
-  project_path = "#{inputs[3]}"
-  project = Xcodeproj::Project.open(project_path)
-
-  targets = []
-  project.targets.each do |target|
-    targets.push(target.name)
-  end
-  puts targets 
-end
-
-task :add_files_to_group do 
-  inputs = ARGV
-
-  # First two arguments reserved to -f /path/to/Rakefile
-  project_path = "#{inputs[3]}"
-  project = Xcodeproj::Project.open(project_path)
-  group_name = "#{inputs[4]}"
-  parent_name = "#{inputs[5]}"
-  output_folder = "#{inputs[6]}"
-  # target_index = "#{inputs[7]}".to_i
-  # target = project.targets[target_index]
-  parent_group = nil
-
-  project.groups.each do |group|
-    if group.path == parent_name
-      parent_group = group
-      break
-    end
-  end
-
-  output_group = parent_group.find_subpath(group_name, should_create = true)
-
-  current_files = []
-  output_group.files.each do |file_reference|
-    current_files.push(file_reference.display_name)
-  end
-
-  new_references = []
-  Dir[output_folder + "/*.swift"].each do |item|
-    item_name = item.split("/").last
-    if (current_files.include? item_name) == false
-      new_reference = output_group.new_reference(item)
-      new_references.push(new_reference)
-    end
-  end
-
-  # target.add_file_references(new_references)
-
-  project.save(project_path)
-end 
-
-
-# def ask_for_number(indexes, targets)
-#   puts "\n Choose one of the targets by number? [#{indexes.first}-#{indexes.last}]"
-#   answer = STDIN.gets.chomp
-#   puts answer
-#   if answer.respond_to?(:to_i) == false 
-#     puts "You must input number."
-#     ask_for_number()
-#   else 
-#     target_index = answer.to_i
-#     project_target = project.targets[target_index - 1]
-#     puts "Target"
-#     puts project_target.name 
-#   end
-# end
-
-# ask_for_number(indexes, targets)
-
-# class AskCommand < Clamp::Command
-#   def execute
-#     hey = ask("Tell me ")
-#     puts hey
-#   end
-# end
-
-# AskCommand.run
-
-
-
-# class Target < Thor
-#   package_name "Target"
-
-#   desc "PROJECT_PATH", "add files to one of the targets of xcodeproject"
+  task :find_targets, [:project_path] do |t, args| 
+    project_path = args.project_path
+    project = Xcodeproj::Project.open(project_path)
   
-#   def add_to_target(project_path)
+    targets = []
+    project.targets.each do |target|
+      targets.push(target.name)
+    end
+    puts targets 
+  end
+
+  task :add_files_to_group, [:project_path, :group_name, :parent_name, :output_folder, :target_index] do |t, args|
+    project_path = args.project_path
+    project = Xcodeproj::Project.open(project_path)
+    group_name = args.group_name
+    parent_name = args.parent_name
+    output_folder = args.output_folder
+    target_index = args.target_index.to_i
+    target = project.targets[target_index]
+    parent_group = nil
+
+    project.groups.each do |group|
+      if group.path == parent_name
+        parent_group = group
+        break
+      end
+    end
+
+    output_group = parent_group.find_subpath(group_name, should_create = true)
+
+    current_files = []
+    output_group.files.each do |file_reference|
+      current_files.push(file_reference.display_name)
+    end
+
+    new_references = []
+    Dir[output_folder + "/*.swift"].each do |item|
+      item_name = item.split("/").last
+      if (current_files.include? item_name) == false
+        new_reference = output_group.new_reference(item)
+        new_references.push(new_reference)
+      end
+    end
+
+    target.add_file_references(new_references)
     
-#   end
-# end
-
-# Target.new.add_to_target(project_path)
-
+    project.save(project_path)
+  end
+end
 

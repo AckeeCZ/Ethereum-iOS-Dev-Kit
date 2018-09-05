@@ -97,7 +97,7 @@ class GenerateCommand: SwiftCLI.Command {
             }
             let parentGroupName = separatedPath[separatedPath.index(separatedPath.endIndex, offsetBy: -2)]
 
-            let targetsString = try capture(bash: "rake -f /usr/local/share/contractgen/Rakefile find_targets \(xcodePath.absolute())").stdout
+            let targetsString = try capture(bash: "rake -f /usr/local/share/contractgen/Rakefile xcode:find_targets'[\(xcodePath.absolute())]' --trace").stdout
             let targets = targetsString.components(separatedBy: "\n")
             for (index, target) in targets.enumerated() {
                 print("\(index + 1). " + target)
@@ -112,8 +112,7 @@ class GenerateCommand: SwiftCLI.Command {
                 }
             ) - 1
 
-//            print("rake -f /usr/local/share/contractgen/Rakefile add_files_to_group \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute()) \(index)")
-            try run(bash: "rake -f /usr/local/share/contractgen/Rakefile add_files_to_group \(xcodePath.absolute()) \(groupName) \(parentGroupName) \(swiftCodePath.absolute())")
+            try run(bash: "rake -f /usr/local/share/contractgen/Rakefile xcode:add_files_to_group'[\(xcodePath.absolute()),\(groupName),\(parentGroupName),\(swiftCodePath.absolute()), \(index)]' --trace")
             stdout <<< "Code generation: ✅"
         } catch {
             stdout <<< "Rakefile error"
