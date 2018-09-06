@@ -50,6 +50,7 @@ Pods/
 # Carthage
 Carthage
 Romefile
+ContractCodegen/.build
 
 #Fastlane
 fastlane/report.xml
@@ -70,3 +71,5 @@ Environment/Environment.swift
 #generated files
 */Model/Generated/*
 !*/Model/Generated/.gitkeep
+
+EthereumProjectTemplate/GeneraredContracts/

@@ -1,5 +1,0 @@
-version: "Apple Swift version 4.1.2 (swiftlang-902.0.54 clang-902.0.39.2)"
-options: "ace884533ee54ab2a807b4707f3c389b"
-build_time: [1536224839, 444464000]
-inputs:
-  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/PathKit--9185519632264250829/Sources/PathKit.swift": [9223372036, 854775807]
