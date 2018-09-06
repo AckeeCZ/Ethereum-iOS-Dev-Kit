@@ -4,7 +4,7 @@ import Foundation
 
 enum Environment {
     enum API {
-        static let baseURL = URL(string: "https://cookbook-dev.ack.ee")!
+        static let baseURL = URL(string: "https://jsonplaceholder.typicode.com")!
     }
 
     static let data = Data(base64Encoded: "EjRWeA==")!
