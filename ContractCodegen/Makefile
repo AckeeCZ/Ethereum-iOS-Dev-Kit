@@ -23,3 +23,4 @@ install: clean
 	rm -f /usr/local/share/contractgen/Rakefile
 	cp Rakefile /usr/local/share/contractgen/Rakefile
 	bundle install
+	

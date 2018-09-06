@@ -17,6 +17,7 @@ class GenerateCommand: SwiftCLI.Command {
     let xcode = Key<String>("-x", "--xcode", description: "Define location of .xcodeproj")
 
     func execute() throws {
+
         let arguments = CommandLine.arguments
 
         let filePath = Path.current + Path(arguments[2])
@@ -42,15 +43,29 @@ class GenerateCommand: SwiftCLI.Command {
             }
         }
 
-        // TODO: Add events
-        let swiftCodePath: Path
-
+        var generatedSwiftCodePath: Path? = nil
         if let outputValue = output.value {
-            swiftCodePath = Path(outputValue)
-        } else {
-            swiftCodePath = Path.current + Path("../GeneratedContracts")
+            generatedSwiftCodePath = Path(outputValue)
         }
 
+        writeGeneratedCode(to: generatedSwiftCodePath, funcs: funcs)
+
+        var projectPath: Path? = nil
+        if let projectPathValue = xcode.value {
+            projectPath = Path(projectPathValue)
+        }
+
+        // Do not bind files when project or swift code path is not given
+        guard let xcodePath = projectPath, let swiftCodePath = generatedSwiftCodePath else { return }
+        bindFilesWithProject(xcodePath: xcodePath, swiftCodePath: swiftCodePath)
+    }
+
+    /// Writes and renders code from .stencil files to a given directory
+    private func writeGeneratedCode(to path: Path?, funcs: [Function]) {
+
+        let arguments = CommandLine.arguments
+
+        let swiftCodePath = path ?? (Path.current + Path("GeneratedContracts"))
 
         let stencilSwiftExtension = Extension()
         stencilSwiftExtension.registerStencilSwiftExtensions()
@@ -77,45 +92,44 @@ class GenerateCommand: SwiftCLI.Command {
             stdout <<< "Write Error! 😱"
             return
         }
+    }
 
-        let xcodePath: Path
-        if let xcodeValue = xcode.value {
-            xcodePath = Path(xcodeValue)
-        } else {
-            guard let path = Path.glob("../../*.xcodeproj").first else {
-                stdout <<< "Could not find Xcode project! 😓"
-                return
-            }
-            xcodePath = path
+    /// Binds file references with project, adds files to target
+    private func bindFilesWithProject(xcodePath: Path, swiftCodePath: Path) {
+        let separatedPath = "\(swiftCodePath.absolute())".components(separatedBy: "/")
+        guard let groupName = separatedPath.last else {
+            stdout <<< "Xcode path error"
+            return
+        }
+        let parentGroupName = separatedPath[separatedPath.index(separatedPath.endIndex, offsetBy: -2)]
+
+        let targetsString: String
+        do {
+            targetsString = try capture(bash: "rake -f /usr/local/share/contractgen/Rakefile xcode:find_targets'[\(xcodePath.absolute())]'").stdout
+        } catch {
+            stdout <<< "Rakefile task find_targets failed 😥"
+            return
         }
 
+        let targets = targetsString.components(separatedBy: "\n")
+        // Prints targets as a list so user can choose with which one they want to bind their files
+        for (index, target) in targets.enumerated() {
+            print("\(index + 1). " + target)
+        }
+
+        let index = Input.readInt(
+            prompt: "Choose target for the generated contract code:",
+            validation: { $0 > 0 && $0 <= targets.count },
+            errorResponse: { input in
+                self.stderr <<< "'\(input)' is invalid; must be a number between 1 and \(targets.count)"
+            }
+        )
+
         do {
-            let separatedPath = "\(swiftCodePath.absolute())".components(separatedBy: "/")
-            guard let groupName = separatedPath.last else {
-                stdout <<< "Xcode path error"
-                return
-            }
-            let parentGroupName = separatedPath[separatedPath.index(separatedPath.endIndex, offsetBy: -2)]
-
-            let targetsString = try capture(bash: "rake -f /usr/local/share/contractgen/Rakefile xcode:find_targets'[\(xcodePath.absolute())]' --trace").stdout
-            let targets = targetsString.components(separatedBy: "\n")
-            for (index, target) in targets.enumerated() {
-                print("\(index + 1). " + target)
-            }
-
-            // - 1 to get index from 0
-            let index = Input.readInt(
-                prompt: "Choose target for the generated contract code:",
-                validation: { $0 > 0 && $0 < targets.count },
-                errorResponse: { input in
-                    self.stderr <<< "'\(input)' is invalid; must be a number between 1 and \(targets.count)"
-                }
-            ) - 1
-
-            try run(bash: "rake -f /usr/local/share/contractgen/Rakefile xcode:add_files_to_group'[\(xcodePath.absolute()),\(groupName),\(parentGroupName),\(swiftCodePath.absolute()), \(index)]' --trace")
+            try run(bash: "rake -f /usr/local/share/contractgen/Rakefile xcode:add_files_to_group'[\(xcodePath.absolute()),\(swiftCodePath.absolute()),\(groupName),\(parentGroupName),\(index - 1)]'")
             stdout <<< "Code generation: ✅"
         } catch {
-            stdout <<< "Rakefile error"
+            stdout <<< "Rakefile task add_files_to_group failed 😥"
         }
     }
 }

@@ -1,4 +1,5 @@
 require 'xcodeproj'
+require 'fileutils'
 
 namespace :xcode do  
 
@@ -13,7 +14,7 @@ namespace :xcode do
     puts targets 
   end
 
-  task :add_files_to_group, [:project_path, :group_name, :parent_name, :output_folder, :target_index] do |t, args|
+  task :add_files_to_group, [:project_path, :output_folder, :group_name, :parent_name, :target_index] do |t, args|
     project_path = args.project_path
     project = Xcodeproj::Project.open(project_path)
     group_name = args.group_name
@@ -22,7 +23,7 @@ namespace :xcode do
     target_index = args.target_index.to_i
     target = project.targets[target_index]
     parent_group = nil
-
+      
     project.groups.each do |group|
       if group.path == parent_name
         parent_group = group
@@ -51,4 +52,3 @@ namespace :xcode do
     project.save(project_path)
   end
 end
-
