@@ -30,12 +30,11 @@ let abi =
     }]
     """.data(using: .utf8)!
 
-
 //mock EtherKit for now
 struct Hash { let value: String }
 typealias Wei = Int //BigInt
 class EtherKit {
-    func send(rawTransaction data: Data, completion: (Hash) -> ()) {
+    func send(rawTransaction data: Data, completion: (Hash) -> Void) {
         print("sending transaction")
         print("--------------------")
         print(data)

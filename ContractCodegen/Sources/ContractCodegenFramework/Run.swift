@@ -11,8 +11,8 @@ public struct Run<Message>: Command {
     //        }
     //    }
 
-    public let run: (_ context: Context, _ callback: @escaping (Message) -> ()) -> ()
-    public init(run: @escaping (Context, @escaping (Message) -> ()) -> ()) {
+    public let run: (_ context: Context, _ callback: @escaping (Message) -> Void) -> Void
+    public init(run: @escaping (Context, @escaping (Message) -> Void) -> Void) {
         self.run = run
     }
 }
@@ -29,7 +29,7 @@ extension Run: EthereumCommand {
 // TODO: Rename
 public struct EtherHash { let value: String }
 public class EtherKit {
-    func send(rawTransaction data: Data, completion: (EtherHash) -> ()) {
+    func send(rawTransaction data: Data, completion: (EtherHash) -> Void) {
         print("sending transaction")
         print("--------------------")
         print(data)

@@ -1,0 +1,52 @@
+{
+  "": {
+    "dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ContractCodegenFramework.d",
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ContractCodegenFramework.o",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/master.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/ContractCodegenFramework/ABIElement.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ABIElement.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ABIElement~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ABIElement.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/ContractCodegenFramework/Command.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Command.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Command~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Command.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/ContractCodegenFramework/EthereumCommand.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/EthereumCommand.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/EthereumCommand~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/EthereumCommand.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/ContractCodegenFramework/Event.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Event.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Event~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Event.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/ContractCodegenFramework/Function.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Function.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Function~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Function.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/ContractCodegenFramework/ParameterParser.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ParameterParser.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ParameterParser~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ParameterParser.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/ContractCodegenFramework/ParsingError.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ParsingError.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ParsingError~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/ParsingError.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/ContractCodegenFramework/Run.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Run.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Run~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/Run.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/ContractCodegenFramework/StringExtension.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/StringExtension.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/StringExtension~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/ContractCodegenFramework.build/StringExtension.swiftdeps"
+  }
+}

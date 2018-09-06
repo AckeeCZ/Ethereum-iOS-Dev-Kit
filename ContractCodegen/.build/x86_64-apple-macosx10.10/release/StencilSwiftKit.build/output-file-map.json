@@ -1,0 +1,62 @@
+{
+  "": {
+    "dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/StencilSwiftKit.d",
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/StencilSwiftKit.o",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/master.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/CallMacroNodes.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/CallMacroNodes.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/CallMacroNodes~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/CallMacroNodes.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/Context.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/Context.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Context~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Context.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/Environment.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/Environment.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Environment~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Environment.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/Filters+Numbers.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/Filters+Numbers.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Filters+Numbers~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Filters+Numbers.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/Filters+Strings.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/Filters+Strings.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Filters+Strings~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Filters+Strings.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/Filters.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/Filters.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Filters~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Filters.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/MapNode.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/MapNode.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/MapNode~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/MapNode.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/Parameters.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/Parameters.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Parameters~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Parameters.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/SetNode.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/SetNode.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/SetNode~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/SetNode.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/StencilSwiftTemplate.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/StencilSwiftTemplate.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/StencilSwiftTemplate~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/StencilSwiftTemplate.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Sources/SwiftIdentifier.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/Sources/SwiftIdentifier.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/SwiftIdentifier~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/StencilSwiftKit.build/SwiftIdentifier.swiftdeps"
+  }
+}

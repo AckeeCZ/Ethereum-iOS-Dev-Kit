@@ -1,0 +1,6 @@
+version: "Apple Swift version 4.1.2 (swiftlang-902.0.54 clang-902.0.39.2)"
+options: "1383c6cf849c5da97d23e3acbc126f7a"
+build_time: [1536224878, 917455000]
+inputs:
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/contractgen/GenerateCommand.swift": [9223372036, 854775807]
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/Sources/contractgen/main.swift": [9223372036, 854775807]

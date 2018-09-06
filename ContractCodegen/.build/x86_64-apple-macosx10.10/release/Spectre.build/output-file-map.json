@@ -1,0 +1,47 @@
+{
+  "": {
+    "dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Spectre.d",
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Spectre.o",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/master.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Spectre.git--7655155069707042687/Sources/Spectre/Case.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Case.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Case~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Case.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Spectre.git--7655155069707042687/Sources/Spectre/Context.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Context.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Context~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Context.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Spectre.git--7655155069707042687/Sources/Spectre/Expectation.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Expectation.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Expectation~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Expectation.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Spectre.git--7655155069707042687/Sources/Spectre/Failure.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Failure.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Failure~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Failure.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Spectre.git--7655155069707042687/Sources/Spectre/Global.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Global.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Global~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Global.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Spectre.git--7655155069707042687/Sources/Spectre/GlobalContext.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/GlobalContext.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/GlobalContext~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/GlobalContext.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Spectre.git--7655155069707042687/Sources/Spectre/Reporter.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Reporter.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Reporter~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Reporter.swiftdeps"
+  },
+  "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Spectre.git--7655155069707042687/Sources/Spectre/Reporters.swift": {
+    "object": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Reporters.swift.o",
+    "swiftmodule": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Reporters~partial.swiftmodule",
+    "swift-dependencies": "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/x86_64-apple-macosx10.10/release/Spectre.build/Reporters.swiftdeps"
+  }
+}

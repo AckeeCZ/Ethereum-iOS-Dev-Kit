@@ -27,7 +27,7 @@ extension ABIElement {
         switch self {
         case let .function(f): return f.renderToSwift()
         case let .event(e): return e.renderToSwift()
-        case .ignore: return "" 
+        case .ignore: return ""
         }
     }
 }

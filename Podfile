@@ -1,10 +1,10 @@
 platform :ios, '10.3'
-project 'ProjectTemplate', 'AdHoc' => :release,'AppStore' => :release, 'Development' => :debug
+project 'EthereumProjectTemplate', 'AdHoc' => :release,'AppStore' => :release, 'Development' => :debug
 
 inhibit_all_warnings!
 use_frameworks!
 
-target 'ProjectTemplate' do
+target 'EthereumProjectTemplate' do
     pod 'SwiftLint', '~> 0.27'
     pod 'EtherKit', :git => 'git@github.com:Vaultio/EtherKit.git'
     

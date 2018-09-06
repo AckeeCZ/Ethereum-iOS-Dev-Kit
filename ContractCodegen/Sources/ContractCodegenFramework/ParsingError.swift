@@ -22,4 +22,3 @@ enum ParsingError: Error {
     case contractNameInvalid(json: [String: Any])
     case contractAbiInvalid
 }
-

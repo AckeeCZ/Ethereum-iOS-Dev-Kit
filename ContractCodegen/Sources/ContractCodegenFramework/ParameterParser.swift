@@ -9,7 +9,7 @@
 
 import Foundation
 
-fileprivate typealias ParameterType = Function.ParameterType
+private typealias ParameterType = Function.ParameterType
 
 public struct ParameterParser {
     /// Parses the parameter type contained in a Input/Output dictionary.
@@ -54,7 +54,7 @@ public struct ParameterParser {
 //      throw BivrostError.parameterTypeInvalid
 // 6. Return detected type
 
-fileprivate func parameterType(from string: String) throws -> ParameterType {
+private func parameterType(from string: String) throws -> ParameterType {
     // Step 1:
     let possibleType = try exactMatchType(from: string)
         // Step 2:
@@ -76,7 +76,7 @@ fileprivate func parameterType(from string: String) throws -> ParameterType {
 }
 
 /// Types that are "atomic" can be matched exactly to these strings
-fileprivate enum ExactMatchParameterType: String {
+private enum ExactMatchParameterType: String {
     // Static Types
     case address
     case uint
@@ -89,7 +89,7 @@ fileprivate enum ExactMatchParameterType: String {
     case string
 }
 
-fileprivate func exactMatchType(from string: String) -> ParameterType? {
+private func exactMatchType(from string: String) -> ParameterType? {
     // Check all the exact matches by trying to create a ParameterTypeKey from it.
     switch ExactMatchParameterType(rawValue: string) {
 
@@ -116,9 +116,9 @@ fileprivate func exactMatchType(from string: String) -> ParameterType? {
     }
 }
 
-fileprivate let numberSuffixRegex = "^(.*?)([1-9][0-9]*)$"
+private let numberSuffixRegex = "^(.*?)([1-9][0-9]*)$"
 
-fileprivate func numberSuffixMatch(from string: String) throws -> ParameterType? {
+private func numberSuffixMatch(from string: String) throws -> ParameterType? {
     //  if we have a number at the end,
     //      parse number
     //      split number of from rest of string
@@ -168,7 +168,7 @@ fileprivate func numberSuffixMatch(from string: String) throws -> ParameterType?
 /// - Parameter string: The type string to match.
 /// - Returns: nil if not a match for dynamic array suffix.
 /// - Throws: Throws if it's a match, but the wrapped type cannot be parsed or wrapped.
-fileprivate func matchDynamicArray(from string: String) throws -> ParameterType? {
+private func matchDynamicArray(from string: String) throws -> ParameterType? {
     // if we have [] at the end,
     //      split [] off from rest of string
     //      get type for rest of string
@@ -192,7 +192,7 @@ fileprivate func matchDynamicArray(from string: String) throws -> ParameterType?
     return .dynamicType(.array(unwrappedType))
 }
 
-fileprivate func matchFixedArray(from string: String) throws -> ParameterType? {
+private func matchFixedArray(from string: String) throws -> ParameterType? {
     //  if we have ] at the end (that is not covered above)
     //      reverse search for next [
     //      parse substring between into number
@@ -280,4 +280,3 @@ extension ParameterType.DynamicType: AbiEncoding {
         }
     }
 }
-

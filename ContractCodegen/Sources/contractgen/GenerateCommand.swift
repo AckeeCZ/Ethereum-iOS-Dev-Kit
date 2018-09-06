@@ -43,14 +43,14 @@ class GenerateCommand: SwiftCLI.Command {
             }
         }
 
-        var generatedSwiftCodePath: Path? = nil
+        var generatedSwiftCodePath: Path?
         if let outputValue = output.value {
             generatedSwiftCodePath = Path(outputValue)
         }
 
         writeGeneratedCode(to: generatedSwiftCodePath, funcs: funcs)
 
-        var projectPath: Path? = nil
+        var projectPath: Path?
         if let projectPathValue = xcode.value {
             projectPath = Path(projectPathValue)
         }

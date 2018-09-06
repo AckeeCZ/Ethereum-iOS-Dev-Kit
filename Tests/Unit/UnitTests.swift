@@ -6,9 +6,9 @@
 //
 
 import XCTest
-@testable import ProjectTemplate
+@testable import EthereumProjectTemplate
 
-class ProjectTemplateTests: XCTestCase {
+class EthereumProjectTemplateTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

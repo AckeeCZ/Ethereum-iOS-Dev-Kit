@@ -141,9 +141,9 @@ extension Function.ParameterType {
 
     var isDynamic: Bool {
         switch self {
-        case .dynamicType(_):
+        case .dynamicType:
             return true
-        case .staticType(_):
+        case .staticType:
             return false
         }
     }
@@ -161,7 +161,7 @@ extension Function.ParameterType.StaticType {
             nonPrefixedTypeString = "Address"
         case .bool:
             nonPrefixedTypeString = "Bool"
-        case .bytes(_):
+        case .bytes:
             nonPrefixedTypeString = "Data"
         case .function:
             nonPrefixedTypeString = "Function"
@@ -226,7 +226,6 @@ extension Function.ParameterType.DynamicType {
         return abiString
     }
 }
-
 
 extension Function.Output {
     public func renderToSwift() -> String {
