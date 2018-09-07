@@ -30,8 +30,8 @@ struct {{ contractName }}Box {
             }
         }
         return ContractMethodInvocation(send: send)
-      }
-      {% endfor %}}
+    }
+{% endfor %}}
 
 extension EtherQuery {
     func {% filter lowerFirstLetter %}{{ contractName }}{% endfilter %}(at: Address) -> {{ contractName }}Box {

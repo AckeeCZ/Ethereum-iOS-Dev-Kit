@@ -11,6 +11,7 @@ import SnapKit
 import ReactiveSwift
 import EtherKit
 import Result
+import BigInt
 
 // MARK: notes
 // - EtherKit is still in development. Currently its unusable in production.
@@ -98,19 +99,21 @@ final class EtherViewController: BaseViewController {
         //etherKit will be able to lookup the privateKey for this address in the keychain and sign transactions with it.
         //to make transactions from this address, you need some ether.
         //request it from the rinkeby faucet by following https://gist.github.com/cryptogoth/10a98e8078cfd69f7ca892ddbdcf26bc
-        let myAddress = try! Address(describing: "0x94F076d506943387A0a6D758f4e7cfDDEDc3b738")
+        let myAddress = try! Address(describing: "0xD690894858816Aa2f98551Ef6A8dF94Dd818406A")
+//        let myAddress = try! Address(describing: "0x94F076d506943387A0a6D758f4e7cfDDEDc3b738")
 
         //      query.request(query.transactionCount(myAddress)) { result in
         //        switch result {
         //        case let .failure(error):
         //          self.showError(error.localizedDescription)
         //        case let .success(count):
-        //          print(count)
+//                  print(count)
         //        }
         //
         //      }
 
-        let toAddress = try! Address(describing: "0xE9af3D5fB212ebfDA5785B8E7dfA2dB6dB3FEf44")
+        let toAddress = try! Address(describing: "0x3D4771895210E5f54A9bF88B1F20308659B0A40b")
+//        let toAddress = try! Address(describing: "0xE9af3D5fB212ebfDA5785B8E7dfA2dB6dB3FEf44")
 
         //      query.send(using: keyManager, from: myAddress, to: toAddress, value: UInt256(0x131c00000000000)) { result in
         //        switch result {
@@ -131,33 +134,53 @@ final class EtherViewController: BaseViewController {
             }
         }
 
-        //      keyManager.createKeyPair { [weak self] addressResult in
-        //        guard let `self` = self else { assertionFailure(); return }
-        //        switch addressResult {
-        //        case let .failure(error):
-        //          self.showError(error.localizedDescription)
-        //        case let .success(address):
-        //          print("--------------")
-        //          print(address)
-        //
-        //        }
-        //      }
+//          keyManager.createKeyPair { [weak self] addressResult in
+//            guard let `self` = self else { assertionFailure(); return }
+//            switch addressResult {
+//            case let .failure(error):
+//              self.showError(error.localizedDescription)
+//            case let .success(address):
+//              print("--------------")
+//              print(address)
+//
+//            }
+//          }
 
         // I have a HelloWorld contract running at this address, it has the following ABI:
         // [ { "constant": true, "inputs": [ { "name": "message", "type": "string" } ], "name": "say", "outputs": [ { "name": "result", "type": "string", "value": "" } ], "payable": false, "stateMutability": "pure", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" } ]
         // We want to be able to call its "say" function with a String parameter. It should return a String.
-        let helloWorldContractAddress = try! Address(describing: "0x96667Bb1b38a41a9419c1CD695c8BB5Ace241655")
-        let sayHiFunctionCall = Function(name: "say", parameters: ["Hey"])
-        let sayHiData = GeneralData(data: sayHiFunctionCall.encodeToCall())
-        query.greeterContract(at: helloWorldContractAddress).
-        query.send(using: keyManager, from: myAddress, to: toAddress, value: UInt256(0x131c00000000000), data: sayHiData) { result in
+        let helloWorldContractAddress = try! Address(describing: "0x8652cF5536867EA8024EadA6eB0801c7A698772b")
+        query.greeterContract(at: helloWorldContractAddress).greet(greet_string: "Hi").send(using: keyManager, from: myAddress, amount: UInt256(0x131c00000000000)).startWithResult { result in
+            print(result)
             switch result {
-            case let .failure(error):
-                self.showError(error.localizedDescription)
-            case let .success(value):
-                print(value)
+            case .success(let hash):
+                print(hash)
+                print("Succeeded!")
+            case .failure(let error):
+                print(error)
+                print("Error :(((")
             }
         }
+
+        query.greeterContract(at: helloWorldContractAddress).foo().send(using: keyManager, from: myAddress, amount: UInt256(0x0)).startWithResult { result in
+            print(result)
+            switch result {
+            case .success(let hash):
+                print(hash)
+                print("Succeeded with foo!")
+            case .failure(let error):
+                print(error)
+                print("Error foo :(((")
+            }
+        }
+//        query.send(using: keyManager, from: myAddress, to: toAddress, value: UInt256(0x131c00000000000), data: sayHiData) { result in
+//            switch result {
+//            case let .failure(error):
+//                self.showError(error.localizedDescription)
+//            case let .success(value):
+//                print(value)
+//            }
+//        }
 
         //      query.sayHi(using: keyManager, from: myAddress, to: helloWorldContractAddress, value: UInt256(0x100000000000000)) { result in
         //          print(result)
