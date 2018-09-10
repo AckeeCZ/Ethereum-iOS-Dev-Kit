@@ -13,12 +13,12 @@ struct {{ contractName }}Box {
         self.at = at
     }
     {% for function in functions %}
-    func {{ function.name }}<T: PrivateKeyType>({{ function.params }}) -> ContractMethodInvocation<T> {
-        let send: (_ using: T, _ amount: Wei) -> SignalProducer<Hash, EtherKitError> = { using, amount in
+    func {{ function.name }}<T: PrivateKeyType>({{ function.params }}) -> {% if function.isPayable %}PayableContractMethodInvocation<T>{% else %}ContractMethodInvocation<T>{% endif %} {
+        {% if function.isPayable %}let send: (_ using: T, _ amount: Wei) -> SignalProducer<Hash, EtherKitError> = { using, amount in{% else %}let send: (_ using: T) -> SignalProducer<Hash, EtherKitError> = { using in{% endif %}
             return SignalProducer<Hash, EtherKitError> { observer, disposable in
                 let {{ function.name }}FunctionCall = Function(name: "{{ function.name }}", parameters: [{{ function.values }}])
                 let {{ function.name }}Data = GeneralData(data: {{ function.name }}FunctionCall.encodeToCall())
-                self.etherQuery.send(using: using, to: self.at, value: amount, data: {{ function.name }}Data, completion: { result in
+                self.etherQuery.send(using: using, to: self.at, value: {% if function.isPayable %}amount{% else %}Wei(0){% endif %}, data: {{ function.name }}Data, completion: { result in
                     switch result {
                     case .success(let hash):
                         observer.send(value: hash)
@@ -29,7 +29,7 @@ struct {{ contractName }}Box {
                 })
             }
         }
-        return ContractMethodInvocation(send: send)
+        return {% if function.isPayable %}PayableContractMethodInvocation{% else %}ContractMethodInvocation{% endif %}(send: send)
     }
 {% endfor %}}
 

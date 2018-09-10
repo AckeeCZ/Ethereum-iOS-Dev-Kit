@@ -170,18 +170,18 @@ final class EtherViewController: BaseViewController {
         // I have a HelloWorld contract running at this address, it has the following ABI:
         // [ { "constant": true, "inputs": [ { "name": "message", "type": "string" } ], "name": "say", "outputs": [ { "name": "result", "type": "string", "value": "" } ], "payable": false, "stateMutability": "pure", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" } ]
         // We want to be able to call its "say" function with a String parameter. It should return a String.
-        let helloWorldContractAddress = try! Address(describing: "0x2A0A3477A685E4681ef7c39E4D0e1147603b5bfA")
-        query.greeterContract(at: helloWorldContractAddress).approve(spender: myAddress, value: BigUInt(1)).send(using: key, amount: Wei(0)).startWithResult { result in
-            print(result)
-            switch result {
-            case .success(let hash):
-                print(hash)
-                print("Succeeded!")
-            case .failure(let error):
-                print(error)
-                print("Error :(((")
-            }
-        }
+        let helloWorldContractAddress = try! Address(describing: "0x3D4771895210E5f54A9bF88B1F20308659B0A40b")
+//        query.greeterContract(at: helloWorldContractAddress).approve(spender: myAddress, value: BigUInt(1)).send(using: key).startWithResult { result in
+//            print(result)
+//            switch result {
+//            case .success(let hash):
+//                print(hash)
+//                print("Succeeded!")
+//            case .failure(let error):
+//                print(error)
+//                print("Error :(((")
+//            }
+//        }
 
         query.greeterContract(at: helloWorldContractAddress).buy().send(using: key, amount: Wei(1)).startWithResult { result in
             switch result {
