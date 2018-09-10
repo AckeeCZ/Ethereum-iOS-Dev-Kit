@@ -1,4 +1,5 @@
 // Generated using ContractGen
+// swiftlint:disable file_length
 
 import ReactiveSwift
 import EtherKit

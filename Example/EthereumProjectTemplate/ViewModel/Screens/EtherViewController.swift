@@ -170,29 +170,28 @@ final class EtherViewController: BaseViewController {
         // I have a HelloWorld contract running at this address, it has the following ABI:
         // [ { "constant": true, "inputs": [ { "name": "message", "type": "string" } ], "name": "say", "outputs": [ { "name": "result", "type": "string", "value": "" } ], "payable": false, "stateMutability": "pure", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" } ]
         // We want to be able to call its "say" function with a String parameter. It should return a String.
-        let helloWorldContractAddress = try! Address(describing: "0x3D4771895210E5f54A9bF88B1F20308659B0A40b")
-//        query.greeterContract(at: helloWorldContractAddress).approve(spender: myAddress, value: BigUInt(1)).send(using: key).startWithResult { result in
-//            print(result)
-//            switch result {
-//            case .success(let hash):
-//                print(hash)
-//                print("Succeeded!")
-//            case .failure(let error):
-//                print(error)
-//                print("Error :(((")
-//            }
-//        }
-
-        query.greeterContract(at: helloWorldContractAddress).buy().send(using: key, amount: Wei(1)).startWithResult { result in
+        let helloWorldContractAddress = try! Address(describing: "0xed3146503467b00d48cDCa93D9b25025a1FB869B")
+        query.greeterContract(at: helloWorldContractAddress).helloIntBig(value: BigInt(1)).send(using: key, amount: Wei(1)).startWithResult { result in
             switch result {
             case .success(let hash):
                 print(hash)
-                print("Succeeded with foo!")
+                print("Succeeded!")
             case .failure(let error):
                 print(error)
-                print("Error foo :(((")
+                print("Error :(((")
             }
         }
+
+//        query.greeterContract(at: helloWorldContractAddress).hello(decimalUnits: UInt(1)).send(using: key, amount: Wei(1)).startWithResult { result in
+//            switch result {
+//            case .success(let hash):
+//                print(hash)
+//                print("Succeeded with foo!")
+//            case .failure(let error):
+//                print(error)
+//                print("Error foo :(((")
+//            }
+//        }
 //        query.send(using: keyManager, from: myAddress, to: toAddress, value: UInt256(0x131c00000000000), data: sayHiData) { result in
 //            switch result {
 //            case let .failure(error):
