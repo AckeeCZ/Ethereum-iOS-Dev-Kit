@@ -14,7 +14,7 @@ struct {{ contractName }}Box {
     }
     {% for function in functions %}
     func {{ function.name }}<T: PrivateKeyType>({{ function.params }}) -> ContractMethodInvocation<T> {
-        let send: (_ using: T, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError> = { using, amount in
+        let send: (_ using: T, _ amount: Wei) -> SignalProducer<Hash, EtherKitError> = { using, amount in
             return SignalProducer<Hash, EtherKitError> { observer, disposable in
                 let {{ function.name }}FunctionCall = Function(name: "{{ function.name }}", parameters: [{{ function.values }}])
                 let {{ function.name }}Data = GeneralData(data: {{ function.name }}FunctionCall.encodeToCall())

@@ -133,7 +133,7 @@ final class EtherViewController: BaseViewController {
         let sentence: Mnemonic.MnemonicSentence = Mnemonic.MnemonicSentence(["truly", "law", "tide", "pony", "media", "degree", "two", "goat", "ignore", "twice", "project", "message", "vanish", "spring", "movie"])
 
         let walletStorage = KeychainStorageStrategy(identifier: "cz.ackee.etherkit.example")
-        _ = walletStorage.delete()
+//        _ = walletStorage.delete()
         HDKey.Private.create(
             with: MnemonicStorageStrategy(walletStorage),
             mnemonic: sentence,
@@ -164,39 +164,26 @@ final class EtherViewController: BaseViewController {
             KeyPathNode(at: 44, hardened: true),
             KeyPathNode(at: 60, hardened: true),
             KeyPathNode(at: 0, hardened: true),
-            KeyPathNode(at: 0),
+            KeyPathNode(at: 1),
         ])
-
-//        HDKey.Private.create(with: .english, mnemonic: Mnemonic.MnemonicSentence(["this is a sentence"]), network: network, path: , completion: )
-//          keyManager.createKeyPair { [weak self] addressResult in
-//            guard let `self` = self else { assertionFailure(); return }
-//            switch addressResult {
-//            case let .failure(error):
-//              self.showError(error.localizedDescription)
-//            case let .success(address):
-//              print("--------------")
-//              print(address)
-//
-//            }
-//          }
 
         // I have a HelloWorld contract running at this address, it has the following ABI:
         // [ { "constant": true, "inputs": [ { "name": "message", "type": "string" } ], "name": "say", "outputs": [ { "name": "result", "type": "string", "value": "" } ], "payable": false, "stateMutability": "pure", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" } ]
         // We want to be able to call its "say" function with a String parameter. It should return a String.
-        let helloWorldContractAddress = try! Address(describing: "0x8652cF5536867EA8024EadA6eB0801c7A698772b")
-//        query.greeterContract(at: helloWorldContractAddress).greet(greet_string: "Hi").send(using: keyManager, from: myAddress, amount: UInt256(0x131c00000000000)).startWithResult { result in
-//            print(result)
-//            switch result {
-//            case .success(let hash):
-//                print(hash)
-//                print("Succeeded!")
-//            case .failure(let error):
-//                print(error)
-//                print("Error :(((")
-//            }
-//        }
+        let helloWorldContractAddress = try! Address(describing: "0x2A0A3477A685E4681ef7c39E4D0e1147603b5bfA")
+        query.greeterContract(at: helloWorldContractAddress).approve(spender: myAddress, value: BigUInt(1)).send(using: key, amount: Wei(0)).startWithResult { result in
+            print(result)
+            switch result {
+            case .success(let hash):
+                print(hash)
+                print("Succeeded!")
+            case .failure(let error):
+                print(error)
+                print("Error :(((")
+            }
+        }
 
-        query.greeterContract(at: helloWorldContractAddress).foo().send(using: key, amount: UInt256(0x0)).startWithResult { result in
+        query.greeterContract(at: helloWorldContractAddress).buy().send(using: key, amount: Wei(1)).startWithResult { result in
             switch result {
             case .success(let hash):
                 print(hash)

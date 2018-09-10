@@ -4,14 +4,16 @@ import ReactiveSwift
 import EtherKit
 import BigInt
 
-struct ContractMethodInvocation<T: PrivateKeyType> {
-    private let send: (_ using: T, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError>
+typealias Wei = UInt256
 
-    init(send: @escaping (_ using: T, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError>) {
+struct ContractMethodInvocation<T: PrivateKeyType> {
+    private let send: (_ using: T, _ amount: Wei) -> SignalProducer<Hash, EtherKitError>
+
+    init(send: @escaping (_ using: T, _ amount: Wei) -> SignalProducer<Hash, EtherKitError>) {
         self.send = send
     }
 
-    func send(using: T, amount: UInt256) -> SignalProducer<Hash, EtherKitError> {
+    func send(using: T, amount: Wei) -> SignalProducer<Hash, EtherKitError> {
         return self.send(using, amount)
     }
 }

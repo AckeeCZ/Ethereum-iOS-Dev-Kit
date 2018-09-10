@@ -105,11 +105,23 @@ public struct Function: Decodable {
     /// - Throws: Throws a ParsingError in case the json was malformed or there
     ///     was an error.
     private static func parseFunctionInput(from json: [String: String]) throws -> Function.Input {
-        guard let name = json["name"] else {
+        guard var name = json["name"] else {
             throw ParsingError.elementNameInvalid
         }
         let type = try ParameterParser.parseParameterType(from: json)
+        // Can not have a parameter called amount => it would lead to conflicts in generated code
+        checkFunctionInput(name: &name)
         return Function.Input(name: name, type: type)
+    }
+
+    private static func checkFunctionInput(name: inout String) {
+        if name.first == "_" {
+            name.remove(at: name.startIndex)
+        }
+
+        if name == "amount" {
+            name = "amountToSend"
+        }
     }
 }
 
