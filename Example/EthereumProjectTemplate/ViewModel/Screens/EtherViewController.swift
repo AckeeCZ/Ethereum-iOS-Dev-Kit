@@ -196,7 +196,7 @@ final class EtherViewController: BaseViewController {
 //            }
 //        }
 
-        query.greeterContract(at: helloWorldContractAddress).foo(bar: "bar").send(using: key, amount: UInt256(0x0)).startWithResult { result in
+        query.greeterContract(at: helloWorldContractAddress).foo().send(using: key, amount: UInt256(0x0)).startWithResult { result in
             switch result {
             case .success(let hash):
                 print(hash)

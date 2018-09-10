@@ -13,12 +13,12 @@ struct {{ contractName }}Box {
         self.at = at
     }
     {% for function in functions %}
-    func {{ function.name }}({{ function.params }}) -> ContractMethodInvocation {
-        let send: Send = { using, from, amount in
+    func {{ function.name }}<T: PrivateKeyType>({{ function.params }}) -> ContractMethodInvocation<T> {
+        let send: (_ using: T, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError> = { using, amount in
             return SignalProducer<Hash, EtherKitError> { observer, disposable in
                 let {{ function.name }}FunctionCall = Function(name: "{{ function.name }}", parameters: [{{ function.values }}])
                 let {{ function.name }}Data = GeneralData(data: {{ function.name }}FunctionCall.encodeToCall())
-                self.etherQuery.send(using: using, from: from, to: self.at, value: amount, data: {{ function.name }}Data, completion: { result in
+                self.etherQuery.send(using: using, to: self.at, value: amount, data: {{ function.name }}Data, completion: { result in
                     switch result {
                     case .success(let hash):
                         observer.send(value: hash)
@@ -38,4 +38,3 @@ extension EtherQuery {
         return {{ contractName }}Box(etherQuery: self, at: at)
     }
 }
-
