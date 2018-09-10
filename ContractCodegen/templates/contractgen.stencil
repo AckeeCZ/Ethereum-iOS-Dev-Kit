@@ -14,7 +14,7 @@ struct {{ contractName }}Box {
     }
     {% for function in functions %}
     func {{ function.name }}({{ function.params }}) -> ContractMethodInvocation {
-      let send: Send = { using, from, amount in
+        let send: Send = { using, from, amount in
             return SignalProducer<Hash, EtherKitError> { observer, disposable in
                 let {{ function.name }}FunctionCall = Function(name: "{{ function.name }}", parameters: [{{ function.values }}])
                 let {{ function.name }}Data = GeneralData(data: {{ function.name }}FunctionCall.encodeToCall())
@@ -38,3 +38,4 @@ extension EtherQuery {
         return {{ contractName }}Box(etherQuery: self, at: at)
     }
 }
+

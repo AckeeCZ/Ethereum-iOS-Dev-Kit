@@ -33,6 +33,14 @@ final class EtherViewController: BaseViewController {
     private weak var activityIndicator: UIActivityIndicatorView!
     private weak var reloadButton: UIButton!
 
+//    private var generatedKey: HDKey.Private! {
+//        didSet {
+//            generatedKey.unlocked(queue: DispatchQueue.main) {
+//                self.addressField.text = $0.value?.publicKey.address.description
+//            }
+//        }
+//    }
+
     // MARK: Dependencies
 
     private let viewModel: EtherViewModeling
@@ -99,21 +107,9 @@ final class EtherViewController: BaseViewController {
         //etherKit will be able to lookup the privateKey for this address in the keychain and sign transactions with it.
         //to make transactions from this address, you need some ether.
         //request it from the rinkeby faucet by following https://gist.github.com/cryptogoth/10a98e8078cfd69f7ca892ddbdcf26bc
-        let myAddress = try! Address(describing: "0xD690894858816Aa2f98551Ef6A8dF94Dd818406A")
-//        let myAddress = try! Address(describing: "0x94F076d506943387A0a6D758f4e7cfDDEDc3b738")
+        let myAddress = try! Address(describing: "0x7cA5E6a3200A758B146C17D4E3a4E47937e79Af5")
 
-        //      query.request(query.transactionCount(myAddress)) { result in
-        //        switch result {
-        //        case let .failure(error):
-        //          self.showError(error.localizedDescription)
-        //        case let .success(count):
-//                  print(count)
-        //        }
-        //
-        //      }
-
-        let toAddress = try! Address(describing: "0x3D4771895210E5f54A9bF88B1F20308659B0A40b")
-//        let toAddress = try! Address(describing: "0xE9af3D5fB212ebfDA5785B8E7dfA2dB6dB3FEf44")
+//        let toAddress = try! Address(describing: "0x3D4771895210E5f54A9bF88B1F20308659B0A40b")
 
         //      query.send(using: keyManager, from: myAddress, to: toAddress, value: UInt256(0x131c00000000000)) { result in
         //        switch result {
@@ -134,6 +130,44 @@ final class EtherViewController: BaseViewController {
             }
         }
 
+        let sentence: Mnemonic.MnemonicSentence = Mnemonic.MnemonicSentence(["truly", "law", "tide", "pony", "media", "degree", "two", "goat", "ignore", "twice", "project", "message", "vanish", "spring", "movie"])
+
+        let walletStorage = KeychainStorageStrategy(identifier: "cz.ackee.etherkit.example")
+        _ = walletStorage.delete()
+        HDKey.Private.create(
+            with: MnemonicStorageStrategy(walletStorage),
+            mnemonic: sentence,
+            network: .main,
+            path: [
+                KeyPathNode(at: 44, hardened: true),
+                KeyPathNode(at: 60, hardened: true),
+                KeyPathNode(at: 0, hardened: true),
+                KeyPathNode(at: 0),
+                ]
+        ) { _ in
+            HDKey.Private(walletStorage, network: .main, path: [
+                KeyPathNode(at: 44, hardened: true),
+                KeyPathNode(at: 60, hardened: true),
+                KeyPathNode(at: 0, hardened: true),
+                KeyPathNode(at: 1),
+                ]).unlocked { value in
+                    DispatchQueue.main.async {
+                        _ = value.map { key in
+                            print(key.publicKey.address)
+//                            self.myAddress = key.publicKey.address
+                        }
+                    }
+            }
+        }
+
+        let key = HDKey.Private(walletStorage, network: .rinkeby, path: [
+            KeyPathNode(at: 44, hardened: true),
+            KeyPathNode(at: 60, hardened: true),
+            KeyPathNode(at: 0, hardened: true),
+            KeyPathNode(at: 0),
+        ])
+
+//        HDKey.Private.create(with: .english, mnemonic: Mnemonic.MnemonicSentence(["this is a sentence"]), network: network, path: , completion: )
 //          keyManager.createKeyPair { [weak self] addressResult in
 //            guard let `self` = self else { assertionFailure(); return }
 //            switch addressResult {
@@ -161,18 +195,17 @@ final class EtherViewController: BaseViewController {
 //                print("Error :(((")
 //            }
 //        }
-//
-//        query.greeterContract(at: helloWorldContractAddress).foo().send(using: keyManager, from: myAddress, amount: UInt256(0x0)).startWithResult { result in
-//            print(result)
-//            switch result {
-//            case .success(let hash):
-//                print(hash)
-//                print("Succeeded with foo!")
-//            case .failure(let error):
-//                print(error)
-//                print("Error foo :(((")
-//            }
-//        }
+
+        query.greeterContract(at: helloWorldContractAddress).foo(bar: "bar").send(using: key, amount: UInt256(0x0)).startWithResult { result in
+            switch result {
+            case .success(let hash):
+                print(hash)
+                print("Succeeded with foo!")
+            case .failure(let error):
+                print(error)
+                print("Error foo :(((")
+            }
+        }
 //        query.send(using: keyManager, from: myAddress, to: toAddress, value: UInt256(0x131c00000000000), data: sayHiData) { result in
 //            switch result {
 //            case let .failure(error):
