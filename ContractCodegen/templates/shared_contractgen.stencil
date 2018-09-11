@@ -1,0 +1,19 @@
+// Generated using ContractGen
+
+import ReactiveSwift
+import EtherKit
+import BigInt
+
+typealias Send = (_ using: EtherKeyManager, _ from: Address, _ amount: UInt256) -> SignalProducer<Hash, EtherKitError>
+
+struct ContractMethodInvocation {
+    private let send: Send
+
+    init(send: @escaping Send) {
+        self.send = send
+    }
+
+    func send(using: EtherKeyManager, from: Address, amount: UInt256) -> SignalProducer<Hash, EtherKitError> {
+        return self.send(using, from, amount)
+    }
+}
