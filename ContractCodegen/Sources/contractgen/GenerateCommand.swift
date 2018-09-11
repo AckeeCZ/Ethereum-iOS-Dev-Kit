@@ -70,7 +70,13 @@ class GenerateCommand: SwiftCLI.Command {
         let stencilSwiftExtension = Extension()
         stencilSwiftExtension.registerStencilSwiftExtensions()
         // TODO: Is there a more suitable place?
-        let fsLoader = FileSystemLoader(paths: ["/usr/local/share/contractgen/templates/"])
+        let fsLoader: FileSystemLoader
+        let templatesPath: Path
+        if Path("../templates").exists {
+            fsLoader = FileSystemLoader(paths: ["../templates/"])
+        } else {
+            fsLoader = FileSystemLoader(paths: ["/usr/local/share/contractgen/templates/"])
+        }
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
         let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "values": $0.inputs.map { $0.name }.joined(separator: ", ")]}
         let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]
@@ -105,7 +111,13 @@ class GenerateCommand: SwiftCLI.Command {
 
         let targetsString: String
         do {
-            targetsString = try capture(bash: "rake -f /usr/local/share/contractgen/Rakefile xcode:find_targets'[\(xcodePath.absolute())]'").stdout
+            let rakeFilePath: Path
+            if Path("../Rakefile").exists {
+                rakeFilePath = Path("../Rakefile")
+            } else {
+                rakeFilePath = Path("/usr/local/share/contractgen/Rakefile")
+            }
+            targetsString = try capture(bash: "rake -f \(rakeFilePath.absolute()) xcode:find_targets'[\(xcodePath.absolute())]'").stdout
         } catch {
             stdout <<< "Rakefile task find_targets failed 😥"
             return
