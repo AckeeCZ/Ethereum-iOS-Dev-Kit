@@ -2,6 +2,7 @@ PODS:
   - ACKLocalization (0.2.3)
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
+  - ContractCodegen (0.0.1)
   - Crashlytics (3.10.7):
     - Fabric (~> 1.7.11)
   - CryptoSwift (0.11.0)
@@ -121,6 +122,7 @@ PODS:
 
 DEPENDENCIES:
   - ACKLocalization (~> 0.2)
+  - ContractCodegen
   - Crashlytics (~> 3.10)
   - "EtherKit (from `git@github.com:Vaultio/EtherKit.git`, commit `cb718d414bb4cc1d148fc1efddc10fd0dd6d14c3`)"
   - Firebase/Analytics (~> 5.6)
@@ -135,6 +137,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ACKLocalization
     - BigInt
+    - ContractCodegen
     - Crashlytics
     - CryptoSwift
     - Fabric
@@ -175,6 +178,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ACKLocalization: 50205b72e4270f764ec3e7e90c762b44516ce0ab
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
+  ContractCodegen: b1559863acee6e498b591aa314cdcd8e30921141
   Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   CryptoSwift: ad5208dd2aae0a764ea4ce2c2d34bd067cae67f0
   EtherKit: c4be7111c5042e886643e2f98c51f55634fc5f3b
@@ -203,6 +207,6 @@ SPEC CHECKSUMS:
   SwiftGen: 4379bd3640b0a212a0f6ea3c494adba385513d10
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 737b65bba95d566cb1b9683e660c59d7b70b63ae
+PODFILE CHECKSUM: dd6f143ff09eb7988ca8ec35b307c6d18d51d67e
 
 COCOAPODS: 1.5.3

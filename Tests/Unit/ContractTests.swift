@@ -1,14 +1,13 @@
 //
-//  UnitTests.swift
+//  ContractTests.swift
 //  UnitTests
 //
-//  Created by Jakub Olejník on 09/10/2017.
+//  Created by Marek Fořt on 9/11/18.
 //
 
 import XCTest
-@testable import EthereumProjectTemplate
 
-class EthereumProjectTemplateTests: XCTestCase {
+class ContractTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

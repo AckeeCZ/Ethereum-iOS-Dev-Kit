@@ -170,8 +170,8 @@ final class EtherViewController: BaseViewController {
         // I have a HelloWorld contract running at this address, it has the following ABI:
         // [ { "constant": true, "inputs": [ { "name": "message", "type": "string" } ], "name": "say", "outputs": [ { "name": "result", "type": "string", "value": "" } ], "payable": false, "stateMutability": "pure", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" } ]
         // We want to be able to call its "say" function with a String parameter. It should return a String.
-        let helloWorldContractAddress = try! Address(describing: "0xed3146503467b00d48cDCa93D9b25025a1FB869B")
-        query.greeterContract(at: helloWorldContractAddress).helloIntBig(value: BigInt(1)).send(using: key, amount: Wei(1)).startWithResult { result in
+        let testContractAddress = try! Address(describing: "0xed3146503467b00d48cDCa93D9b25025a1FB869B")
+        query.testContract(at: testContractAddress).testInt256(value: BigInt(1)).send(using: key, amount: Wei(1)).startWithResult { result in
             switch result {
             case .success(let hash):
                 print(hash)
