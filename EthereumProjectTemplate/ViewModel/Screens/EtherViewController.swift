@@ -33,6 +33,8 @@ final class EtherViewController: BaseViewController {
     private weak var activityIndicator: UIActivityIndicatorView!
     private weak var reloadButton: UIButton!
 
+    let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
+
 //    private var generatedKey: HDKey.Private! {
 //        didSet {
 //            generatedKey.unlocked(queue: DispatchQueue.main) {
@@ -208,8 +210,6 @@ final class EtherViewController: BaseViewController {
     }
 
 //    let keyManager = EtherKeyManager(applicationTag: "cz.ackee.etherkit.example")
-
-    let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
     //    URL(string: "http://localhost:8545")!,
 
     // MARK: Helpers

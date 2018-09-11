@@ -86,6 +86,8 @@
 		D896867B00965E0DCEE5B306 /* Pods_EthereumProjectTemplate_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B807F84FA2B1A44827573F /* Pods_EthereumProjectTemplate_UnitTests.framework */; };
 		F8BCC6852141482E005C9E32 /* abi.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BCC6842141482E005C9E32 /* abi.json */; };
 		F8BCC68B21480CE0005C9E32 /* ContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BCC68A21480CE0005C9E32 /* ContractTests.swift */; };
+		F8BCC68C21481528005C9E32 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D13B1E1FDC329E00315517 /* ReactiveCocoa.framework */; };
+		F8BCC68D21481529005C9E32 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6977BB571FD1A1B300F6EB94 /* ReactiveSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D896867B00965E0DCEE5B306 /* Pods_EthereumProjectTemplate_UnitTests.framework in Frameworks */,
+				F8BCC68C21481528005C9E32 /* ReactiveCocoa.framework in Frameworks */,
+				F8BCC68D21481529005C9E32 /* ReactiveSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1437,6 +1441,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1507,6 +1515,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1570,6 +1582,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
