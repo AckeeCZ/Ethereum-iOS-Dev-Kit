@@ -122,7 +122,7 @@ PODS:
 DEPENDENCIES:
   - ACKLocalization (~> 0.2)
   - Crashlytics (~> 3.10)
-  - "EtherKit (from `git@github.com:Vaultio/EtherKit.git`, tag `0.2.0-beta1`)"
+  - "EtherKit (from `git@github.com:Vaultio/EtherKit.git`, commit `cb718d414bb4cc1d148fc1efddc10fd0dd6d14c3`)"
   - Firebase/Analytics (~> 5.6)
   - Firebase/Messaging (~> 5.6)
   - Firebase/Performance (~> 5.6)
@@ -164,14 +164,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   EtherKit:
+    :commit: cb718d414bb4cc1d148fc1efddc10fd0dd6d14c3
     :git: "git@github.com:Vaultio/EtherKit.git"
-    :tag: 0.2.0-beta1
 
 CHECKOUT OPTIONS:
   EtherKit:
-    :commit: 63573039d7b5f107f3a460660262170325dff186
+    :commit: cb718d414bb4cc1d148fc1efddc10fd0dd6d14c3
     :git: "git@github.com:Vaultio/EtherKit.git"
-    :tag: 0.2.0-beta1
 
 SPEC CHECKSUMS:
   ACKLocalization: 50205b72e4270f764ec3e7e90c762b44516ce0ab
@@ -204,6 +203,6 @@ SPEC CHECKSUMS:
   SwiftGen: 4379bd3640b0a212a0f6ea3c494adba385513d10
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
-PODFILE CHECKSUM: 267e4d884b263e01ba3f823b2e4225f8a9728170
+PODFILE CHECKSUM: 737b65bba95d566cb1b9683e660c59d7b70b63ae
 
 COCOAPODS: 1.5.3

@@ -6,7 +6,7 @@ use_frameworks!
 
 target 'EthereumProjectTemplate' do
     pod 'SwiftLint', '~> 0.27'
-    pod 'EtherKit', :git => 'git@github.com:Vaultio/EtherKit.git', :tag => '0.2.0-beta1'
+    pod 'EtherKit', :git => 'git@github.com:Vaultio/EtherKit.git', :commit => 'cb718d414bb4cc1d148fc1efddc10fd0dd6d14c3'
     
     pod 'ACKLocalization', '~> 0.2'
     pod 'SwiftGen', '~> 5.3'
