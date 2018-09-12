@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'ContractCodegen'
-    s.version          = '0.0.1'
+    s.version          = '0.0.2'
     s.summary          = 'Generate code from abi.json'
   
   # This description is used to generate tags and improve search results.
@@ -14,9 +14,9 @@ Pod::Spec.new do |s|
                          DESC
   
     s.homepage         = 'https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit'
-    s.license          = { :type => 'MIT', :file => 'LICENSE' }
+    s.license          = { :type => 'MIT', :file => 'contractcodegen_pod/LICENSE' }
     s.author           = { 'Ackee' => 'info@ackee.cz' }
-    s.source           = { :git => "https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit", :tag => "#{s.version}" }
-    s.preserve_paths   = 'contractcodegen_pod'
+    s.source           = { :git => "https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit.git", :tag => "#{s.version}" }
+    s.preserve_paths   = 'contractcodegen_pod/**'
   end
   
