@@ -29,6 +29,90 @@ class ContractTests: XCTestCase {
         self.key = key
     }
 
+    func testUint8() {
+        let testUint8Expectation = expectation(description: "Uint8")
+        query.testContract(at: testContractAddress).testUint8(decimalUnits: UInt(1)).send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testUint8Expectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testData() {
+        let testDataExpectation = expectation(description: "Data")
+        query.testContract(at: testContractAddress).testData(extraData: Data("extra data".utf8)).send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testDataExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testUintArray() {
+        let testUintArrayExpectation = expectation(description: "UintArray")
+        query.testContract(at: testContractAddress).testUintArray(uintArray: [BigUInt(1)]).send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testUintArrayExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testBytes32Array() {
+        let testBytes32ArrayExpectation = expectation(description: "Bytes32")
+        query.testContract(at: testContractAddress).testBytes32Array(bytesArray: [Data("bytes 32 data".utf8)]).send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testBytes32ArrayExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testBool() {
+        let testBoolExpectation = expectation(description: "Bool")
+        query.testContract(at: testContractAddress).testBool(trueOrFalse: true).send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testBoolExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testInt8() {
+        let testInt8Expectation = expectation(description: "Int8")
+        query.testContract(at: testContractAddress).testInt8(value: 8).send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testInt8Expectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
     func testInt256() {
         let testInt256Expectation = expectation(description: "Int256")
         query.testContract(at: testContractAddress).testInt256(value: BigInt(1)).send(using: key, amount: Wei(1)).startWithResult { result in
@@ -37,6 +121,48 @@ class ContractTests: XCTestCase {
                 XCTFail("Failed with error: \(error)")
             case .success(_):
                 testInt256Expectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testString() {
+        let testStringExpectation = expectation(description: "String")
+        query.testContract(at: testContractAddress).testString(greetString: "Hi").send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testStringExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testLongString() {
+        let testLongStringExpectation = expectation(description: "Long String")
+        query.testContract(at: testContractAddress).testString(greetString: "This is is a very long string, This is is a very long string, This is is a very long string, This is is a very long string, This is is a very long string, This is is a very long string, This is is a very long string, This is is a very long string, This is is a very long string, This is is a very long string").send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testLongStringExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testViewFunc() {
+        let testViewFuncExpectation = expectation(description: "View Func")
+        query.testContract(at: testContractAddress).testViewFunc().send(using: key).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testViewFuncExpectation.fulfill()
             }
         }
 
