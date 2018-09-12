@@ -1,14 +1,8 @@
 # ContractCodegen
 
 ## Installation
-1. Install zip file from the latest release (for development just git clone)
-2. cd into ContractCodegen
-3. make install
-5. Run `contractgen HelloContract path_to_abi/abi.json -x path_to_xcodeproj/project.xcodeproj -o output_path`
 
-## Installation
-
-There are multiple possibilities to install SwiftGen on your machine or in your project, depending on your preferences and needs:
+There are multiple possibilities to install ContractCodegen on your machine or in your project, depending on your preferences and needs:
 
 <details>
 <summary><strong>Download the ZIP</strong> for the latest release</summary>
@@ -34,15 +28,15 @@ If you're using CocoaPods, you can simply add `pod 'ContractCodegen'` to your `P
 
 This will download the `ContractCodegen` binaries and dependencies in `Pods/` during your next `pod install` execution.
 
-Given that you can specify an exact version for ``ContractCodegen`` in your `Podfile`, this allows you to ensure **all coworkers will use the same version of SwiftGen for this project**.
+Given that you can specify an exact version for ``ContractCodegen`` in your `Podfile`, this allows you to ensure **all coworkers will use the same version of ContractCodegen for this project**.
 
-You can then invoke SwiftGen in your Script Build Phase using:
+You can then invoke ContractCodegen in your Script Build Phase using:
 
 ```sh
-$PODS_ROOT/ContractCodegen/bin/contractcodegen …
+$PODS_ROOT/ContractCodegen/ContractCodegen/bin/contractcodegen …
 ```
 
-_Note: SwiftGen isn't really a pod, as it's not a library your code will depend on at runtime; so the installation via CocoaPods is just a trick that installs the SwiftGen binaries in the Pods/ folder, but you won't see any swift files in the Pods/SwiftGen group in your Xcode's Pods.xcodeproj. That's normal: the SwiftGen binary is still present in that folder in the Finder._
+_Note: ContractCodegen isn't really a pod, as it's not a library your code will depend on at runtime; so the installation via CocoaPods is just a trick that installs the ContractCodegen binaries in the Pods/ folder, but you won't see any swift files in the Pods/ContractCodegen group in your Xcode's Pods.xcodeproj. That's normal: the ContractCodegen binary is still present in that folder in the Finder._
 
 ---
 </details>
