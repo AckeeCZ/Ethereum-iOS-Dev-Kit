@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		01527E4B19A968C573CC756A /* SharedContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2774877DB804632B808B3F /* SharedContract.swift */; };
 		1C8D0D392099EBAA003BB41B /* UIView+Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8D0D382099EBAA003BB41B /* UIView+Spacer.swift */; };
 		690035981FD17E9D002EB20F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690035971FD17E9D002EB20F /* AppDelegate.swift */; };
 		691039D52028B0C90069972B /* Pluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691039D42028B0C90069972B /* Pluralization.swift */; };
@@ -75,13 +76,12 @@
 		69F9270E1FD223AD001D7592 /* AuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F9270D1FD223AD001D7592 /* AuthHandler.swift */; };
 		69F927101FD223EB001D7592 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F9270F1FD223EB001D7592 /* Credentials.swift */; };
 		69F927121FD2244E001D7592 /* AuthenticatedJSONAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F927111FD2244E001D7592 /* AuthenticatedJSONAPIService.swift */; };
+		787AA0A909B03CFA4B7AA8A6 /* GreeterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D42D5316B970B07F6B4A34 /* GreeterContract.swift */; };
 		881CA6A82137CA3F00DB7E55 /* XCTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881CA6A62137CA3500DB7E55 /* XCTestExtensions.swift */; };
 		8829099C2135885300825878 /* EtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829099A2135885300825878 /* EtherViewController.swift */; };
 		8829099D2135885300825878 /* EtherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829099B2135885300825878 /* EtherViewModel.swift */; };
 		8829099F2135889000825878 /* ExampleAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829099E2135889000825878 /* ExampleAPIService.swift */; };
 		88576E4D2125C179009DB5D2 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88576E4C2125C179009DB5D2 /* BaseViewModel.swift */; };
-		8F9FC533D97B201178DE7EE5 /* GreeterContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6445E690E2CD08A59DF0803F /* GreeterContract.swift */; };
-		B94353AEA2A6EA4E553AFA97 /* SharedContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019242B4A39015203871A7A0 /* SharedContract.swift */; };
 		CA25BDE99E13F778B6AAC1BA /* Pods_EthereumProjectTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F73735F21BEAAADBB6C5C78 /* Pods_EthereumProjectTemplate.framework */; };
 		D896867B00965E0DCEE5B306 /* Pods_EthereumProjectTemplate_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B807F84FA2B1A44827573F /* Pods_EthereumProjectTemplate_UnitTests.framework */; };
 		F8BCC6852141482E005C9E32 /* abi.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BCC6842141482E005C9E32 /* abi.json */; };
@@ -98,14 +98,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		019242B4A39015203871A7A0 /* SharedContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedContract.swift; path = GeneraredContracts/SharedContract.swift; sourceTree = "<group>"; };
 		113C836CA708EC68257F5D0E /* Pods-EthereumProjectTemplate-UnitTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UnitTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UnitTests/Pods-EthereumProjectTemplate-UnitTests.appstore.xcconfig"; sourceTree = "<group>"; };
+		1A2774877DB804632B808B3F /* SharedContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedContract.swift; path = GeneratedContracts/SharedContract.swift; sourceTree = "<group>"; };
 		1C8D0D382099EBAA003BB41B /* UIView+Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Spacer.swift"; sourceTree = "<group>"; };
 		2CCE2D3A1EDA9AD9FD9E672E /* Pods-EthereumProjectTemplate-UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UITests/Pods-EthereumProjectTemplate-UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		34B118B34187408CAA1B4052 /* Pods-EthereumProjectTemplate.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate/Pods-EthereumProjectTemplate.appstore.xcconfig"; sourceTree = "<group>"; };
 		35454DA5A985147A38EEA0A4 /* Pods-EthereumProjectTemplate.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate/Pods-EthereumProjectTemplate.adhoc.xcconfig"; sourceTree = "<group>"; };
 		60B7C76E48D9A34B19E19678 /* Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UnitTests/Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6445E690E2CD08A59DF0803F /* GreeterContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GreeterContract.swift; path = GeneraredContracts/GreeterContract.swift; sourceTree = "<group>"; };
 		690035971FD17E9D002EB20F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		691039D32028AF1D0069972B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		691039D42028B0C90069972B /* Pluralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pluralization.swift; sourceTree = "<group>"; };
@@ -178,6 +177,7 @@
 		88C51D49211ADEAD00FC7FB9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		954CF4DA6E9916D6D503F6AA /* Pods_EthereumProjectTemplate_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthereumProjectTemplate_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FC50C1EE8B67087528B38B /* Pods-EthereumProjectTemplate-UnitTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UnitTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UnitTests/Pods-EthereumProjectTemplate-UnitTests.adhoc.xcconfig"; sourceTree = "<group>"; };
+		B0D42D5316B970B07F6B4A34 /* GreeterContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GreeterContract.swift; path = GeneratedContracts/GreeterContract.swift; sourceTree = "<group>"; };
 		BBBDAAC3015105C5D8D57535 /* Pods-EthereumProjectTemplate-UITests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UITests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UITests/Pods-EthereumProjectTemplate-UITests.adhoc.xcconfig"; sourceTree = "<group>"; };
 		DBA320E0E4B46C241CF4502F /* Pods-EthereumProjectTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate/Pods-EthereumProjectTemplate.debug.xcconfig"; sourceTree = "<group>"; };
 		F8BCC6842141482E005C9E32 /* abi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = abi.json; sourceTree = "<group>"; };
@@ -211,13 +211,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		12BDAB775D69192CDC95F093 /* GeneraredContracts */ = {
+		0E532BF39CB8EEEE9AA39A1F /* GeneratedContracts */ = {
 			isa = PBXGroup;
 			children = (
-				6445E690E2CD08A59DF0803F /* GreeterContract.swift */,
-				019242B4A39015203871A7A0 /* SharedContract.swift */,
+				B0D42D5316B970B07F6B4A34 /* GreeterContract.swift */,
+				1A2774877DB804632B808B3F /* SharedContract.swift */,
 			);
-			name = GeneraredContracts;
+			name = GeneratedContracts;
 			sourceTree = "<group>";
 		};
 		287536579885C455CE99B817 /* Pods */ = {
@@ -524,7 +524,7 @@
 				6965AEDD1FDB50E9001A08C5 /* Theme */,
 				69F4A6C61F8BD5C5003481A3 /* Info.plist */,
 				691EF7031FDAFAEF00135FBC /* main.swift */,
-				12BDAB775D69192CDC95F093 /* GeneraredContracts */,
+				0E532BF39CB8EEEE9AA39A1F /* GeneratedContracts */,
 			);
 			path = EthereumProjectTemplate;
 			sourceTree = "<group>";
@@ -997,8 +997,8 @@
 				88576E4D2125C179009DB5D2 /* BaseViewModel.swift in Sources */,
 				699DD5AE1F8D269B00C7080D /* LocalizedStrings.swift in Sources */,
 				6965AEE31FDB5290001A08C5 /* UIFont+Theme.swift in Sources */,
-				8F9FC533D97B201178DE7EE5 /* GreeterContract.swift in Sources */,
-				B94353AEA2A6EA4E553AFA97 /* SharedContract.swift in Sources */,
+				787AA0A909B03CFA4B7AA8A6 /* GreeterContract.swift in Sources */,
+				01527E4B19A968C573CC756A /* SharedContract.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
