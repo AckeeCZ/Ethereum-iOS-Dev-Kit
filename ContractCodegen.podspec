@@ -16,8 +16,7 @@ Pod::Spec.new do |s|
     s.homepage         = 'https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'Ackee' => 'info@ackee.cz' }
-    s.source           = { http: "https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit/releases/download/#{s.version}/contractcodegen-#{s.version}.zip" }
-    s.preserve_paths   = '*'
-    s.exclude_files    = '**/file.zip'
+    s.source           = { :git => "https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit", :tag => "#{s.version}" }
+    s.preserve_paths   = 'contractcodegen_pod'
   end
   
