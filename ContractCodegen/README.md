@@ -1,4 +1,4 @@
-# ContractCodegen
+# Ethereum-iOS-Dev-Kit
 
 ## Installation
 
@@ -57,10 +57,29 @@ You then invoke contractgen simply with `contractgen ...`
 
 ## Usage 
 
+### Codegen
 The standard usage looks like this `contractgen HelloContract path_to_abi/abi.json -x path_to_xcodeproj/project.xcodeproj -o relative_output_path`
 
-Please <strong>note</strong> that the output path option (`-o`) should be relative to your project - 
+Please <strong>note</strong> that the output path option (`--option`) should be relative to your project - if your generated files are in `YourProjectName/MainFolder/GeneratedContracts` folder, then you should write `-option MainFolder/GeneratedContracts`
+For your projects to be bound you also <strong>must</strong> set the `--xcode` option as well. Otherwise you will have to drag the files to your projects manually.
 
-If Xcode project path and output path for generated is not given, it generates the code in current directory and you then have to by yourself move the files to the desired Xcode project.
+### Interaction in code 
 
-Parts of project were inspired by https://github.com/gnosis/bivrost-swift.
+The standard call using code created by `codegen` looks like this:
+```swift
+import ReactiveSwift
+import EtherKit 
+let helloWorldContractAddress = try! Address(describing: "0x7cA5E6a3200A758B146C17D4E3a4E47937e79Af5")
+let query = EtherQuery(URL(string: "infrastructure-url")!, connectionMode: .http)
+query.helloContract(at: helloWorldContractAddress).greet(greetString: "Greetings!").send(using: key, amount: Wei(1)).start()
+``` 
+
+`key` should be of protocol `PrivateKeyType` (more at [EtherKit documentation][https://github.com/Vaultio/EtherKit])
+Also note that right now the created code works with `ReactiveSwift` only.
+
+If the contract function is `non-payable`, the syntax is almost the same (`amount` is omitted):
+```swift
+query.helloContract(at: helloWorldContractAddress).greet(greetString: "Greetings!").send(using: key).start()
+```
+
+Result of the call is either a `Hash` of the transaction or an `EtherKitError`.
