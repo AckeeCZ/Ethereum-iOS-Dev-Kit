@@ -15,6 +15,6 @@ Pod::Spec.new do |s|
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'Ackee' => 'info@ackee.cz' }
     s.source           = { :git => "https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit.git", :tag => s.version.to_s }
-    s.preserve_paths = 'ContractCodegen/bin/contractgen', 'ContractCodegen/Rakefile', 'ContractCodegen/templates/**', 'ContractCodegen/Rakefile', 'ContractCodegen/LICENSE'
+    s.preserve_paths = 'ContractCodegen/bin/contractgen', 'ContractCodegen/Rakefile', 'ContractCodegen/templates/**', 'ContractCodegen/LICENSE'
   end
   
