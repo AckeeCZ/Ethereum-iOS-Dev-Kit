@@ -71,5 +71,4 @@ Environment/Environment.swift
 */Model/Generated/*
 !*/Model/Generated/.gitkeep
 
-EthereumProjectTemplate/GeneratedContracts/
 ContractCodegen/.build
