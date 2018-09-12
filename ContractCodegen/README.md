@@ -36,6 +36,11 @@ You can then invoke ContractCodegen in your Script Build Phase using:
 $PODS_ROOT/ContractCodegen/ContractCodegen/bin/contractcodegen …
 ```
 
+Or just from the command line:
+```sh
+Pods/ContractCodegen/ContractCodegen/bin/contractcodegen …
+```
+
 _Note: ContractCodegen isn't really a pod, as it's not a library your code will depend on at runtime; so the installation via CocoaPods is just a trick that installs the ContractCodegen binaries in the Pods/ folder, but you won't see any swift files in the Pods/ContractCodegen group in your Xcode's Pods.xcodeproj. That's normal: the ContractCodegen binary is still present in that folder in the Finder._
 
 ---
@@ -47,15 +52,13 @@ _Note: ContractCodegen isn't really a pod, as it's not a library your code will 
 * Download the `contractcodegen-x.y.z.zip` file associated with that release
 * Extract the content of the zip archive
 
-cd into the unarchived directory 
-
-`make install`
-
-You then invoke contractgen simply with `contractgen ...`
+1. `cd` into the unarchived directory 
+2. `make install`
+3. You then invoke contractgen simply with `contractgen ...`
 
 </details>
 
-## Usage 
+## Usage
 
 ### Codegen
 The standard usage looks like this `contractgen HelloContract path_to_abi/abi.json -x path_to_xcodeproj/project.xcodeproj -o relative_output_path`
@@ -63,7 +66,7 @@ The standard usage looks like this `contractgen HelloContract path_to_abi/abi.js
 Please <strong>note</strong> that the output path option (`--option`) should be relative to your project - if your generated files are in `YourProjectName/MainFolder/GeneratedContracts` folder, then you should write `-option MainFolder/GeneratedContracts`
 For your projects to be bound you also <strong>must</strong> set the `--xcode` option as well. Otherwise you will have to drag the files to your projects manually.
 
-### Interaction in code 
+### Usage of Generated Codes
 
 The standard call using code created by `codegen` looks like this:
 ```swift
@@ -74,7 +77,7 @@ let query = EtherQuery(URL(string: "infrastructure-url")!, connectionMode: .http
 query.helloContract(at: helloWorldContractAddress).greet(greetString: "Greetings!").send(using: key, amount: Wei(1)).start()
 ``` 
 
-`key` should be of protocol `PrivateKeyType` (more at [EtherKit documentation][https://github.com/Vaultio/EtherKit])
+`key` should be of protocol `PrivateKeyType` (more at [EtherKit documentation](https://github.com/Vaultio/EtherKit))
 Also note that right now the created code works with `ReactiveSwift` only.
 
 If the contract function is `non-payable`, the syntax is almost the same (`amount` is omitted):
