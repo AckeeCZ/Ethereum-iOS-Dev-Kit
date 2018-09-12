@@ -13,7 +13,8 @@ import BigInt
 class ContractTests: XCTestCase {
 
     let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
-    let testContractAddress = try! Address(describing: "0x82C2977575313bC332390d8512b17A752a991270")
+    let testContractAddress = try! Address(describing: "0xb8f016F3529b198b4a06574f3E9BDc04948ad852")
+    let myAddress = try! Address(describing: "0x0d40C4Ef13DfEaE7BB930f84aA3e5733aCab0Bb5")
     // TODO: Is this the best way to init the key (optional, non-optional with {} ... )
     var key: HDKey.Private!
 
@@ -163,6 +164,20 @@ class ContractTests: XCTestCase {
                 XCTFail("Failed with error: \(error)")
             case .success(_):
                 testViewFuncExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testMutatingFunc() {
+        let testBuyFuncExpectation = expectation(description: "Mutating Func")
+        query.testContract(at: testContractAddress).approve(spender: myAddress, value: BigUInt(10000000000)).send(using: key).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testBuyFuncExpectation.fulfill()
             }
         }
 
