@@ -125,7 +125,6 @@ final class EtherViewController: BaseViewController {
         }
     }
 
-
     private func testContracts(with myAddress: Address) {
         let walletStorage = KeychainStorageStrategy(identifier: "cz.ackee.etherkit.example")
         let key = HDKey.Private(walletStorage, network: .rinkeby, path: [
