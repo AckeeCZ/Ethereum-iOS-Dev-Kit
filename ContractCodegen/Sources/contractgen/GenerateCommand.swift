@@ -83,7 +83,7 @@ class GenerateCommand: SwiftCLI.Command {
         } else {
             fsLoader = FileSystemLoader(paths: ["/usr/local/share/contractgen/templates/"])
         }
-        print(swiftCodePath.absolute())
+
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
         let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "values": $0.inputs.map { $0.name }.joined(separator: ", "), "isPayable": $0.isPayable]}
         let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]
@@ -146,7 +146,7 @@ class GenerateCommand: SwiftCLI.Command {
         relativePathComponents.remove(at: relativePathComponents.endIndex - 1)
         let relativePath = relativePathComponents.joined(separator: "/")
         do {
-            try run(bash: "rake -f /usr/local/share/contractgen/Rakefile xcode:add_files_to_group'[\(xcodePath.absolute()),\(swiftCodePath.absolute()),\(groupName),\(relativePath),\(index - 1)]'")
+            try run(bash: "rake -f \(rakeFilePath.absolute()) xcode:add_files_to_group'[\(xcodePath.absolute()),\(swiftCodePath.absolute()),\(groupName),\(relativePath),\(index - 1)]'")
             stdout <<< "Code generation: ✅"
         } catch {
             stdout <<< "Rakefile task add_files_to_group failed 😥"
