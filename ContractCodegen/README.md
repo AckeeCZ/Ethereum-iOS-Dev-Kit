@@ -63,7 +63,7 @@ _Note: ContractCodegen isn't really a pod, as it's not a library your code will 
 ### Codegen
 The standard usage looks like this `contractgen HelloContract path_to_abi/abi.json -x path_to_xcodeproj/project.xcodeproj -o relative_output_path`
 
-Please <strong>note</strong> that the output path option (`--option`) should be relative to your project - if your generated files are in `YourProjectName/MainFolder/GeneratedContracts` folder, then you should write `-option MainFolder/GeneratedContracts`
+Please <strong>note</strong> that the output path option (`--output`) should be relative to your project - if your generated files are in `YourProjectName/MainFolder/GeneratedContracts` folder, then you should write `--output MainFolder/GeneratedContracts`
 For your projects to be bound you also <strong>must</strong> set the `--xcode` option as well. Otherwise you will have to drag the files to your projects manually.
 
 ### Usage of Generated Codes

@@ -82,6 +82,7 @@
 		8829099D2135885300825878 /* EtherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829099B2135885300825878 /* EtherViewModel.swift */; };
 		8829099F2135889000825878 /* ExampleAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829099E2135889000825878 /* ExampleAPIService.swift */; };
 		88576E4D2125C179009DB5D2 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88576E4C2125C179009DB5D2 /* BaseViewModel.swift */; };
+		A4FDA44C03DFD50A2F50E36B /* TestContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E417E1D70EC89E8048CCC1 /* TestContract.swift */; };
 		C09C6DB7270816A184E37175 /* HelloContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B57EE4469709E551EED2B /* HelloContract.swift */; };
 		CA25BDE99E13F778B6AAC1BA /* Pods_EthereumProjectTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F73735F21BEAAADBB6C5C78 /* Pods_EthereumProjectTemplate.framework */; };
 		D896867B00965E0DCEE5B306 /* Pods_EthereumProjectTemplate_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B807F84FA2B1A44827573F /* Pods_EthereumProjectTemplate_UnitTests.framework */; };
@@ -105,6 +106,7 @@
 		2CCE2D3A1EDA9AD9FD9E672E /* Pods-EthereumProjectTemplate-UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UITests/Pods-EthereumProjectTemplate-UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		34B118B34187408CAA1B4052 /* Pods-EthereumProjectTemplate.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate/Pods-EthereumProjectTemplate.appstore.xcconfig"; sourceTree = "<group>"; };
 		35454DA5A985147A38EEA0A4 /* Pods-EthereumProjectTemplate.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate/Pods-EthereumProjectTemplate.adhoc.xcconfig"; sourceTree = "<group>"; };
+		46E417E1D70EC89E8048CCC1 /* TestContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestContract.swift; path = GeneratedContracts/TestContract.swift; sourceTree = "<group>"; };
 		60B7C76E48D9A34B19E19678 /* Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UnitTests/Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		690035971FD17E9D002EB20F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		691039D32028AF1D0069972B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 				E51B57EE4469709E551EED2B /* HelloContract.swift */,
 				E4EA82AB9060B37A22A31728 /* SharedContract.swift */,
 				14745ACC33F066C5A19A5303 /* GreeterContract.swift */,
+				46E417E1D70EC89E8048CCC1 /* TestContract.swift */,
 			);
 			name = GeneratedContracts;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				C09C6DB7270816A184E37175 /* HelloContract.swift in Sources */,
 				84FC449BC4EC1EDBA9B57E54 /* SharedContract.swift in Sources */,
 				10205D17A3AA5E1E1E147580 /* GreeterContract.swift in Sources */,
+				A4FDA44C03DFD50A2F50E36B /* TestContract.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
