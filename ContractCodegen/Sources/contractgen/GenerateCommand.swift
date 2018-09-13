@@ -7,7 +7,7 @@ import ContractCodegenFramework
 
 // TODO: Limit number of words for contract to only one
 class GenerateCommand: SwiftCLI.Command {
-
+    
     let name = "generate"
     let shortDescription = "Generates Swift code for contract"
 

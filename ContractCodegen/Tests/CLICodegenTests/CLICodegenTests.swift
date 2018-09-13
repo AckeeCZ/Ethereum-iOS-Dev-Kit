@@ -5,10 +5,12 @@ import SwiftCLI
 
 class CommandLineToolTests: XCTestCase {
 
-    private func runContractgen() throws {
-        let task = Task(executable: ".build/debug/contractgen", arguments: ["TestContract", "abi.json"])
+    private let generatedContractsString = "GeneratedContracts"
+
+    private func runContractgen(output: String = "", xcode: String = "") throws {
+        let task = Task(executable: ".build/debug/contractgen", arguments: ["TestContract", "abi.json", output, xcode])
         task.runSync()
-        try Path("GeneratedContracts").delete()
+        try Path(generatedContractsString).delete()
     }
 
     func testGeneratedContractsFileCreated() throws {
@@ -22,7 +24,7 @@ class CommandLineToolTests: XCTestCase {
     func testTestContractFileCreated() throws {
         try runContractgen()
 
-        XCTAssertTrue(Path("GeneratedContracts/TestContract.swift").exists)
+        XCTAssertTrue(Path(generatedContractsString + "/TestContract.swift").exists)
 
         try Path("GeneratedContracts").delete()
     }
@@ -30,8 +32,20 @@ class CommandLineToolTests: XCTestCase {
     func testSharedContractFileCreated() throws {
         try runContractgen()
 
-        XCTAssertTrue(Path("GeneratedContracts/SharedContract.swift").exists)
+        XCTAssertTrue(Path(generatedContractsString + "/SharedContract.swift").exists)
 
-        try Path("GeneratedContracts").delete()
+        try Path(generatedContractsString).delete()
     }
+
+    func testOutputOption() throws {
+        let outputPath = "Output/" + generatedContractsString
+        try runContractgen(output: outputPath)
+
+        XCTAssertTrue(Path(outputPath).exists)
+        XCTAssertTrue(Path(outputPath + "/SharedContract.swift").exists)
+        XCTAssertTrue(Path(outputPath + "/TestContract.swift").exists)
+
+        try Path(outputPath).delete()
+    }
+
 }
