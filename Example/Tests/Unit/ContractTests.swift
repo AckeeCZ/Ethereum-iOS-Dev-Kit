@@ -14,20 +14,50 @@ class ContractTests: XCTestCase {
 
     let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
     let testContractAddress = try! Address(describing: "0xb8f016F3529b198b4a06574f3E9BDc04948ad852")
-    let myAddress = try! Address(describing: "0x0d40C4Ef13DfEaE7BB930f84aA3e5733aCab0Bb5")
+    var myAddress: Address!
     // TODO: Is this the best way to init the key (optional, non-optional with {} ... )
     var key: HDKey.Private!
 
     override func setUp() {
-        let walletStorage = KeychainStorageStrategy(identifier: "cz.ackee.etherkit.example")
-        // TODO: Tests should wait before this key is created and then accessed!
-        let key = HDKey.Private(walletStorage, network: .rinkeby, path: [
-            KeyPathNode(at: 44, hardened: true),
-            KeyPathNode(at: 60, hardened: true),
-            KeyPathNode(at: 0, hardened: true),
-            KeyPathNode(at: 1),
-            ])
-        self.key = key
+
+        // Create key and after unlocking it run the tests s
+        let createKeyExpectation = expectation(description: "Create Key")
+
+        let sentence: Mnemonic.MnemonicSentence = Mnemonic.MnemonicSentence(["truly", "law", "tide", "pony", "media", "degree", "two", "goat", "ignore", "twice", "project", "message", "vanish", "spring", "movie"])
+        let walletStorage = KeychainStorageStrategy(identifier: "cz.ackee.etherkit.tests")
+        HDKey.Private.create(
+            with: MnemonicStorageStrategy(walletStorage),
+            mnemonic: sentence,
+            network: .main,
+            path: [
+                KeyPathNode(at: 44, hardened: true),
+                KeyPathNode(at: 60, hardened: true),
+                KeyPathNode(at: 0, hardened: true),
+                KeyPathNode(at: 0),
+                ]
+        ) { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(let privateKey):
+                self.key = privateKey
+                HDKey.Private(walletStorage, network: .main, path: [
+                    KeyPathNode(at: 44, hardened: true),
+                    KeyPathNode(at: 60, hardened: true),
+                    KeyPathNode(at: 0, hardened: true),
+                    KeyPathNode(at: 1),
+                    ]).unlocked { value in
+                        DispatchQueue.main.async {
+                            _ = value.map { key in
+                                self.myAddress = key.publicKey.address
+                                createKeyExpectation.fulfill()
+                            }
+                        }
+                }
+            }
+        }
+
+        waitForExpectations(timeout: 3, handler: nil)
     }
 
     func testUint8() {
