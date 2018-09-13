@@ -1,9 +1,9 @@
 import Foundation
 import SwiftCLI
-import ContractCodegenFramework
 import PathKit
 import StencilSwiftKit
 import Stencil
+import ContractCodegenFramework
 
 // TODO: Limit number of words for contract to only one
 class GenerateCommand: SwiftCLI.Command {
@@ -116,8 +116,8 @@ class GenerateCommand: SwiftCLI.Command {
         }
 
         let targetsString: String
+        let rakeFilePath: Path
         do {
-            let rakeFilePath: Path
             if Path("../Rakefile").exists {
                 rakeFilePath = Path("../Rakefile")
             } else {

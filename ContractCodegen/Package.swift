@@ -26,6 +26,14 @@ let package = Package(
                 "PathKit",
                 "StencilSwiftKit",
                 .target(name: "ContractCodegenFramework")
-            ])
+            ]),
+        .testTarget(
+            name: "CLICodegenTests",
+            dependencies: [
+                .target(name: "contractgen"),
+                "SwiftCLI",
+                "PathKit",
+            ]
+        ),
     ]
 )
