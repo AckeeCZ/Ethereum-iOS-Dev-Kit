@@ -29,17 +29,11 @@ import BigInt
 
 final class EtherViewController: BaseViewController {
 
+    let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
+
     private weak var imageView: UIImageView!
     private weak var activityIndicator: UIActivityIndicatorView!
     private weak var reloadButton: UIButton!
-
-//    private var generatedKey: HDKey.Private! {
-//        didSet {
-//            generatedKey.unlocked(queue: DispatchQueue.main) {
-//                self.addressField.text = $0.value?.publicKey.address.description
-//            }
-//        }
-//    }
 
     // MARK: Dependencies
 
@@ -102,38 +96,9 @@ final class EtherViewController: BaseViewController {
             print($0)
         }
 
-        //afaik etherkit cant import wallets (e.g. by mnemonic), but can generate new wallets.
-        //upon reinstalling the app, call keyManager.createKeyPair. Write down the public address like below.
-        //etherKit will be able to lookup the privateKey for this address in the keychain and sign transactions with it.
-        //to make transactions from this address, you need some ether.
-        //request it from the rinkeby faucet by following https://gist.github.com/cryptogoth/10a98e8078cfd69f7ca892ddbdcf26bc
-        let myAddress = try! Address(describing: "0x7cA5E6a3200A758B146C17D4E3a4E47937e79Af5")
-
-//        let toAddress = try! Address(describing: "0x3D4771895210E5f54A9bF88B1F20308659B0A40b")
-
-        //      query.send(using: keyManager, from: myAddress, to: toAddress, value: UInt256(0x131c00000000000)) { result in
-        //        switch result {
-        //        case let .failure(error):
-        //          self.showError(error.localizedDescription)
-        //        case let .success(value):
-        //          print(value)
-        //        }
-        //      }
-        query.request(query.balanceOf(myAddress)) { [weak self] balanceResult in
-            guard let `self` = self else { assertionFailure(); return }
-            switch balanceResult {
-            case let .failure(error):
-                self.showError(error.localizedDescription)
-            case let .success(balance):
-                print("--------------")
-                print(balance)
-            }
-        }
-
+        // Use your own mnemonic sentence
         let sentence: Mnemonic.MnemonicSentence = Mnemonic.MnemonicSentence(["truly", "law", "tide", "pony", "media", "degree", "two", "goat", "ignore", "twice", "project", "message", "vanish", "spring", "movie"])
-
         let walletStorage = KeychainStorageStrategy(identifier: "cz.ackee.etherkit.example")
-//        _ = walletStorage.delete()
         HDKey.Private.create(
             with: MnemonicStorageStrategy(walletStorage),
             mnemonic: sentence,
@@ -153,64 +118,34 @@ final class EtherViewController: BaseViewController {
                 ]).unlocked { value in
                     DispatchQueue.main.async {
                         _ = value.map { key in
-                            print(key.publicKey.address)
-//                            self.myAddress = key.publicKey.address
+                            self.testContracts(with: key.publicKey.address)
                         }
                     }
             }
         }
+    }
 
+    private func testContracts(with myAddress: Address) {
+        let walletStorage = KeychainStorageStrategy(identifier: "cz.ackee.etherkit.example")
         let key = HDKey.Private(walletStorage, network: .rinkeby, path: [
             KeyPathNode(at: 44, hardened: true),
             KeyPathNode(at: 60, hardened: true),
             KeyPathNode(at: 0, hardened: true),
             KeyPathNode(at: 1),
-        ])
+            ])
 
-        // I have a HelloWorld contract running at this address, it has the following ABI:
-        // [ { "constant": true, "inputs": [ { "name": "message", "type": "string" } ], "name": "say", "outputs": [ { "name": "result", "type": "string", "value": "" } ], "payable": false, "stateMutability": "pure", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" } ]
-        // We want to be able to call its "say" function with a String parameter. It should return a String.
-        let helloWorldContractAddress = try! Address(describing: "0xed3146503467b00d48cDCa93D9b25025a1FB869B")
-        query.greeterContract(at: helloWorldContractAddress).helloIntBig(value: BigInt(1)).send(using: key, amount: Wei(1)).startWithResult { result in
+        let testContractAddress = try! Address(describing: "0xed3146503467b00d48cDCa93D9b25025a1FB869B")
+        query.testContract(at: testContractAddress).helloFive(trueOrFalse: true).send(using: key, amount: Wei(1)).startWithResult { result in
             switch result {
             case .success(let hash):
                 print(hash)
                 print("Succeeded!")
             case .failure(let error):
                 print(error)
-                print("Error :(((")
+                print("Error!")
             }
         }
-
-//        query.greeterContract(at: helloWorldContractAddress).hello(decimalUnits: UInt(1)).send(using: key, amount: Wei(1)).startWithResult { result in
-//            switch result {
-//            case .success(let hash):
-//                print(hash)
-//                print("Succeeded with foo!")
-//            case .failure(let error):
-//                print(error)
-//                print("Error foo :(((")
-//            }
-//        }
-//        query.send(using: keyManager, from: myAddress, to: toAddress, value: UInt256(0x131c00000000000), data: sayHiData) { result in
-//            switch result {
-//            case let .failure(error):
-//                self.showError(error.localizedDescription)
-//            case let .success(value):
-//                print(value)
-//            }
-//        }
-
-        //      query.sayHi(using: keyManager, from: myAddress, to: helloWorldContractAddress, value: UInt256(0x100000000000000)) { result in
-        //          print(result)
-        //      }
-
     }
-
-//    let keyManager = EtherKeyManager(applicationTag: "cz.ackee.etherkit.example")
-
-    let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
-    //    URL(string: "http://localhost:8545")!,
 
     // MARK: Helpers
 
@@ -223,67 +158,7 @@ final class EtherViewController: BaseViewController {
         imageView.reactive.image <~ viewModel.photo
 
     }
-
 }
-
-// This is a basic example. We will want to find a nicer API for this. Im thinking, nest function of each contract inside its own namespace, i.e:
-// let producer: SignalProducer<Value, EtherKitError> = etherKit.helloWorldContract.sayHi(sender:to:value:parameters:),
-// where parameters is a tuple of parameters of the function and Value is the return type
-// Maybe even explore something like etherKit.helloWorldContract(at:/*ContractAddressHere*/).sayHi(.....)
-
-/*extension EtherQuery {
- public func sayHi(
- using keyManager: EtherKeyManager,
- from sender: Address,
- to: Address,
- value: UInt256,
- completion: @escaping (Result<Hash, EtherKitError>) -> Void
- ) {
- request(
- networkVersion(),
- transactionCount(sender, blockNumber: .pending)
- ) { result in
- switch result {
- case let .success(items):
-
- let (network, nonce) = items
-
- /*keyManager.sign(
- with: sender,
- transaction: TransactionCall(
- nonce: UInt256(nonce.describing),
- to: to,
- gasLimit: UInt256(22000),
- // 21000 is the current base value for any transaction (e.g. just sending ether)
- // if the transaction includes data, it needs more gat depending on how many bytes are used
- // see https://ethereum.stackexchange.com/questions/1570/mist-what-does-intrinsic-gas-too-low-mean
- // TODO: calculate and use the right ammount of gas
- // TODO: find out how this value changes overtime, maybe EtherKit shouldnt be hardcoding the 21000 constant
- //            gasLimit: UInt256(21000),
- gasPrice: UInt256(20_000_000_000),
- value: value
- // TODO: pass serialized function selector and parameters
- // Currently we'd have to serialize the function selector and argument as per https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI
- // Im hoping to get EtherKit to support this for us (https://github.com/Vaultio/EtherKit/issues/19)
- //            data: try! GeneralData.value(from: contractFunctionNameAndParams)
- ),
- network: network
- ) {
- switch $0 {
- case let .success(signedTransaction):
- let encodedData = RLPData.encode(from: signedTransaction)
- let sendRequest = SendRawTransactionRequest(SendRawTransactionRequest.Parameters(data: encodedData))
- self.request(sendRequest) { completion($0) }
- case let .failure(error):
- completion(.failure(error))
- }
- }*/
- case let .failure(error):
- completion(.failure(error))
- }
- }
- }
- }*/
 
 extension UIViewController {
     func showError(_ message: String) {

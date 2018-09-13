@@ -43,21 +43,28 @@ class GenerateCommand: SwiftCLI.Command {
             }
         }
 
-        var generatedSwiftCodePath: Path?
-        if let outputValue = output.value {
-            generatedSwiftCodePath = Path(outputValue)
-        }
-
-        writeGeneratedCode(to: generatedSwiftCodePath, funcs: funcs)
-
         var projectPath: Path?
         if let projectPathValue = xcode.value {
             projectPath = Path(projectPathValue)
         }
 
+        var generatedSwiftCodePath: Path?
+
+        if let outputValue = output.value {
+            if let xcodePath = xcode.value {
+                var xcodeComponents = xcodePath.components(separatedBy: "/")
+                xcodeComponents.remove(at: xcodeComponents.endIndex - 1)
+                generatedSwiftCodePath = Path(xcodeComponents.joined(separator: "/")) + Path(outputValue)
+            } else {
+                generatedSwiftCodePath = Path(outputValue)
+            }
+        }
+
+        writeGeneratedCode(to: generatedSwiftCodePath, funcs: funcs)
+
         // Do not bind files when project or swift code path is not given
-        guard let xcodePath = projectPath, let swiftCodePath = generatedSwiftCodePath else { return }
-        bindFilesWithProject(xcodePath: xcodePath, swiftCodePath: swiftCodePath)
+        guard let xcodePath = projectPath, let swiftCodePath = generatedSwiftCodePath, let relativePathValue = output.value else { return }
+        bindFilesWithProject(xcodePath: xcodePath, swiftCodePath: swiftCodePath, relativePathValue: relativePathValue)
     }
 
     /// Writes and renders code from .stencil files to a given directory
@@ -71,12 +78,12 @@ class GenerateCommand: SwiftCLI.Command {
         stencilSwiftExtension.registerStencilSwiftExtensions()
         // TODO: Is there a more suitable place?
         let fsLoader: FileSystemLoader
-        let templatesPath: Path
         if Path("../templates").exists {
             fsLoader = FileSystemLoader(paths: ["../templates/"])
         } else {
             fsLoader = FileSystemLoader(paths: ["/usr/local/share/contractgen/templates/"])
         }
+
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
         let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "values": $0.inputs.map { $0.name }.joined(separator: ", "), "isPayable": $0.isPayable]}
         let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]
@@ -101,13 +108,12 @@ class GenerateCommand: SwiftCLI.Command {
     }
 
     /// Binds file references with project, adds files to target
-    private func bindFilesWithProject(xcodePath: Path, swiftCodePath: Path) {
+    private func bindFilesWithProject(xcodePath: Path, swiftCodePath: Path, relativePathValue: String) {
         let separatedPath = "\(swiftCodePath.absolute())".components(separatedBy: "/")
         guard let groupName = separatedPath.last else {
             stdout <<< "Xcode path error"
             return
         }
-        let parentGroupName = separatedPath[separatedPath.index(separatedPath.endIndex, offsetBy: -2)]
 
         let targetsString: String
         do {
@@ -136,9 +142,11 @@ class GenerateCommand: SwiftCLI.Command {
                 self.stderr <<< "'\(input)' is invalid; must be a number between 1 and \(targets.count)"
             }
         )
-
+        var relativePathComponents = relativePathValue.components(separatedBy: "/")
+        relativePathComponents.remove(at: relativePathComponents.endIndex - 1)
+        let relativePath = relativePathComponents.joined(separator: "/")
         do {
-            try run(bash: "rake -f /usr/local/share/contractgen/Rakefile xcode:add_files_to_group'[\(xcodePath.absolute()),\(swiftCodePath.absolute()),\(groupName),\(parentGroupName),\(index - 1)]'")
+            try run(bash: "rake -f \(rakeFilePath.absolute()) xcode:add_files_to_group'[\(xcodePath.absolute()),\(swiftCodePath.absolute()),\(groupName),\(relativePath),\(index - 1)]'")
             stdout <<< "Code generation: ✅"
         } catch {
             stdout <<< "Rakefile task add_files_to_group failed 😥"

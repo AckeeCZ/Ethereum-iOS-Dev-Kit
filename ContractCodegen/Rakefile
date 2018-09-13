@@ -14,22 +14,16 @@ namespace :xcode do
     puts targets 
   end
 
-  task :add_files_to_group, [:project_path, :output_folder, :group_name, :parent_name, :target_index] do |t, args|
+  task :add_files_to_group, [:project_path, :output_folder, :group_name, :relative_path, :target_index] do |t, args|
     project_path = args.project_path
     project = Xcodeproj::Project.open(project_path)
     group_name = args.group_name
-    parent_name = args.parent_name
+    relative_path = args.relative_path
     output_folder = args.output_folder
     target_index = args.target_index.to_i
     target = project.targets[target_index]
-    parent_group = nil
-      
-    project.groups.each do |group|
-      if group.path == parent_name
-        parent_group = group
-        break
-      end
-    end
+    
+    parent_group = project[relative_path]
 
     output_group = parent_group.find_subpath(group_name, should_create = true)
 
