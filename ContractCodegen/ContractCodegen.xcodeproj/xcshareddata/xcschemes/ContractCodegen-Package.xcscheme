@@ -14,37 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "StencilSwiftKit::StencilSwiftKit"
-               BuildableName = "StencilSwiftKit.framework"
-               BlueprintName = "StencilSwiftKit"
-               ReferencedContainer = "container:ContractCodegen.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Spectre::Spectre"
-               BuildableName = "Spectre.framework"
-               BlueprintName = "Spectre"
-               ReferencedContainer = "container:ContractCodegen.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "ContractCodegen::contractgen"
                BuildableName = "contractgen"
                BlueprintName = "contractgen"
+               ReferencedContainer = "container:ContractCodegen.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ContractCodegen::ContractCodegenFramework"
+               BuildableName = "ContractCodegenFramework.framework"
+               BlueprintName = "ContractCodegenFramework"
                ReferencedContainer = "container:ContractCodegen.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -84,6 +70,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "StencilSwiftKit::StencilSwiftKit"
+               BuildableName = "StencilSwiftKit.framework"
+               BlueprintName = "StencilSwiftKit"
+               ReferencedContainer = "container:ContractCodegen.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Stencil::Stencil"
                BuildableName = "Stencil.framework"
                BlueprintName = "Stencil"
@@ -98,9 +98,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ContractCodegen::ContractCodegenFramework"
-               BuildableName = "ContractCodegenFramework.framework"
-               BlueprintName = "ContractCodegenFramework"
+               BlueprintIdentifier = "Spectre::Spectre"
+               BuildableName = "Spectre.framework"
+               BlueprintName = "Spectre"
                ReferencedContainer = "container:ContractCodegen.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -139,9 +139,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "StencilSwiftKit::StencilSwiftKit"
-            BuildableName = "StencilSwiftKit.framework"
-            BlueprintName = "StencilSwiftKit"
+            BlueprintIdentifier = "ContractCodegen::contractgen"
+            BuildableName = "contractgen"
+            BlueprintName = "contractgen"
             ReferencedContainer = "container:ContractCodegen.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

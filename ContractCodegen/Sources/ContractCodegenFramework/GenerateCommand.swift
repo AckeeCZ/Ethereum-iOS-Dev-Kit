@@ -3,24 +3,24 @@ import SwiftCLI
 import PathKit
 import StencilSwiftKit
 import Stencil
-import ContractCodegenFramework
 
-// TODO: Limit number of words for contract to only one
-class GenerateCommand: SwiftCLI.Command {
-    
-    let name = "generate"
-    let shortDescription = "Generates Swift code for contract"
+public class GenerateCommand: SwiftCLI.Command {
+
+    public let name = "generate"
+    public let shortDescription = "Generates Swift code for contract"
 
     let contractName = Parameter(completion: .none)
     let file = Parameter(completion: .filename)
     let output = Key<String>("-o", "--output", description: "Define output directory")
     let xcode = Key<String>("-x", "--xcode", description: "Define location of .xcodeproj")
 
-    func execute() throws {
+    public init() {
 
-        let arguments = CommandLine.arguments
+    }
 
-        let filePath = Path.current + Path(arguments[2])
+    public func execute() throws {
+
+        let filePath = Path.current + Path(file.value)
         guard filePath.exists else {
             stdout <<< "File at given path does not exist."
             return
@@ -70,8 +70,6 @@ class GenerateCommand: SwiftCLI.Command {
     /// Writes and renders code from .stencil files to a given directory
     private func writeGeneratedCode(to path: Path?, funcs: [Function]) {
 
-        let arguments = CommandLine.arguments
-
         let swiftCodePath = path ?? (Path.current + Path("GeneratedContracts"))
 
         let stencilSwiftExtension = Extension()
@@ -90,8 +88,9 @@ class GenerateCommand: SwiftCLI.Command {
 
         do {
             if !swiftCodePath.exists {
-                try FileManager.default.createDirectory(atPath: "\(swiftCodePath.absolute())", withIntermediateDirectories: false, attributes: nil)
+                try FileManager.default.createDirectory(atPath: "\(swiftCodePath.absolute())", withIntermediateDirectories: true, attributes: nil)
             }
+
             let commonRendered = try environment.renderTemplate(name: "shared_contractgen.stencil")
             let sharedSwiftCodePath = swiftCodePath + Path("SharedContract.swift")
             if sharedSwiftCodePath.exists {
@@ -99,7 +98,7 @@ class GenerateCommand: SwiftCLI.Command {
             }
             try sharedSwiftCodePath.write(commonRendered)
             let rendered = try environment.renderTemplate(name: "contractgen.stencil", context: context)
-            let contractCodePath = swiftCodePath + Path(arguments[1] + ".swift")
+            let contractCodePath = swiftCodePath + Path(contractName.value + ".swift")
             try contractCodePath.write(rendered)
         } catch {
             stdout <<< "Write Error! 😱"

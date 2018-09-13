@@ -2,50 +2,43 @@ import Foundation
 import XCTest
 import PathKit
 import SwiftCLI
+import ContractCodegenFramework
 
 class CommandLineToolTests: XCTestCase {
 
-    private let generatedContractsString = "GeneratedContracts"
+    private let generatedContractsString = "GeneratedContracts/"
+    private let generatorCLI = CLI(singleCommand: GenerateCommand())
 
-    private func runContractgen(output: String = "", xcode: String = "") throws {
-        let task = Task(executable: ".build/debug/contractgen", arguments: ["TestContract", "abi.json", output, xcode])
-        task.runSync()
+    func testGeneratedContractsFileCreated() throws {
+        XCTAssertEqual(0, generatorCLI.debugGo(with: "generate TestContract ../abi.json"))
+        XCTAssertTrue(Path(generatedContractsString).exists)
+
         try Path(generatedContractsString).delete()
     }
 
-    func testGeneratedContractsFileCreated() throws {
-        try runContractgen()
-
-        XCTAssertTrue(Path("GeneratedContracts").exists)
-
-        try Path("GeneratedContracts").delete()
-    }
-
     func testTestContractFileCreated() throws {
-        try runContractgen()
+        XCTAssertEqual(0, generatorCLI.debugGo(with: "generate TestContract ../abi.json"))
+        XCTAssertTrue(Path(generatedContractsString + "TestContract.swift").exists)
 
-        XCTAssertTrue(Path(generatedContractsString + "/TestContract.swift").exists)
-
-        try Path("GeneratedContracts").delete()
+        try Path(generatedContractsString).delete()
     }
 
     func testSharedContractFileCreated() throws {
-        try runContractgen()
-
-        XCTAssertTrue(Path(generatedContractsString + "/SharedContract.swift").exists)
+        XCTAssertEqual(0, generatorCLI.debugGo(with: "generate TestContract ../abi.json"))
+        XCTAssertTrue(Path(generatedContractsString + "SharedContract.swift").exists)
 
         try Path(generatedContractsString).delete()
     }
 
     func testOutputOption() throws {
         let outputPath = "Output/" + generatedContractsString
-        try runContractgen(output: outputPath)
+        XCTAssertEqual(0, generatorCLI.debugGo(with: "generate TestContract ../abi.json -o \(outputPath)"))
 
         XCTAssertTrue(Path(outputPath).exists)
-        XCTAssertTrue(Path(outputPath + "/SharedContract.swift").exists)
-        XCTAssertTrue(Path(outputPath + "/TestContract.swift").exists)
+        XCTAssertTrue(Path(outputPath + "SharedContract.swift").exists)
+        XCTAssertTrue(Path(outputPath + "TestContract.swift").exists)
 
-        try Path(outputPath).delete()
+        try Path("Output").delete()
     }
 
 }
