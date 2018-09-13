@@ -1,0 +1,48 @@
+require 'xcodeproj'
+require 'fileutils'
+
+namespace :xcode do  
+
+  task :find_targets, [:project_path] do |t, args| 
+    project_path = args.project_path
+    project = Xcodeproj::Project.open(project_path)
+  
+    targets = []
+    project.targets.each do |target|
+      targets.push(target.name)
+    end
+    puts targets 
+  end
+
+  task :add_files_to_group, [:project_path, :output_folder, :group_name, :relative_path, :target_index] do |t, args|
+    project_path = args.project_path
+    project = Xcodeproj::Project.open(project_path)
+    group_name = args.group_name
+    relative_path = args.relative_path
+    output_folder = args.output_folder
+    target_index = args.target_index.to_i
+    target = project.targets[target_index]
+    
+    parent_group = project[relative_path]
+
+    output_group = parent_group.find_subpath(group_name, should_create = true)
+
+    current_files = []
+    output_group.files.each do |file_reference|
+      current_files.push(file_reference.display_name)
+    end
+
+    new_references = []
+    Dir[output_folder + "/*.swift"].each do |item|
+      item_name = item.split("/").last
+      if (current_files.include? item_name) == false
+        new_reference = output_group.new_reference(item)
+        new_references.push(new_reference)
+      end
+    end
+
+    target.add_file_references(new_references)
+    
+    project.save(project_path)
+  end
+end
