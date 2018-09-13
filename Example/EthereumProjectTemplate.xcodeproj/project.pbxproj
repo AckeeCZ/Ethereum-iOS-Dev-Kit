@@ -45,7 +45,6 @@
 		6977BB581FD1A1B300F6EB94 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6977BB561FD1A1B300F6EB94 /* Result.framework */; };
 		6977BB591FD1A1B300F6EB94 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6977BB571FD1A1B300F6EB94 /* ReactiveSwift.framework */; };
 		6977BB5C1FD1A6BD00F6EB94 /* NetworkStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6977BB5B1FD1A6BD00F6EB94 /* NetworkStructs.swift */; };
-		698B3D091F8D337600F87651 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F3C1FE1F8D169A00DB2B5C /* UnitTests.swift */; };
 		69902FBB1FDC3E8600182939 /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69902FBA1FDC3E8600182939 /* PushManager.swift */; };
 		69902FBD1FDC3FE100182939 /* PushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69902FBC1FDC3FE100182939 /* PushNotification.swift */; };
 		69902FC11FDC61B600182939 /* PushAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69902FC01FDC61B600182939 /* PushAPIService.swift */; };
@@ -86,6 +85,8 @@
 		C09C6DB7270816A184E37175 /* HelloContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51B57EE4469709E551EED2B /* HelloContract.swift */; };
 		CA25BDE99E13F778B6AAC1BA /* Pods_EthereumProjectTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F73735F21BEAAADBB6C5C78 /* Pods_EthereumProjectTemplate.framework */; };
 		D896867B00965E0DCEE5B306 /* Pods_EthereumProjectTemplate_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B807F84FA2B1A44827573F /* Pods_EthereumProjectTemplate_UnitTests.framework */; };
+		F8222455214A601900F29CFF /* ContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8222454214A601900F29CFF /* ContractTests.swift */; };
+		F8222456214A616600F29CFF /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6977BB571FD1A1B300F6EB94 /* ReactiveSwift.framework */; };
 		F8BCC6852141482E005C9E32 /* abi.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BCC6842141482E005C9E32 /* abi.json */; };
 /* End PBXBuildFile section */
 
@@ -162,7 +163,6 @@
 		69D13B331FDC3BC700315517 /* FirebaseFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseFetcher.swift; sourceTree = "<group>"; };
 		69D13B341FDC3BC700315517 /* VersionUpdateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VersionUpdateManager.swift; sourceTree = "<group>"; };
 		69F3C1FD1F8D169A00DB2B5C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		69F3C1FE1F8D169A00DB2B5C /* UnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
 		69F4A6B71F8BD5C5003481A3 /* EthereumProjectTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthereumProjectTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69F4A6C61F8BD5C5003481A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69F4A6CB1F8BD5C5003481A3 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +184,7 @@
 		DBA320E0E4B46C241CF4502F /* Pods-EthereumProjectTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate/Pods-EthereumProjectTemplate.debug.xcconfig"; sourceTree = "<group>"; };
 		E4EA82AB9060B37A22A31728 /* SharedContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedContract.swift; path = GeneratedContracts/SharedContract.swift; sourceTree = "<group>"; };
 		E51B57EE4469709E551EED2B /* HelloContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HelloContract.swift; path = GeneratedContracts/HelloContract.swift; sourceTree = "<group>"; };
+		F8222454214A601900F29CFF /* ContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractTests.swift; sourceTree = "<group>"; };
 		F8BCC6842141482E005C9E32 /* abi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = abi.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D896867B00965E0DCEE5B306 /* Pods_EthereumProjectTemplate_UnitTests.framework in Frameworks */,
+				F8222456214A616600F29CFF /* ReactiveSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,7 +492,7 @@
 				69F3C1FD1F8D169A00DB2B5C /* Info.plist */,
 				691EF7011FDAFA6100135FBC /* TestingAppDelegate.swift */,
 				881CA6A62137CA3500DB7E55 /* XCTestExtensions.swift */,
-				69F3C1FE1F8D169A00DB2B5C /* UnitTests.swift */,
+				F8222454214A601900F29CFF /* ContractTests.swift */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -1014,9 +1016,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				698B3D091F8D337600F87651 /* UnitTests.swift in Sources */,
 				881CA6A82137CA3F00DB7E55 /* XCTestExtensions.swift in Sources */,
 				691EF7051FDAFB2900135FBC /* TestingAppDelegate.swift in Sources */,
+				F8222455214A601900F29CFF /* ContractTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1441,6 +1443,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1511,6 +1517,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1574,6 +1584,10 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
