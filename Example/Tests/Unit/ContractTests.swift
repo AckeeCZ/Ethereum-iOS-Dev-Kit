@@ -44,7 +44,6 @@ class ContractTests: XCTestCase {
                 privateKey.unlocked { value in
                         DispatchQueue.main.async {
                             _ = value.map { key in
-                                print(key.publicKey.address)
                                 self.myAddress = key.publicKey.address
                                 createKeyExpectation.fulfill()
                             }
@@ -57,7 +56,7 @@ class ContractTests: XCTestCase {
 
     func testUint8() {
         let testUint8Expectation = expectation(description: "Uint8")
-        query.testContract(at: testContractAddress).testUint8(decimalUnits: UInt(1)).send(using: key, amount: Wei(1)).startWithResult { result in
+        query.testContract(at: testContractAddress).testUint8(decimalUnits: 1).send(using: key, amount: Wei(1)).startWithResult { result in
             switch result {
             case .failure(let error):
                 XCTFail("Failed with error: \(error)")
@@ -127,7 +126,7 @@ class ContractTests: XCTestCase {
 
     func testInt8() {
         let testInt8Expectation = expectation(description: "Int8")
-        query.testContract(at: testContractAddress).testInt8(value: 8).send(using: key, amount: Wei(1)).startWithResult { result in
+        query.testContract(at: testContractAddress).testInt8(value: 1).send(using: key, amount: Wei(1)).startWithResult { result in
             switch result {
             case .failure(let error):
                 XCTFail("Failed with error: \(error)")
@@ -181,19 +180,19 @@ class ContractTests: XCTestCase {
         waitForExpectations(timeout: 3)
     }
 
-//    func testViewFunc() {
-//        let testViewFuncExpectation = expectation(description: "View Func")
-//        query.testContract(at: testContractAddress).testViewFunc().send(using: key).startWithResult { result in
-//            switch result {
-//            case .failure(let error):
-//                XCTFail("Failed with error: \(error)")
-//            case .success(_):
-//                testViewFuncExpectation.fulfill()
-//            }
-//        }
-//ě
-//        waitForExpectations(timeout: 3)
-//    }
+    func testViewFunc() {
+        let testViewFuncExpectation = expectation(description: "View Func")
+        query.testContract(at: testContractAddress).totalSupply().send(using: key).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testViewFuncExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 3)
+    }
 
     func testMutatingFunc() {
         let testBuyFuncExpectation = expectation(description: "Mutating Func")

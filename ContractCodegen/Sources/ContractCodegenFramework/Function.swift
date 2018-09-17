@@ -166,9 +166,9 @@ extension Function.ParameterType.StaticType {
         let nonPrefixedTypeString: String
         switch self {
         case .uint(let bits):
-            nonPrefixedTypeString = bits > 64 ? "BigUInt" : "UInt"
+            nonPrefixedTypeString = bits > 64 ? "BigUInt" : "UInt\(bits)"
         case .int(let bits):
-            nonPrefixedTypeString = bits > 64 ? "BigInt" : "Int"
+            nonPrefixedTypeString = bits > 64 ? "BigInt" : "Int\(bits)"
         case .address:
             nonPrefixedTypeString = "Address"
         case .bool:
