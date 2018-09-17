@@ -40,25 +40,4 @@ class CommandLineToolTests: XCTestCase {
 
         try Path("Output").delete()
     }
-
-//    func testXcodePathOption() throws {
-//        let xcodePath = "CLICodegenTests/TestCodegenCLI/TestCodegenCLI.xcodeproj"
-//        let outputPath = "CLICodegenTests/TestCodegenCLI/Generated/GeneratedContracts"
-//        XCTAssertEqual(0, generatorCLI.debugGo(with: "generate TestContract ../abi.json -o \(outputPath) -x \(xcodePath)"))
-//
-//        XCTAssertTrue(Path(outputPath).exists)
-//        XCTAssertTrue(Path(outputPath + "SharedContract.swift").exists)
-//        XCTAssertTrue(Path(outputPath + "TestContract.swift").exists)
-//
-//        try Path(outputPath).delete()
-//    }
-
 }
-
-//extension CommandLineToolTests {
-//    class GenerateCommandMock: GenerateCommand {
-//        override func findTargetIndex(rakeFilePath: Path, targetsString: String) -> Int {
-//            return 1
-//        }
-//    }
-//}
