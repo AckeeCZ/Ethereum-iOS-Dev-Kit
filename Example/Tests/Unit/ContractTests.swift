@@ -15,7 +15,6 @@ class ContractTests: XCTestCase {
     let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
     let testContractAddress = try! Address(describing: "0xb8f016F3529b198b4a06574f3E9BDc04948ad852")
     var myAddress: Address!
-    // TODO: Is this the best way to init the key (optional, non-optional with {} ... )
     var key: HDKey.Private!
 
     override func setUp() {
@@ -25,15 +24,16 @@ class ContractTests: XCTestCase {
 
         let sentence: Mnemonic.MnemonicSentence = Mnemonic.MnemonicSentence(["truly", "law", "tide", "pony", "media", "degree", "two", "goat", "ignore", "twice", "project", "message", "vanish", "spring", "movie"])
         let walletStorage = KeychainStorageStrategy(identifier: "cz.ackee.etherkit.tests")
+        _ = walletStorage.delete()
         HDKey.Private.create(
             with: MnemonicStorageStrategy(walletStorage),
             mnemonic: sentence,
-            network: .main,
+            network: .rinkeby,
             path: [
                 KeyPathNode(at: 44, hardened: true),
                 KeyPathNode(at: 60, hardened: true),
                 KeyPathNode(at: 0, hardened: true),
-                KeyPathNode(at: 0),
+                KeyPathNode(at: 1),
                 ]
         ) { result in
             switch result {
@@ -41,23 +41,18 @@ class ContractTests: XCTestCase {
                 XCTFail("Failed with error: \(error)")
             case .success(let privateKey):
                 self.key = privateKey
-                HDKey.Private(walletStorage, network: .main, path: [
-                    KeyPathNode(at: 44, hardened: true),
-                    KeyPathNode(at: 60, hardened: true),
-                    KeyPathNode(at: 0, hardened: true),
-                    KeyPathNode(at: 1),
-                    ]).unlocked { value in
+                privateKey.unlocked { value in
                         DispatchQueue.main.async {
                             _ = value.map { key in
+                                print(key.publicKey.address)
                                 self.myAddress = key.publicKey.address
                                 createKeyExpectation.fulfill()
                             }
                         }
+                    }
                 }
             }
-        }
-
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
     func testUint8() {
@@ -71,7 +66,7 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
     func testData() {
@@ -85,7 +80,7 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
     func testUintArray() {
@@ -99,7 +94,7 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
     func testBytes32Array() {
@@ -113,7 +108,7 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
     func testBool() {
@@ -127,7 +122,7 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
     func testInt8() {
@@ -141,7 +136,7 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
     func testInt256() {
@@ -155,7 +150,7 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
     func testString() {
@@ -169,7 +164,7 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
     func testLongString() {
@@ -183,22 +178,22 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
-    func testViewFunc() {
-        let testViewFuncExpectation = expectation(description: "View Func")
-        query.testContract(at: testContractAddress).testViewFunc().send(using: key).startWithResult { result in
-            switch result {
-            case .failure(let error):
-                XCTFail("Failed with error: \(error)")
-            case .success(_):
-                testViewFuncExpectation.fulfill()
-            }
-        }
-
-        waitForExpectations(timeout: 3, handler: nil)
-    }
+//    func testViewFunc() {
+//        let testViewFuncExpectation = expectation(description: "View Func")
+//        query.testContract(at: testContractAddress).testViewFunc().send(using: key).startWithResult { result in
+//            switch result {
+//            case .failure(let error):
+//                XCTFail("Failed with error: \(error)")
+//            case .success(_):
+//                testViewFuncExpectation.fulfill()
+//            }
+//        }
+//ě
+//        waitForExpectations(timeout: 3)
+//    }
 
     func testMutatingFunc() {
         let testBuyFuncExpectation = expectation(description: "Mutating Func")
@@ -211,7 +206,7 @@ class ContractTests: XCTestCase {
             }
         }
 
-        waitForExpectations(timeout: 3, handler: nil)
+        waitForExpectations(timeout: 3)
     }
 
 }

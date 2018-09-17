@@ -118,6 +118,7 @@ final class EtherViewController: BaseViewController {
                 ]).unlocked { value in
                     DispatchQueue.main.async {
                         _ = value.map { key in
+                            print(key.publicKey.address)
                             self.testContracts(with: key.publicKey.address)
                         }
                     }

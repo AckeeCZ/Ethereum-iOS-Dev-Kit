@@ -6,12 +6,26 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F838334E214AA64A0035EB65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838334D214AA64A0035EB65 /* AppDelegate.swift */; };
+		F8383350214AA64A0035EB65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F838334F214AA64A0035EB65 /* ViewController.swift */; };
+		F8383353214AA64A0035EB65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8383351214AA64A0035EB65 /* Main.storyboard */; };
+		F8383355214AA64C0035EB65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8383354214AA64C0035EB65 /* Assets.xcassets */; };
+		F8383358214AA64C0035EB65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8383356214AA64C0035EB65 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		F82224A3214A894A00F29CFF /* TestCodegenCLI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestCodegenCLI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F838334A214AA64A0035EB65 /* TestCodegenCLI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestCodegenCLI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F838334D214AA64A0035EB65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F838334F214AA64A0035EB65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F8383352214AA64A0035EB65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F8383354214AA64C0035EB65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F8383357214AA64C0035EB65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F8383359214AA64C0035EB65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F82224A0214A894A00F29CFF /* Frameworks */ = {
+		F8383347214AA64A0035EB65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -21,25 +35,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F822249A214A894A00F29CFF = {
+		F8383341214AA64A0035EB65 = {
 			isa = PBXGroup;
 			children = (
-				F82224A5214A894A00F29CFF /* TestCodegenCLI */,
-				F82224A4214A894A00F29CFF /* Products */,
+				F838334C214AA64A0035EB65 /* TestCodegenCLI */,
+				F838334B214AA64A0035EB65 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		F82224A4214A894A00F29CFF /* Products */ = {
+		F838334B214AA64A0035EB65 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F82224A3214A894A00F29CFF /* TestCodegenCLI.app */,
+				F838334A214AA64A0035EB65 /* TestCodegenCLI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F82224A5214A894A00F29CFF /* TestCodegenCLI */ = {
+		F838334C214AA64A0035EB65 /* TestCodegenCLI */ = {
 			isa = PBXGroup;
 			children = (
+				F838334D214AA64A0035EB65 /* AppDelegate.swift */,
+				F838334F214AA64A0035EB65 /* ViewController.swift */,
+				F8383351214AA64A0035EB65 /* Main.storyboard */,
+				F8383354214AA64C0035EB65 /* Assets.xcassets */,
+				F8383356214AA64C0035EB65 /* LaunchScreen.storyboard */,
+				F8383359214AA64C0035EB65 /* Info.plist */,
 			);
 			path = TestCodegenCLI;
 			sourceTree = "<group>";
@@ -47,13 +67,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F82224A2214A894A00F29CFF /* TestCodegenCLI */ = {
+		F8383349214AA64A0035EB65 /* TestCodegenCLI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F82224B5214A894C00F29CFF /* Build configuration list for PBXNativeTarget "TestCodegenCLI" */;
+			buildConfigurationList = F838335C214AA64C0035EB65 /* Build configuration list for PBXNativeTarget "TestCodegenCLI" */;
 			buildPhases = (
-				F822249F214A894A00F29CFF /* Sources */,
-				F82224A0214A894A00F29CFF /* Frameworks */,
-				F82224A1214A894A00F29CFF /* Resources */,
+				F8383346214AA64A0035EB65 /* Sources */,
+				F8383347214AA64A0035EB65 /* Frameworks */,
+				F8383348214AA64A0035EB65 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -61,25 +81,25 @@
 			);
 			name = TestCodegenCLI;
 			productName = TestCodegenCLI;
-			productReference = F82224A3214A894A00F29CFF /* TestCodegenCLI.app */;
+			productReference = F838334A214AA64A0035EB65 /* TestCodegenCLI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F822249B214A894A00F29CFF /* Project object */ = {
+		F8383342214AA64A0035EB65 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Marek Fořt";
 				TargetAttributes = {
-					F82224A2214A894A00F29CFF = {
+					F8383349214AA64A0035EB65 = {
 						CreatedOnToolsVersion = 9.4;
 					};
 				};
 			};
-			buildConfigurationList = F822249E214A894A00F29CFF /* Build configuration list for PBXProject "TestCodegenCLI" */;
+			buildConfigurationList = F8383345214AA64A0035EB65 /* Build configuration list for PBXProject "TestCodegenCLI" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -87,38 +107,62 @@
 				en,
 				Base,
 			);
-			mainGroup = F822249A214A894A00F29CFF;
-			productRefGroup = F82224A4214A894A00F29CFF /* Products */;
+			mainGroup = F8383341214AA64A0035EB65;
+			productRefGroup = F838334B214AA64A0035EB65 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F82224A2214A894A00F29CFF /* TestCodegenCLI */,
+				F8383349214AA64A0035EB65 /* TestCodegenCLI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F82224A1214A894A00F29CFF /* Resources */ = {
+		F8383348214AA64A0035EB65 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8383358214AA64C0035EB65 /* LaunchScreen.storyboard in Resources */,
+				F8383355214AA64C0035EB65 /* Assets.xcassets in Resources */,
+				F8383353214AA64A0035EB65 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F822249F214A894A00F29CFF /* Sources */ = {
+		F8383346214AA64A0035EB65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8383350214AA64A0035EB65 /* ViewController.swift in Sources */,
+				F838334E214AA64A0035EB65 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		F8383351214AA64A0035EB65 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8383352214AA64A0035EB65 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F8383356214AA64C0035EB65 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8383357214AA64C0035EB65 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		F82224B3214A894C00F29CFF /* Debug */ = {
+		F838335A214AA64C0035EB65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -178,7 +222,7 @@
 			};
 			name = Debug;
 		};
-		F82224B4214A894C00F29CFF /* Release */ = {
+		F838335B214AA64C0035EB65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -232,7 +276,7 @@
 			};
 			name = Release;
 		};
-		F82224B6214A894C00F29CFF /* Debug */ = {
+		F838335D214AA64C0035EB65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -249,7 +293,7 @@
 			};
 			name = Debug;
 		};
-		F82224B7214A894C00F29CFF /* Release */ = {
+		F838335E214AA64C0035EB65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -269,25 +313,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F822249E214A894A00F29CFF /* Build configuration list for PBXProject "TestCodegenCLI" */ = {
+		F8383345214AA64A0035EB65 /* Build configuration list for PBXProject "TestCodegenCLI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F82224B3214A894C00F29CFF /* Debug */,
-				F82224B4214A894C00F29CFF /* Release */,
+				F838335A214AA64C0035EB65 /* Debug */,
+				F838335B214AA64C0035EB65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F82224B5214A894C00F29CFF /* Build configuration list for PBXNativeTarget "TestCodegenCLI" */ = {
+		F838335C214AA64C0035EB65 /* Build configuration list for PBXNativeTarget "TestCodegenCLI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F82224B6214A894C00F29CFF /* Debug */,
-				F82224B7214A894C00F29CFF /* Release */,
+				F838335D214AA64C0035EB65 /* Debug */,
+				F838335E214AA64C0035EB65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F822249B214A894A00F29CFF /* Project object */;
+	rootObject = F8383342214AA64A0035EB65 /* Project object */;
 }

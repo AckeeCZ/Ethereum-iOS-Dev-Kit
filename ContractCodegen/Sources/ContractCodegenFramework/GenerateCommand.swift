@@ -4,7 +4,7 @@ import PathKit
 import StencilSwiftKit
 import Stencil
 
-public class GenerateCommand: SwiftCLI.Command {
+open class GenerateCommand: SwiftCLI.Command {
 
     public let name = "generate"
     public let shortDescription = "Generates Swift code for contract"
@@ -106,6 +106,24 @@ public class GenerateCommand: SwiftCLI.Command {
         }
     }
 
+    func findTargetIndex(rakeFilePath: Path, targetsString: String) -> Int {
+        let targets = targetsString.components(separatedBy: "\n")
+        // Prints targets as a list so user can choose with which one they want to bind their files
+        for (index, target) in targets.enumerated() {
+            print("\(index + 1). " + target)
+        }
+
+        let index = Input.readInt(
+            prompt: "Choose target for the generated contract code:",
+            validation: { $0 > 0 && $0 <= targets.count },
+            errorResponse: { input in
+                self.stderr <<< "'\(input)' is invalid; must be a number between 1 and \(targets.count)"
+            }
+        )
+
+        return index
+    }
+
     /// Binds file references with project, adds files to target
     private func bindFilesWithProject(xcodePath: Path, swiftCodePath: Path, relativePathValue: String) {
         let separatedPath = "\(swiftCodePath.absolute())".components(separatedBy: "/")
@@ -128,19 +146,8 @@ public class GenerateCommand: SwiftCLI.Command {
             return
         }
 
-        let targets = targetsString.components(separatedBy: "\n")
-        // Prints targets as a list so user can choose with which one they want to bind their files
-        for (index, target) in targets.enumerated() {
-            print("\(index + 1). " + target)
-        }
+        let index = findTargetIndex(rakeFilePath: rakeFilePath, targetsString: targetsString)
 
-        let index = Input.readInt(
-            prompt: "Choose target for the generated contract code:",
-            validation: { $0 > 0 && $0 <= targets.count },
-            errorResponse: { input in
-                self.stderr <<< "'\(input)' is invalid; must be a number between 1 and \(targets.count)"
-            }
-        )
         var relativePathComponents = relativePathValue.components(separatedBy: "/")
         relativePathComponents.remove(at: relativePathComponents.endIndex - 1)
         let relativePath = relativePathComponents.joined(separator: "/")
