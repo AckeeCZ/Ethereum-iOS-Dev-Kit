@@ -17,7 +17,7 @@ struct {{ contractName }}Box {
     func {{ function.name }}<T: PrivateKeyType>({{ function.params }}) -> {% if function.isPayable %}PayableContractMethodInvocation<T>{% else %}ContractMethodInvocation<T>{% endif %} {
         {% if function.isPayable %}let send: (_ using: T, _ amount: Wei) -> SignalProducer<Hash, EtherKitError> = { using, amount in{% else %}let send: (_ using: T) -> SignalProducer<Hash, EtherKitError> = { using in{% endif %}
             return SignalProducer<Hash, EtherKitError> { observer, disposable in
-                let {{ function.name }}FunctionCall = Function(name: "{{ function.name }}", parameters: [{{ function.values }}])
+                let {{ function.name }}FunctionCall = Function(name: "{{ function.name }}", parameters: [{{ function.values }}] as [ABIType])
                 let {{ function.name }}Data = GeneralData(data: {{ function.name }}FunctionCall.encodeToCall())
                 self.etherQuery.send(using: using, to: self.at, value: {% if function.isPayable %}amount{% else %}Wei(0){% endif %}, data: {{ function.name }}Data, completion: { result in
                     switch result {

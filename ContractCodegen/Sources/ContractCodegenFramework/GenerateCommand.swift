@@ -83,7 +83,7 @@ open class GenerateCommand: SwiftCLI.Command {
         }
 
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
-        let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "values": $0.inputs.map { $0.name }.joined(separator: ", "), "isPayable": $0.isPayable]}
+        let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "values": $0.inputs.map { $0.abiTypeParameterString }.joined(separator: ", "), "isPayable": $0.isPayable]}
         let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]
 
         do {
