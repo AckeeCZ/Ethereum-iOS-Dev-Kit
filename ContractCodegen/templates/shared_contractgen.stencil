@@ -31,6 +31,7 @@ struct ContractMethodInvocation<T: PrivateKeyType> {
     }
 }
 
+// The code below is here for unit testing our dev kit
 extension EtherQuery: EtherQuerying {}
 
 protocol EtherQuerying {
