@@ -12,7 +12,7 @@ import BigInt
 
 class ContractIntegrationTests: XCTestCase {
 
-    let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
+    let query = EtherQuery(URL(string: "https://rinkeby.infura.io/v3/9f1a1e0782ab40c8b39fe189615714d0")!, connectionMode: .http)
     let testContractAddress = try! Address(describing: "0xb8f016F3529b198b4a06574f3E9BDc04948ad852")
     var myAddress: Address!
     var key: HDKey.Private!
