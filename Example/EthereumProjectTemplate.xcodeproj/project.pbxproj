@@ -83,7 +83,8 @@
 		CA25BDE99E13F778B6AAC1BA /* Pods_EthereumProjectTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F73735F21BEAAADBB6C5C78 /* Pods_EthereumProjectTemplate.framework */; };
 		D896867B00965E0DCEE5B306 /* Pods_EthereumProjectTemplate_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B807F84FA2B1A44827573F /* Pods_EthereumProjectTemplate_UnitTests.framework */; };
 		E4DEC32C5157ED4B9EA9DF11 /* TestContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12AAB8747A46D87426BA70 /* TestContract.swift */; };
-		F8222455214A601900F29CFF /* ContractIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8222454214A601900F29CFF /* ContractIntegrationTests.swift */; };
+		F80D46942150F82C00E83D2F /* ContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D46932150F82C00E83D2F /* ContractTests.swift */; };
+		F80D46952150F83600E83D2F /* ContractIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8222454214A601900F29CFF /* ContractIntegrationTests.swift */; };
 		F8222456214A616600F29CFF /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6977BB571FD1A1B300F6EB94 /* ReactiveSwift.framework */; };
 		F8BCC6852141482E005C9E32 /* abi.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BCC6842141482E005C9E32 /* abi.json */; };
 /* End PBXBuildFile section */
@@ -189,6 +190,7 @@
 		EB12AAB8747A46D87426BA70 /* TestContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestContract.swift; path = GeneratedContracts/TestContract.swift; sourceTree = "<group>"; };
 		F80D46882150F67800E83D2F /* IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80D468C2150F67800E83D2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F80D46932150F82C00E83D2F /* ContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractTests.swift; sourceTree = "<group>"; };
 		F8222454214A601900F29CFF /* ContractIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractIntegrationTests.swift; sourceTree = "<group>"; };
 		F8BCC6842141482E005C9E32 /* abi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = abi.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -505,6 +507,7 @@
 				69F3C1FD1F8D169A00DB2B5C /* Info.plist */,
 				691EF7011FDAFA6100135FBC /* TestingAppDelegate.swift */,
 				881CA6A62137CA3500DB7E55 /* XCTestExtensions.swift */,
+				F80D46932150F82C00E83D2F /* ContractTests.swift */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -1067,7 +1070,7 @@
 			files = (
 				881CA6A82137CA3F00DB7E55 /* XCTestExtensions.swift in Sources */,
 				691EF7051FDAFB2900135FBC /* TestingAppDelegate.swift in Sources */,
-				F8222455214A601900F29CFF /* ContractIntegrationTests.swift in Sources */,
+				F80D46942150F82C00E83D2F /* ContractTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,6 +1078,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F80D46952150F83600E83D2F /* ContractIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
