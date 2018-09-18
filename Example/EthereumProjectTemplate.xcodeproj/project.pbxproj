@@ -86,6 +86,12 @@
 		E4DEC32C5157ED4B9EA9DF11 /* TestContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12AAB8747A46D87426BA70 /* TestContract.swift */; };
 		F80D46942150F82C00E83D2F /* ContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80D46932150F82C00E83D2F /* ContractTests.swift */; };
 		F80D46952150F83600E83D2F /* ContractIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8222454214A601900F29CFF /* ContractIntegrationTests.swift */; };
+		F80D469621511E7F00E83D2F /* ACKategories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D13B1D1FDC329E00315517 /* ACKategories.framework */; };
+		F80D469721511E7F00E83D2F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D13B1B1FDC329E00315517 /* Alamofire.framework */; };
+		F80D469821511E7F00E83D2F /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D13B1E1FDC329E00315517 /* ReactiveCocoa.framework */; };
+		F80D469921511E7F00E83D2F /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6977BB571FD1A1B300F6EB94 /* ReactiveSwift.framework */; };
+		F80D469A21511E7F00E83D2F /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6977BB561FD1A1B300F6EB94 /* Result.framework */; };
+		F80D469B21511E7F00E83D2F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D13B1C1FDC329E00315517 /* SnapKit.framework */; };
 		F8222456214A616600F29CFF /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6977BB571FD1A1B300F6EB94 /* ReactiveSwift.framework */; };
 		F8BCC6852141482E005C9E32 /* abi.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BCC6842141482E005C9E32 /* abi.json */; };
 /* End PBXBuildFile section */
@@ -196,6 +202,7 @@
 		F80D46882150F67800E83D2F /* IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80D468C2150F67800E83D2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F80D46932150F82C00E83D2F /* ContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractTests.swift; sourceTree = "<group>"; };
+		F80D469C21511E7F00E83D2F /* ReactiveMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveMapKit.framework; path = Carthage/Build/iOS/ReactiveMapKit.framework; sourceTree = "<group>"; };
 		F8222454214A601900F29CFF /* ContractIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContractIntegrationTests.swift; sourceTree = "<group>"; };
 		F8BCC6842141482E005C9E32 /* abi.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = abi.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,6 +238,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				94D013633014C8CD9679CC72 /* Pods_EthereumProjectTemplate_IntegrationTests.framework in Frameworks */,
+				F80D469621511E7F00E83D2F /* ACKategories.framework in Frameworks */,
+				F80D469721511E7F00E83D2F /* Alamofire.framework in Frameworks */,
+				F80D469821511E7F00E83D2F /* ReactiveCocoa.framework in Frameworks */,
+				F80D469921511E7F00E83D2F /* ReactiveSwift.framework in Frameworks */,
+				F80D469A21511E7F00E83D2F /* Result.framework in Frameworks */,
+				F80D469B21511E7F00E83D2F /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +594,7 @@
 		9AFDE9C028D41DE8253C47ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F80D469C21511E7F00E83D2F /* ReactiveMapKit.framework */,
 				69D13B2B1FDC377C00315517 /* Fabric.framework */,
 				69D13B1D1FDC329E00315517 /* ACKategories.framework */,
 				69D13B1B1FDC329E00315517 /* Alamofire.framework */,
@@ -779,15 +793,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-EthereumProjectTemplate-IntegrationTests-checkManifestLockResult.txt",
 			);
@@ -800,8 +810,6 @@
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-EthereumProjectTemplate-IntegrationTests/Pods-EthereumProjectTemplate-IntegrationTests-frameworks.sh",
@@ -822,8 +830,6 @@
 				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
@@ -1782,6 +1788,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1846,6 +1856,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1909,6 +1923,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

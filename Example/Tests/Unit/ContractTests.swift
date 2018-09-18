@@ -17,19 +17,48 @@ class ContractTests: XCTestCase {
     var myAddress = try! Address(describing: "0xb8f016F3529b198b4a06574f3E9BDc04948ad852")
     var key = HDKey.Private(KeychainStorageStrategy(identifier: "cz.ackee.etherkit.tests"), network: .rinkeby, path: [])
 
-    func testUint8() {
-        let testUint8Expectation = expectation(description: "Uint8")
-        etherQueryMock.testContract(at: testContractAddress).testUint8(decimalUnits: 1).send(using: key, amount: Wei(1)).startWithResult { result in
+    func testFuncWithZeroParameters() {
+        let testZeroParametersExpectation = expectation(description: "Zero Parameters")
+        etherQueryMock.testContract(at: testContractAddress).testViewFunc().send(using: key).startWithResult { result in
             switch result {
             case .failure(let error):
                 XCTFail("Failed with error: \(error)")
             case .success(_):
-                testUint8Expectation.fulfill()
+                testZeroParametersExpectation.fulfill()
             }
         }
 
-        waitForExpectations(timeout: 3)
+        waitForExpectations(timeout: 1)
     }
+
+    func testPayableCallSucceeds() {
+        let testPayableCallExpectation = expectation(description: "Payable Call")
+        etherQueryMock.testContract(at: testContractAddress).testBool(trueOrFalse: false).send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testPayableCallExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 1)
+    }
+
+    func testNonPayableCallSucceeds() {
+        let testnonPayableCallExpectation = expectation(description: "Nonpayable Call")
+        etherQueryMock.testContract(at: testContractAddress).testBool(trueOrFalse: false).send(using: key, amount: Wei(1)).startWithResult { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Failed with error: \(error)")
+            case .success(_):
+                testnonPayableCallExpectation.fulfill()
+            }
+        }
+
+        waitForExpectations(timeout: 1)
+    }
+
 }
 
 class EtherQueryMock: EtherQuerying {
