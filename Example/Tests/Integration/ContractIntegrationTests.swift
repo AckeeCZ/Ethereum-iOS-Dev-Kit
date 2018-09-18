@@ -1,5 +1,5 @@
 //
-//  ContractTests.swift
+//  ContractIntegrationTests.swift
 //  UnitTests
 //
 //  Created by Marek Fořt on 9/11/18.
@@ -10,7 +10,7 @@ import EtherKit
 import BigInt
 @testable import EthereumProjectTemplate
 
-class ContractTests: XCTestCase {
+class ContractIntegrationTests: XCTestCase {
 
     let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
     let testContractAddress = try! Address(describing: "0xb8f016F3529b198b4a06574f3E9BDc04948ad852")
