@@ -79,6 +79,7 @@
 		8829099D2135885300825878 /* EtherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829099B2135885300825878 /* EtherViewModel.swift */; };
 		8829099F2135889000825878 /* ExampleAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829099E2135889000825878 /* ExampleAPIService.swift */; };
 		88576E4D2125C179009DB5D2 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88576E4C2125C179009DB5D2 /* BaseViewModel.swift */; };
+		94D013633014C8CD9679CC72 /* Pods_EthereumProjectTemplate_IntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4BAB29A6AA0183E6EB8DA04 /* Pods_EthereumProjectTemplate_IntegrationTests.framework */; };
 		BFD64724E97BD95C9FAB77BD /* SharedContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4659C7CCF7B8553F7856B636 /* SharedContract.swift */; };
 		CA25BDE99E13F778B6AAC1BA /* Pods_EthereumProjectTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F73735F21BEAAADBB6C5C78 /* Pods_EthereumProjectTemplate.framework */; };
 		D896867B00965E0DCEE5B306 /* Pods_EthereumProjectTemplate_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B807F84FA2B1A44827573F /* Pods_EthereumProjectTemplate_UnitTests.framework */; };
@@ -113,6 +114,7 @@
 		34B118B34187408CAA1B4052 /* Pods-EthereumProjectTemplate.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate/Pods-EthereumProjectTemplate.appstore.xcconfig"; sourceTree = "<group>"; };
 		35454DA5A985147A38EEA0A4 /* Pods-EthereumProjectTemplate.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate/Pods-EthereumProjectTemplate.adhoc.xcconfig"; sourceTree = "<group>"; };
 		4659C7CCF7B8553F7856B636 /* SharedContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedContract.swift; path = GeneratedContracts/SharedContract.swift; sourceTree = "<group>"; };
+		53CC441483373A6F90988578 /* Pods-EthereumProjectTemplate-IntegrationTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-IntegrationTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-IntegrationTests/Pods-EthereumProjectTemplate-IntegrationTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		60B7C76E48D9A34B19E19678 /* Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UnitTests/Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		690035971FD17E9D002EB20F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		691039D32028AF1D0069972B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		6F73735F21BEAAADBB6C5C78 /* Pods_EthereumProjectTemplate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthereumProjectTemplate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78B807F84FA2B1A44827573F /* Pods_EthereumProjectTemplate_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthereumProjectTemplate_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7920B00A14241D2CC81957CF /* Pods-EthereumProjectTemplate-UITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UITests/Pods-EthereumProjectTemplate-UITests.appstore.xcconfig"; sourceTree = "<group>"; };
+		8624C3E084C5CDB31BD058BB /* Pods-EthereumProjectTemplate-IntegrationTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-IntegrationTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-IntegrationTests/Pods-EthereumProjectTemplate-IntegrationTests.adhoc.xcconfig"; sourceTree = "<group>"; };
 		881CA6A62137CA3500DB7E55 /* XCTestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestExtensions.swift; sourceTree = "<group>"; };
 		8829099A2135885300825878 /* EtherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtherViewController.swift; sourceTree = "<group>"; };
 		8829099B2135885300825878 /* EtherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtherViewModel.swift; sourceTree = "<group>"; };
@@ -184,7 +187,9 @@
 		88576E4C2125C179009DB5D2 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		88C51D49211ADEAD00FC7FB9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		954CF4DA6E9916D6D503F6AA /* Pods_EthereumProjectTemplate_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthereumProjectTemplate_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9681001EAE411D66630F5FF5 /* Pods-EthereumProjectTemplate-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-IntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-IntegrationTests/Pods-EthereumProjectTemplate-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A5FC50C1EE8B67087528B38B /* Pods-EthereumProjectTemplate-UnitTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UnitTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UnitTests/Pods-EthereumProjectTemplate-UnitTests.adhoc.xcconfig"; sourceTree = "<group>"; };
+		B4BAB29A6AA0183E6EB8DA04 /* Pods_EthereumProjectTemplate_IntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EthereumProjectTemplate_IntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBBDAAC3015105C5D8D57535 /* Pods-EthereumProjectTemplate-UITests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate-UITests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate-UITests/Pods-EthereumProjectTemplate-UITests.adhoc.xcconfig"; sourceTree = "<group>"; };
 		DBA320E0E4B46C241CF4502F /* Pods-EthereumProjectTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EthereumProjectTemplate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EthereumProjectTemplate/Pods-EthereumProjectTemplate.debug.xcconfig"; sourceTree = "<group>"; };
 		EB12AAB8747A46D87426BA70 /* TestContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestContract.swift; path = GeneratedContracts/TestContract.swift; sourceTree = "<group>"; };
@@ -225,6 +230,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D013633014C8CD9679CC72 /* Pods_EthereumProjectTemplate_IntegrationTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +249,9 @@
 				60B7C76E48D9A34B19E19678 /* Pods-EthereumProjectTemplate-UnitTests.debug.xcconfig */,
 				A5FC50C1EE8B67087528B38B /* Pods-EthereumProjectTemplate-UnitTests.adhoc.xcconfig */,
 				113C836CA708EC68257F5D0E /* Pods-EthereumProjectTemplate-UnitTests.appstore.xcconfig */,
+				9681001EAE411D66630F5FF5 /* Pods-EthereumProjectTemplate-IntegrationTests.debug.xcconfig */,
+				8624C3E084C5CDB31BD058BB /* Pods-EthereumProjectTemplate-IntegrationTests.adhoc.xcconfig */,
+				53CC441483373A6F90988578 /* Pods-EthereumProjectTemplate-IntegrationTests.appstore.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -583,6 +592,7 @@
 				6F73735F21BEAAADBB6C5C78 /* Pods_EthereumProjectTemplate.framework */,
 				954CF4DA6E9916D6D503F6AA /* Pods_EthereumProjectTemplate_UITests.framework */,
 				78B807F84FA2B1A44827573F /* Pods_EthereumProjectTemplate_UnitTests.framework */,
+				B4BAB29A6AA0183E6EB8DA04 /* Pods_EthereumProjectTemplate_IntegrationTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -650,9 +660,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F80D46922150F67800E83D2F /* Build configuration list for PBXNativeTarget "IntegrationTests" */;
 			buildPhases = (
+				3D8A87C634B4334181891A17 /* [CP] Check Pods Manifest.lock */,
 				F80D46842150F67800E83D2F /* Sources */,
 				F80D46852150F67800E83D2F /* Frameworks */,
 				F80D46862150F67800E83D2F /* Resources */,
+				6134176903C17547C2E5B8A1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -760,6 +772,78 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3D8A87C634B4334181891A17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EthereumProjectTemplate-IntegrationTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6134176903C17547C2E5B8A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EthereumProjectTemplate-IntegrationTests/Pods-EthereumProjectTemplate-IntegrationTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/EtherKit/EtherKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
+				"${BUILT_PRODUCTS_DIR}/Smartling.i18n/Smartling_i18n.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EtherKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Smartling_i18n.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EthereumProjectTemplate-IntegrationTests/Pods-EthereumProjectTemplate-IntegrationTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		691039D62028B1D10069972B /* Select GoogleService-Info.plist */ = {
@@ -1679,6 +1763,7 @@
 		};
 		F80D468F2150F67800E83D2F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9681001EAE411D66630F5FF5 /* Pods-EthereumProjectTemplate-IntegrationTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1723,6 +1808,7 @@
 		};
 		F80D46902150F67800E83D2F /* AdHoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8624C3E084C5CDB31BD058BB /* Pods-EthereumProjectTemplate-IntegrationTests.adhoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1785,6 +1871,7 @@
 		};
 		F80D46912150F67800E83D2F /* AppStore */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53CC441483373A6F90988578 /* Pods-EthereumProjectTemplate-IntegrationTests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
