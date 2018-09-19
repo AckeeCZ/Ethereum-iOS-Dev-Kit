@@ -80,38 +80,26 @@ public struct Function: Decodable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         let name = try values.decode(String.self, forKey: .name)
-        let inputJson = try values.decode([[String: String]].self, forKey: .inputs)
-        let inputs = try Function.parseFunctionInputs(from: inputJson)
+        let inputs = try values.decode([Input].self, forKey: .inputs)
         let isConstant = try values.decodeIfPresent(Bool.self, forKey: .isConstant) ?? false
         let isPayable = try values.decodeIfPresent(Bool.self, forKey: .isPayable) ?? false
         self.init(name: name, inputs: inputs, outputs: [], isConstant: isConstant, isPayable: isPayable)
     }
+}
 
-    /// Parses the list of function inputs contained in a Json dictionary.
-    ///
-    /// - Parameter json: Dictionary describing a function. This dictionary should
-    ///     include the key `inputs`. Otherwise an empty list is returned.
-    /// - Returns: The list of `FunctionInput`s or an empty list.
-    /// - Throws: Throws a ParsingError in case the json was malformed or there
-    ///     was an error.
-    private static func parseFunctionInputs(from json: [[String: String]]) throws -> [Input] {
-        return try json.map { try Function.parseFunctionInput(from: $0) }
+extension Function.Input: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case name
+        case type
     }
 
-    /// Parses the function input contained in the Json dictionary.
-    ///
-    /// - Parameter json: Dictionary describing an Input to a function.
-    /// - Returns: The corresponding FunctionInput.
-    /// - Throws: Throws a ParsingError in case the json was malformed or there
-    ///     was an error.
-    private static func parseFunctionInput(from json: [String: String]) throws -> Function.Input {
-        guard var name = json["name"] else {
-            throw ParsingError.elementNameInvalid
-        }
-        let type = try ParameterParser.parseParameterType(from: json)
-        // Can not have a parameter called amount => it would lead to conflicts in generated code
-        checkFunctionInput(name: &name)
-        return Function.Input(name: name, type: type)
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        var name = try values.decode(String.self, forKey: .name)
+        Function.Input.checkFunctionInput(name: &name)
+        let typeString = try values.decode(String.self, forKey: .type)
+        let type = try ParameterParser.parseParameterType(from: typeString)
+        self.init(name: name, type: type)
     }
 
     private static func checkFunctionInput(name: inout String) {
@@ -123,6 +111,7 @@ public struct Function: Decodable {
             name = "amountToSend"
         }
     }
+
 }
 
 extension Function.Input {

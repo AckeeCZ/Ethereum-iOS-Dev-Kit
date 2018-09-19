@@ -16,5 +16,7 @@ Pod::Spec.new do |s|
     s.author           = { 'Ackee' => 'info@ackee.cz' }
     s.source           = { :git => "https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit.git", :tag => s.version.to_s }
     s.preserve_paths = 'ContractCodegen/bin/contractgen', 'ContractCodegen/Rakefile', 'ContractCodegen/templates/**', 'ContractCodegen/LICENSE'
+    s.dependency 'EtherKit'
+    s.dependency 'ReactiveSwift', '~> 4.0'        
   end
   
