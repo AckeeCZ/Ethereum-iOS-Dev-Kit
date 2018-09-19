@@ -30,13 +30,7 @@ This will download the `ContractCodegen` binaries and dependencies in `Pods/` du
 
 Given that you can specify an exact version for ``ContractCodegen`` in your `Podfile`, this allows you to ensure **all coworkers will use the same version of ContractCodegen for this project**.
 
-You can then invoke ContractCodegen in your Script Build Phase using:
-
-```sh
-$PODS_ROOT/ContractCodegen/ContractCodegen/bin/contractcodegen …
-```
-
-Or just from the command line:
+You can then invoke ContractCodegen from your terminal:
 ```sh
 Pods/ContractCodegen/ContractCodegen/bin/contractcodegen …
 ```
