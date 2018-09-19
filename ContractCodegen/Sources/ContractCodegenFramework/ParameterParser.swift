@@ -17,12 +17,9 @@ public struct ParameterParser {
     /// - Parameter json: Dictionary describing either an Input or an Output to
     ///     a function or an event.
     /// - Returns: The corresponding parameter type.
-    /// - Throws: Throws a BivrostError in case the json was malformed or there
+    /// - Throws: Throws a ParsingError in case the json was malformed or there
     ///     was an error.
-    static func parseParameterType(from json: [String: Any]) throws -> Function.ParameterType {
-        guard let typeString = json["type"] as? String else {
-            throw ParsingError.parameterTypeNotFound
-        }
+    static func parseParameterType(from typeString: String) throws -> Function.ParameterType {
         return try parameterType(from: typeString)
     }
 }
@@ -51,7 +48,7 @@ public struct ParameterParser {
 //         add our fixed length array to the remainder type, if possible
 //      possible types: <fixed>[<M>]
 // 5. if no valid type found (e.g. uint7 or empty string)
-//      throw BivrostError.parameterTypeInvalid
+//      throw ParsingError.parameterTypeInvalid
 // 6. Return detected type
 
 private func parameterType(from string: String) throws -> ParameterType {
