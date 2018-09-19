@@ -1,26 +1,26 @@
 import Foundation
 import SwiftCLI
-import ContractCodegenFramework
 import PathKit
 import StencilSwiftKit
 import Stencil
 
-// TODO: Limit number of words for contract to only one
-class GenerateCommand: SwiftCLI.Command {
+open class GenerateCommand: SwiftCLI.Command {
 
-    let name = "generate"
-    let shortDescription = "Generates Swift code for contract"
+    public let name = "generate"
+    public let shortDescription = "Generates Swift code for contract"
 
     let contractName = Parameter(completion: .none)
     let file = Parameter(completion: .filename)
     let output = Key<String>("-o", "--output", description: "Define output directory")
     let xcode = Key<String>("-x", "--xcode", description: "Define location of .xcodeproj")
 
-    func execute() throws {
+    public init() {
 
-        let arguments = CommandLine.arguments
+    }
 
-        let filePath = Path.current + Path(arguments[2])
+    public func execute() throws {
+
+        let filePath = Path.current + Path(file.value)
         guard filePath.exists else {
             stdout <<< "File at given path does not exist."
             return
@@ -70,8 +70,6 @@ class GenerateCommand: SwiftCLI.Command {
     /// Writes and renders code from .stencil files to a given directory
     private func writeGeneratedCode(to path: Path?, funcs: [Function]) {
 
-        let arguments = CommandLine.arguments
-
         let swiftCodePath = path ?? (Path.current + Path("GeneratedContracts"))
 
         let stencilSwiftExtension = Extension()
@@ -85,13 +83,14 @@ class GenerateCommand: SwiftCLI.Command {
         }
 
         let environment = Environment(loader: fsLoader, extensions: [stencilSwiftExtension])
-        let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "values": $0.inputs.map { $0.name }.joined(separator: ", "), "isPayable": $0.isPayable]}
+        let functionsDictArray = funcs.map {["name": $0.name, "params": $0.inputs.map { $0.renderToSwift() }.joined(separator: ", "), "values": $0.inputs.map { $0.abiTypeParameterString }.joined(separator: ", "), "isPayable": $0.isPayable]}
         let context: [String: Any] = ["contractName": contractName.value, "functions": functionsDictArray]
 
         do {
             if !swiftCodePath.exists {
-                try FileManager.default.createDirectory(atPath: "\(swiftCodePath.absolute())", withIntermediateDirectories: false, attributes: nil)
+                try FileManager.default.createDirectory(atPath: "\(swiftCodePath.absolute())", withIntermediateDirectories: true, attributes: nil)
             }
+
             let commonRendered = try environment.renderTemplate(name: "shared_contractgen.stencil")
             let sharedSwiftCodePath = swiftCodePath + Path("SharedContract.swift")
             if sharedSwiftCodePath.exists {
@@ -99,7 +98,7 @@ class GenerateCommand: SwiftCLI.Command {
             }
             try sharedSwiftCodePath.write(commonRendered)
             let rendered = try environment.renderTemplate(name: "contractgen.stencil", context: context)
-            let contractCodePath = swiftCodePath + Path(arguments[1] + ".swift")
+            let contractCodePath = swiftCodePath + Path(contractName.value + ".swift")
             try contractCodePath.write(rendered)
         } catch {
             stdout <<< "Write Error! 😱"
@@ -107,28 +106,7 @@ class GenerateCommand: SwiftCLI.Command {
         }
     }
 
-    /// Binds file references with project, adds files to target
-    private func bindFilesWithProject(xcodePath: Path, swiftCodePath: Path, relativePathValue: String) {
-        let separatedPath = "\(swiftCodePath.absolute())".components(separatedBy: "/")
-        guard let groupName = separatedPath.last else {
-            stdout <<< "Xcode path error"
-            return
-        }
-
-        let targetsString: String
-        do {
-            let rakeFilePath: Path
-            if Path("../Rakefile").exists {
-                rakeFilePath = Path("../Rakefile")
-            } else {
-                rakeFilePath = Path("/usr/local/share/contractgen/Rakefile")
-            }
-            targetsString = try capture(bash: "rake -f \(rakeFilePath.absolute()) xcode:find_targets'[\(xcodePath.absolute())]'").stdout
-        } catch {
-            stdout <<< "Rakefile task find_targets failed 😥"
-            return
-        }
-
+    func findTargetIndex(rakeFilePath: Path, targetsString: String) -> Int {
         let targets = targetsString.components(separatedBy: "\n")
         // Prints targets as a list so user can choose with which one they want to bind their files
         for (index, target) in targets.enumerated() {
@@ -142,6 +120,34 @@ class GenerateCommand: SwiftCLI.Command {
                 self.stderr <<< "'\(input)' is invalid; must be a number between 1 and \(targets.count)"
             }
         )
+
+        return index
+    }
+
+    /// Binds file references with project, adds files to target
+    private func bindFilesWithProject(xcodePath: Path, swiftCodePath: Path, relativePathValue: String) {
+        let separatedPath = "\(swiftCodePath.absolute())".components(separatedBy: "/")
+        guard let groupName = separatedPath.last else {
+            stdout <<< "Xcode path error"
+            return
+        }
+
+        let targetsString: String
+        let rakeFilePath: Path
+        do {
+            if Path("../Rakefile").exists {
+                rakeFilePath = Path("../Rakefile")
+            } else {
+                rakeFilePath = Path("/usr/local/share/contractgen/Rakefile")
+            }
+            targetsString = try capture(bash: "rake -f \(rakeFilePath.absolute()) xcode:find_targets'[\(xcodePath.absolute())]'").stdout
+        } catch {
+            stdout <<< "Rakefile task find_targets failed 😥"
+            return
+        }
+
+        let index = findTargetIndex(rakeFilePath: rakeFilePath, targetsString: targetsString)
+
         var relativePathComponents = relativePathValue.components(separatedBy: "/")
         relativePathComponents.remove(at: relativePathComponents.endIndex - 1)
         let relativePath = relativePathComponents.joined(separator: "/")

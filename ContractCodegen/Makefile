@@ -15,7 +15,7 @@ build:
 	swift build
 
 install: clean
-	swift build -c release
+	swift build -c release -Xswiftc -static-stdlib
 	mv .build/release/contractgen /usr/local/bin/contractgen
 	mkdir -p /usr/local/share/contractgen
 	rm -rf /usr/local/share/contractgen/templates

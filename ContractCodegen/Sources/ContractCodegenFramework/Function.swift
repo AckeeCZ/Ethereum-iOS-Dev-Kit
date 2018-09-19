@@ -129,6 +129,40 @@ extension Function.Input {
     public var abiTypeString: String {
         return type.abiTypeString(value: name)
     }
+
+    public var abiTypeParameterString: String {
+        switch type {
+        case .dynamicType(let dynamicType):
+            switch dynamicType {
+            case .array(let dynamicType):
+                switch dynamicType {
+                case .bytes(let length):
+                   return ".array(count: .unlimited, type: .bytes(count: .constrained(\(length)), value: Data()), value: \(name).map { .bytes(count: .constrained(\(length)), value: $0) })"
+                default:
+                    break
+                }
+            case .bytes:
+                return ".bytes(count: .unlimited, value: \(name))"
+            default:
+                break
+            }
+        case .staticType(let staticType):
+            switch staticType {
+            case .array(let staticType, let length):
+                switch staticType {
+                case .bytes(let bytesLength):
+                    return ".array(count: .constrained(\(length)), type: .bytes(count: .constrained(\(bytesLength)), value: Data()), value: \(name).map { .bytes(count: .constrained(\(bytesLength)), value: $0) })"
+                default:
+                    break
+                }
+            case .bytes(let length):
+                return ".bytes(count: .constrained(\(length)), value: \(name))"
+            default:
+                break
+            }
+        }
+        return name + ".abiType"
+    }
 }
 
 // MARK: Render to swift
@@ -166,9 +200,9 @@ extension Function.ParameterType.StaticType {
         let nonPrefixedTypeString: String
         switch self {
         case .uint(let bits):
-            nonPrefixedTypeString = bits > 64 ? "BigUInt" : "UInt"
+            nonPrefixedTypeString = bits > 64 ? "BigUInt" : "UInt\(bits)"
         case .int(let bits):
-            nonPrefixedTypeString = bits > 64 ? "BigInt" : "Int"
+            nonPrefixedTypeString = bits > 64 ? "BigInt" : "Int\(bits)"
         case .address:
             nonPrefixedTypeString = "Address"
         case .bool:
@@ -198,7 +232,7 @@ extension Function.ParameterType.StaticType {
         case .bool:
             abiString = ".bool(value: \(value))"
         case .bytes(let length):
-            abiString = "(count: .bytes(.constrained(\(length)), value: \(value))"
+            abiString = ".bytes(count: .bytes(.constrained(\(length)), value: \(value))"
         case .function:
             abiString = ".functionSelector(name: \(value).functionSelector.name, parameterTypes: \(value).functionSelector.parameterTypes, contract: \(value).functionSelector.contract"
         case let .array(type, length: length):

@@ -28,23 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Spectre::Spectre"
-               BuildableName = "Spectre.framework"
-               BlueprintName = "Spectre"
-               ReferencedContainer = "container:ContractCodegen.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "StencilSwiftKit::StencilSwiftKit"
-               BuildableName = "StencilSwiftKit.framework"
-               BlueprintName = "StencilSwiftKit"
+               BlueprintIdentifier = "ContractCodegen::ContractCodegenFramework"
+               BuildableName = "ContractCodegenFramework.framework"
+               BlueprintName = "ContractCodegenFramework"
                ReferencedContainer = "container:ContractCodegen.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -84,9 +70,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ContractCodegen::ContractCodegenFramework"
-               BuildableName = "ContractCodegenFramework.framework"
-               BlueprintName = "ContractCodegenFramework"
+               BlueprintIdentifier = "StencilSwiftKit::StencilSwiftKit"
+               BuildableName = "StencilSwiftKit.framework"
+               BlueprintName = "StencilSwiftKit"
                ReferencedContainer = "container:ContractCodegen.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -104,6 +90,20 @@
                ReferencedContainer = "container:ContractCodegen.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Spectre::Spectre"
+               BuildableName = "Spectre.framework"
+               BlueprintName = "Spectre"
+               ReferencedContainer = "container:ContractCodegen.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -112,6 +112,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ContractCodegen::CLICodegenTests"
+               BuildableName = "CLICodegenTests.xctest"
+               BlueprintName = "CLICodegenTests"
+               ReferencedContainer = "container:ContractCodegen.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>

@@ -29,7 +29,7 @@ import BigInt
 
 final class EtherViewController: BaseViewController {
 
-    let query = EtherQuery(URL(string: "https://geth-infrastruktura-master.ack.ee")!, connectionMode: .http)
+    let query = EtherQuery(URL(string: "https://rinkeby.infura.io/v3/9f1a1e0782ab40c8b39fe189615714d0")!, connectionMode: .http)
 
     private weak var imageView: UIImageView!
     private weak var activityIndicator: UIActivityIndicatorView!
@@ -134,8 +134,8 @@ final class EtherViewController: BaseViewController {
             KeyPathNode(at: 1),
             ])
 
-        let testContractAddress = try! Address(describing: "0xed3146503467b00d48cDCa93D9b25025a1FB869B")
-        query.testContract(at: testContractAddress).helloFive(trueOrFalse: true).send(using: key, amount: Wei(1)).startWithResult { result in
+        let testContractAddress = try! Address(describing: "0xb8f016F3529b198b4a06574f3E9BDc04948ad852")
+        query.testContract(at: testContractAddress).testBool(trueOrFalse: true).send(using: key, amount: Wei(1)).startWithResult { result in
             switch result {
             case .success(let hash):
                 print(hash)
