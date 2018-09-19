@@ -163,6 +163,67 @@ class CommandLineToolTests: XCTestCase {
         try Path("test_abi.json").delete()
     }
 
+    func testFuncWithUserInputGen() throws {
+        let abiJson = """
+         [ { "constant": false, "inputs": [ { "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" } ], "name": "approve", "outputs": [ { "name": "success", "type": "bool" } ], "payable": false, "stateMutability": "nonpayable", "type": "function", "signature": "0x095ea7b3" } ]
+        """
+        let abiPath = Path("test_abi.json")
+        try abiPath.write(abiJson)
+
+        XCTAssertEqual(0, generatorCLI.debugGo(with: "generate TestContract test_abi.json"))
+
+        let expectedSwiftCode = """
+            // Generated using ContractGen
+            // swiftlint:disable file_length
+
+            import ReactiveSwift
+            import EtherKit
+            import BigInt
+
+            struct TestContractBox {
+                fileprivate let etherQuery: EtherQuerying
+                fileprivate let at: Address
+
+                init(etherQuery: EtherQuerying, at: Address) {
+                    self.etherQuery = etherQuery
+                    self.at = at
+                }
+
+                func approve<T: PrivateKeyType>(spender: Address, value: BigUInt) -> ContractMethodInvocation<T> {
+                    let send: (_ using: T) -> SignalProducer<Hash, EtherKitError> = { using in
+                        return SignalProducer<Hash, EtherKitError> { observer, disposable in
+                            let approveFunctionCall = Function(name: "approve", parameters: [spender.abiType, value.abiType] as [ABIType])
+                            let approveData = GeneralData(data: approveFunctionCall.encodeToCall())
+                            self.etherQuery.send(using: using, to: self.at, value: Wei(0), data: approveData, queue: DispatchQueue.global(qos: .default), completion: { result in
+                                switch result {
+                                case .success(let hash):
+                                    observer.send(value: hash)
+                                case .failure(let error):
+                                    observer.send(error: error)
+                                    observer.sendCompleted()
+                                }
+                            })
+                        }
+                    }
+                    return ContractMethodInvocation(send: send)
+                }
+            }
+
+            extension EtherQuery {
+                func testContract(at: Address) -> TestContractBox {
+                    return TestContractBox(etherQuery: self, at: at)
+                }
+            }
+
+            """
+
+        let generatedSwiftCodePath = Path(generatedContractsString) + Path("TestContract.swift")
+        XCTAssertEqual(try generatedSwiftCodePath.read().replacingOccurrences(of: " ", with: ""), expectedSwiftCode.replacingOccurrences(of: " ", with: ""))
+
+        try Path(generatedContractsString).delete()
+        try Path("test_abi.json").delete()
+    }
+
 
 }
 
