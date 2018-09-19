@@ -67,7 +67,7 @@ final class EtherViewController: BaseViewController {
         }
         self.imageView = imageView
 
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
         activityIndicator.tintColor = .black
         activityIndicator.hidesWhenStopped = true
         imageView.addSubview(activityIndicator)
