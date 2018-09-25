@@ -6,7 +6,7 @@ namespace :xcode do
   task :find_targets, [:project_path] do |t, args| 
     project_path = args.project_path
     project = Xcodeproj::Project.open(project_path)
-  
+
     targets = []
     project.targets.each do |target|
       targets.push(target.name)

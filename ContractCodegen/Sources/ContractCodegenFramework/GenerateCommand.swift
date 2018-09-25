@@ -13,12 +13,17 @@ open class GenerateCommand: SwiftCLI.Command {
     let file = Parameter(completion: .filename)
     let output = Key<String>("-o", "--output", description: "Define output directory")
     let xcode = Key<String>("-x", "--xcode", description: "Define location of .xcodeproj")
+    var executableLocation = Path.current
 
     public init() {
 
     }
 
     public func execute() throws {
+
+        guard let executableLocationString = CommandLine.arguments.first else { return }
+        let executableLocation = Path(executableLocationString) + Path("../")
+        self.executableLocation = executableLocation
 
         let filePath = Path.current + Path(file.value)
         guard filePath.exists else {
@@ -36,7 +41,7 @@ open class GenerateCommand: SwiftCLI.Command {
             return
         }
 
-        let funcs: [Function] = contractHeaders.compactMap {
+        let funcs: [Function] = contractHeaders.flatMap {
             switch $0 {
             case .function(let f): return f
             default: return nil
@@ -74,10 +79,10 @@ open class GenerateCommand: SwiftCLI.Command {
 
         let stencilSwiftExtension = Extension()
         stencilSwiftExtension.registerStencilSwiftExtensions()
-        // TODO: Is there a more suitable place?
         let fsLoader: FileSystemLoader
-        if Path("../templates").exists {
-            fsLoader = FileSystemLoader(paths: ["../templates/"])
+        let relativeTemplatesPath = executableLocation + Path("../templates/")
+        if relativeTemplatesPath.exists {
+            fsLoader = FileSystemLoader(paths: [relativeTemplatesPath])
         } else {
             fsLoader = FileSystemLoader(paths: ["/usr/local/share/contractgen/templates/"])
         }
@@ -135,8 +140,9 @@ open class GenerateCommand: SwiftCLI.Command {
         let targetsString: String
         let rakeFilePath: Path
         do {
-            if Path("../Rakefile").exists {
-                rakeFilePath = Path("../Rakefile")
+            let relativeRakefilePath = executableLocation + Path("../Rakefile")
+            if relativeRakefilePath.exists {
+                rakeFilePath = relativeRakefilePath
             } else {
                 rakeFilePath = Path("/usr/local/share/contractgen/Rakefile")
             }
@@ -149,10 +155,10 @@ open class GenerateCommand: SwiftCLI.Command {
         let index = findTargetIndex(rakeFilePath: rakeFilePath, targetsString: targetsString)
 
         var relativePathComponents = relativePathValue.components(separatedBy: "/")
-        relativePathComponents.remove(at: relativePathComponents.endIndex - 1)
+        let parentGroup = relativePathComponents.remove(at: relativePathComponents.startIndex)
         let relativePath = relativePathComponents.joined(separator: "/")
         do {
-            try run(bash: "rake -f \(rakeFilePath.absolute()) xcode:add_files_to_group'[\(xcodePath.absolute()),\(swiftCodePath.absolute()),\(groupName),\(relativePath),\(index - 1)]'")
+            try run(bash: "rake -f \(rakeFilePath.absolute()) xcode:add_files_to_group'[\(xcodePath.absolute()),\(swiftCodePath.absolute()),\(relativePath),\(parentGroup),\(index - 1)]'")
             stdout <<< "Code generation: ✅"
         } catch {
             stdout <<< "Rakefile task add_files_to_group failed 😥"

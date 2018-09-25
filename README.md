@@ -13,10 +13,10 @@ There are multiple possibilities to install ContractCodegen on your machine or i
 
 We recommend that you **unarchive the ZIP inside your project directory** and **commit its content** to git. This way, **all coworkers will use the same version of ContractCodegen for this project**.
 
-If you unarchived the ZIP file in a folder e.g. called `contractcodegen` at the root of your project directory, you can then invoke ContractCodegen in your Script Build Phase using:
+If you unarchived the ZIP file in a folder e.g. called `contractcodegen`, you can then invoke it like this:
 
 ```sh
-"$PROJECT_DIR"/contractcodegen/bin/contractcodegen …
+contractcodegen/bin/contractcodegen …
 ```
 
 ---
