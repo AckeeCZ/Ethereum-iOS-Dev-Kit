@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'ContractCodegen'
-    s.version          = '0.0.4'
+    s.version          = '0.0.5'
     s.summary          = 'Generate code from abi.json'
   
   # This description is used to generate tags and improve search results.
