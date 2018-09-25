@@ -79,7 +79,6 @@ open class GenerateCommand: SwiftCLI.Command {
 
         let stencilSwiftExtension = Extension()
         stencilSwiftExtension.registerStencilSwiftExtensions()
-        // TODO: Is there a more suitable place?
         let fsLoader: FileSystemLoader
         let relativeTemplatesPath = executableLocation + Path("../templates/")
         if relativeTemplatesPath.exists {
@@ -156,10 +155,10 @@ open class GenerateCommand: SwiftCLI.Command {
         let index = findTargetIndex(rakeFilePath: rakeFilePath, targetsString: targetsString)
 
         var relativePathComponents = relativePathValue.components(separatedBy: "/")
-        relativePathComponents.remove(at: relativePathComponents.endIndex - 1)
+        let parentGroup = relativePathComponents.remove(at: relativePathComponents.startIndex)
         let relativePath = relativePathComponents.joined(separator: "/")
         do {
-            try run(bash: "rake -f \(rakeFilePath.absolute()) xcode:add_files_to_group'[\(xcodePath.absolute()),\(swiftCodePath.absolute()),\(groupName),\(relativePath),\(index - 1)]'")
+            try run(bash: "rake -f \(rakeFilePath.absolute()) xcode:add_files_to_group'[\(xcodePath.absolute()),\(swiftCodePath.absolute()),\(relativePath),\(parentGroup),\(index - 1)]'")
             stdout <<< "Code generation: ✅"
         } catch {
             stdout <<< "Rakefile task add_files_to_group failed 😥"
