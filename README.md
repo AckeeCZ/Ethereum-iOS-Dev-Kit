@@ -1,12 +1,91 @@
-Currently, the ackee project template with some basic experimentation with the EtherKit framework is on branch `ps/ethereum`. It's been pushed just as we use it at Ackee. We'll be making changes, integrating more Ethereum functionality and possibly renaming some stuff before we make it available in `master`.
-Branch `master` contains experimentation with SmartContract ABI parsing and codegen. This will be developed separately as a swift script and then integrated into the ProjectTemplate.
+# Ethereum iOS Dev Kit
 
-# Ackee Ethereum Project Template
+## Installation
 
-The Ackee Ethereum Project Template is a collection of Swift boilerplate intended to serve as a basis for starting new blockchain oriented iOS projects. It combines Ackee’s long time know-how in creating iOS apps based on reactive technlogies and the MVVM architecture with a few extra Ethereum related tools designed for seamless interaction with SmartContracts..
+There are multiple possibilities to install ContractCodegen on your machine or in your project, depending on your preferences and needs. Note that if you do not install `ContractCodegen` using `Cocoapods`, you will have have to import `EtherKit` and `ReactiveSwift` by yourself.
 
-The project template will include a Swift script for generating a typesafe Swift API to individual SmartContracts, based on their ABI. A simple example app will be implemented, e.g. an app that can call 1 method of a simple smart contract and observe 1 event. VaultIO’s EtherKit will be used for the underlying logic (sendRawTransaction). Note that codegen is on the roadmap of EtherKit as well, however, we feel like it fits our assignment very well, plus we can design our solution to be nicely usable from ReactiveSwift, which we use heavily throughout our project template. We will also participate in improving EtherKit to make it an ideal fit for our project template.
+<details>
+<summary><strong>Download the ZIP</strong> for the latest release</summary>
 
-Currently, the repo contains a proof of concept implementation of the codegen script inside a Swift Playground. The tagless final encoding approach was chosen for the contract calling API. This should allow rapid development with good support for testability and maximum modularity. We can always switch to using some other underlying JSON RPC framework or inhouse logic for interacting with the Ethereum network, should the need arise. We can also create different public API’s, including a ReactiveSwift wrapper or a plain enum for testing. Note that this approach might not make it into the final product, as we might choose a more streamlined solution, best suited for use alongside the rest of Ackee’s MVVM stack.
+* [Go to the GitHub page for the latest release](https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit/releases/latest)
+* Download the `contractcodegen-x.y.z.zip` file associated with that release
+* Extract the content of the zip archive in your project directory
 
-This document describes the smallest scope of the project. We might decide to add more goodies, with a primary focus on developer tools and practical applications of SmartContracts. We plan on staying in contact with the makers of EtherKit to ensure the quality of the whole solution.
+We recommend that you **unarchive the ZIP inside your project directory** and **commit its content** to git. This way, **all coworkers will use the same version of ContractCodegen for this project**.
+
+If you unarchived the ZIP file in a folder e.g. called `contractcodegen`, you can then invoke it like this:
+
+```sh
+contractcodegen/bin/contractcodegen …
+```
+
+---
+</details>
+<details>
+<summary>Via <strong>CocoaPods</strong></summary>
+
+If you're using CocoaPods, you can simply add `pod 'ContractCodegen'` to your `Podfile`.
+
+This will download the `ContractCodegen` binaries and dependencies in `Pods/` during your next `pod install` execution.
+
+Given that you can specify an exact version for ``ContractCodegen`` in your `Podfile`, this allows you to ensure **all coworkers will use the same version of ContractCodegen for this project**.
+
+You can then invoke ContractCodegen from your terminal:
+```sh
+Pods/ContractCodegen/ContractCodegen/bin/contractcodegen …
+```
+
+_Note: ContractCodegen isn't really a pod, as it's not a library your code will depend on at runtime; so the installation via CocoaPods is just a trick that installs the ContractCodegen binaries in the Pods/ folder, but you won't see any swift files in the Pods/ContractCodegen group in your Xcode's Pods.xcodeproj. That's normal: the ContractCodegen binary is still present in that folder in the Finder._
+
+---
+</details>
+<details>
+<summary><strong>System-wide installation</strong></summary>
+
+* [Go to the GitHub page for the latest release](https://github.com/AckeeCZ/Ethereum-iOS-Dev-Kit/releases/latest)
+* Download the `contractcodegen-x.y.z.zip` file associated with that release
+* Extract the content of the zip archive
+
+1. `cd` into the unarchived directory 
+2. `make install`
+3. You then invoke contractgen simply with `contractgen ...`
+
+</details>
+
+### iOS MVVM Project Template
+
+We have also created iOS MVVM Project Template, so setting your project has never been easier. 
+Easily follow the [installation instructions](https://github.com/AckeeCZ/iOS-MVVM-ProjectTemplate).
+After you are done, add `name_of_your_abi.json` file to `Resources`. Then add `ContractCodegen` to your `Podfile`, do `pod install` and run this command in your project root directory:
+```sh
+Pods/ContractCodegen/ContractCodegen/bin/contractgen HelloContract NameOfYourProject/Resources/abi.json -x NameOfYourProject.xcodeproj -o NameOfYourProject/Model/Generated/GeneraredContracts
+```
+
+## Usage
+
+### Codegen
+The standard usage looks like this `contractgen HelloContract path_to_abi/abi.json -x path_to_xcodeproj/project.xcodeproj -o relative_output_path`
+
+Please <strong>note</strong> that the output path option (`--output`) should be relative to your project - if your generated files are in `YourProjectName/MainFolder/GeneratedContracts` folder, then you should write `--output MainFolder/GeneratedContracts`
+For your projects to be bound you also <strong>must</strong> set the `--xcode` option as well. Otherwise you will have to drag the files to your projects manually.
+
+### Usage of Generated Codes
+
+The standard call using code created by `codegen` looks like this:
+```swift
+import ReactiveSwift
+import EtherKit 
+let helloWorldContractAddress = try! Address(describing: "0x7cA5E6a3200A758B146C17D4E3a4E47937e79Af5")
+let query = EtherQuery(URL(string: "infrastructure-url")!, connectionMode: .http)
+query.helloContract(at: helloWorldContractAddress).greet(greetString: "Greetings!").send(using: key, amount: Wei(1)).start()
+``` 
+
+`key` should be of protocol `PrivateKeyType` (more at [EtherKit documentation](https://github.com/Vaultio/EtherKit))
+Also note that right now the created code works with `ReactiveSwift` only.
+
+If the contract function is `non-payable`, the syntax is almost the same (`amount` is omitted):
+```swift
+query.helloContract(at: helloWorldContractAddress).greet(greetString: "Greetings!").send(using: key).start()
+```
+
+Result of the call is either a `Hash` of the transaction or an `EtherKitError`.

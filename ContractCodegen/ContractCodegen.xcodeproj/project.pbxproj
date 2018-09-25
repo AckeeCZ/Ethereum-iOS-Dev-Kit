@@ -1,0 +1,1940 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		"ContractCodegen::ContractCodegen::ProductTarget" /* ContractCodegen */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_131 /* Build configuration list for PBXAggregateTarget "ContractCodegen" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_134 /* PBXTargetDependency */,
+			);
+			name = ContractCodegen;
+			productName = ContractCodegen;
+		};
+		"ContractCodegen::ContractCodegenPackageTests::ProductTarget" /* ContractCodegenPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_162 /* Build configuration list for PBXAggregateTarget "ContractCodegenPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_165 /* PBXTargetDependency */,
+			);
+			name = ContractCodegenPackageTests;
+			productName = ContractCodegenPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		OBJ_110 /* CLICodegenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* CLICodegenTests.swift */; };
+		OBJ_112 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_113 /* ContractCodegenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "ContractCodegen::ContractCodegenFramework::Product" /* ContractCodegenFramework.framework */; };
+		OBJ_114 /* StencilSwiftKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "StencilSwiftKit::StencilSwiftKit::Product" /* StencilSwiftKit.framework */; };
+		OBJ_115 /* Stencil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Stencil::Stencil::Product" /* Stencil.framework */; };
+		OBJ_116 /* Spectre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Spectre::Spectre::Product" /* Spectre.framework */; };
+		OBJ_117 /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PathKit::PathKit::Product" /* PathKit.framework */; };
+		OBJ_139 /* ABIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* ABIElement.swift */; };
+		OBJ_140 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Event.swift */; };
+		OBJ_141 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Function.swift */; };
+		OBJ_142 /* GenerateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* GenerateCommand.swift */; };
+		OBJ_143 /* ParameterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* ParameterParser.swift */; };
+		OBJ_144 /* ParsingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* ParsingError.swift */; };
+		OBJ_145 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* StringExtension.swift */; };
+		OBJ_147 /* StencilSwiftKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "StencilSwiftKit::StencilSwiftKit::Product" /* StencilSwiftKit.framework */; };
+		OBJ_148 /* Stencil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Stencil::Stencil::Product" /* Stencil.framework */; };
+		OBJ_149 /* Spectre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Spectre::Spectre::Product" /* Spectre.framework */; };
+		OBJ_150 /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PathKit::PathKit::Product" /* PathKit.framework */; };
+		OBJ_160 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_170 /* PathKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_61 /* PathKit.swift */; };
+		OBJ_177 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* Package.swift */; };
+		OBJ_182 /* Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_64 /* Case.swift */; };
+		OBJ_183 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_65 /* Context.swift */; };
+		OBJ_184 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* Expectation.swift */; };
+		OBJ_185 /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* Failure.swift */; };
+		OBJ_186 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* Global.swift */; };
+		OBJ_187 /* GlobalContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* GlobalContext.swift */; };
+		OBJ_188 /* Reporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_70 /* Reporter.swift */; };
+		OBJ_189 /* Reporters.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* Reporters.swift */; };
+		OBJ_196 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* Package.swift */; };
+		OBJ_201 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* Context.swift */; };
+		OBJ_202 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* Environment.swift */; };
+		OBJ_203 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* Errors.swift */; };
+		OBJ_204 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* Expression.swift */; };
+		OBJ_205 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* Extension.swift */; };
+		OBJ_206 /* FilterTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* FilterTag.swift */; };
+		OBJ_207 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* Filters.swift */; };
+		OBJ_208 /* ForTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* ForTag.swift */; };
+		OBJ_209 /* IfTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* IfTag.swift */; };
+		OBJ_210 /* Include.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* Include.swift */; };
+		OBJ_211 /* Inheritence.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* Inheritence.swift */; };
+		OBJ_212 /* Lexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* Lexer.swift */; };
+		OBJ_213 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* Loader.swift */; };
+		OBJ_214 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_53 /* Node.swift */; };
+		OBJ_215 /* NowTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* NowTag.swift */; };
+		OBJ_216 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* Parser.swift */; };
+		OBJ_217 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_56 /* Template.swift */; };
+		OBJ_218 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_57 /* Tokenizer.swift */; };
+		OBJ_219 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* Variable.swift */; };
+		OBJ_221 /* Spectre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Spectre::Spectre::Product" /* Spectre.framework */; };
+		OBJ_222 /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PathKit::PathKit::Product" /* PathKit.framework */; };
+		OBJ_230 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* Package.swift */; };
+		OBJ_235 /* CallMacroNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* CallMacroNodes.swift */; };
+		OBJ_236 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Context.swift */; };
+		OBJ_237 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Environment.swift */; };
+		OBJ_238 /* Filters+Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* Filters+Numbers.swift */; };
+		OBJ_239 /* Filters+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* Filters+Strings.swift */; };
+		OBJ_240 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* Filters.swift */; };
+		OBJ_241 /* MapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* MapNode.swift */; };
+		OBJ_242 /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* Parameters.swift */; };
+		OBJ_243 /* SetNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* SetNode.swift */; };
+		OBJ_244 /* StencilSwiftTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* StencilSwiftTemplate.swift */; };
+		OBJ_245 /* SwiftIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* SwiftIdentifier.swift */; };
+		OBJ_247 /* Stencil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Stencil::Stencil::Product" /* Stencil.framework */; };
+		OBJ_248 /* Spectre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Spectre::Spectre::Product" /* Spectre.framework */; };
+		OBJ_249 /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PathKit::PathKit::Product" /* PathKit.framework */; };
+		OBJ_258 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Package.swift */; };
+		OBJ_263 /* ArgumentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* ArgumentList.swift */; };
+		OBJ_264 /* ArgumentListManipulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* ArgumentListManipulator.swift */; };
+		OBJ_265 /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* CLI.swift */; };
+		OBJ_266 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* Command.swift */; };
+		OBJ_267 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* Compatibility.swift */; };
+		OBJ_268 /* CompletionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* CompletionGenerator.swift */; };
+		OBJ_269 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* Error.swift */; };
+		OBJ_270 /* HelpCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_82 /* HelpCommand.swift */; };
+		OBJ_271 /* HelpMessageGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_83 /* HelpMessageGenerator.swift */; };
+		OBJ_272 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_84 /* Input.swift */; };
+		OBJ_273 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_85 /* Option.swift */; };
+		OBJ_274 /* OptionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_86 /* OptionGroup.swift */; };
+		OBJ_275 /* OptionRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* OptionRegistry.swift */; };
+		OBJ_276 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* Parameter.swift */; };
+		OBJ_277 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_89 /* Parser.swift */; };
+		OBJ_278 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_90 /* Path.swift */; };
+		OBJ_279 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* Stream.swift */; };
+		OBJ_280 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_92 /* Task.swift */; };
+		OBJ_281 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_93 /* Term.swift */; };
+		OBJ_282 /* VersionCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* VersionCommand.swift */; };
+		OBJ_289 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_95 /* Package.swift */; };
+		OBJ_295 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* main.swift */; };
+		OBJ_297 /* SwiftCLI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */; };
+		OBJ_298 /* ContractCodegenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "ContractCodegen::ContractCodegenFramework::Product" /* ContractCodegenFramework.framework */; };
+		OBJ_299 /* StencilSwiftKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "StencilSwiftKit::StencilSwiftKit::Product" /* StencilSwiftKit.framework */; };
+		OBJ_300 /* Stencil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Stencil::Stencil::Product" /* Stencil.framework */; };
+		OBJ_301 /* Spectre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Spectre::Spectre::Product" /* Spectre.framework */; };
+		OBJ_302 /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "PathKit::PathKit::Product" /* PathKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F82224B9214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+		F82224BA214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "ContractCodegen::ContractCodegenFramework";
+			remoteInfo = ContractCodegenFramework;
+		};
+		F82224BB214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "StencilSwiftKit::StencilSwiftKit";
+			remoteInfo = StencilSwiftKit;
+		};
+		F82224BC214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Stencil::Stencil";
+			remoteInfo = Stencil;
+		};
+		F82224BD214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Spectre::Spectre";
+			remoteInfo = Spectre;
+		};
+		F82224BE214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "PathKit::PathKit";
+			remoteInfo = PathKit;
+		};
+		F82224BF214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Spectre::Spectre";
+			remoteInfo = Spectre;
+		};
+		F82224C0214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "PathKit::PathKit";
+			remoteInfo = PathKit;
+		};
+		F82224C1214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Stencil::Stencil";
+			remoteInfo = Stencil;
+		};
+		F82224C2214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Spectre::Spectre";
+			remoteInfo = Spectre;
+		};
+		F82224C3214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "PathKit::PathKit";
+			remoteInfo = PathKit;
+		};
+		F82224C4214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "StencilSwiftKit::StencilSwiftKit";
+			remoteInfo = StencilSwiftKit;
+		};
+		F82224C5214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Stencil::Stencil";
+			remoteInfo = Stencil;
+		};
+		F82224C6214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Spectre::Spectre";
+			remoteInfo = Spectre;
+		};
+		F82224C7214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "PathKit::PathKit";
+			remoteInfo = PathKit;
+		};
+		F82224C8214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "SwiftCLI::SwiftCLI";
+			remoteInfo = SwiftCLI;
+		};
+		F82224C9214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "ContractCodegen::ContractCodegenFramework";
+			remoteInfo = ContractCodegenFramework;
+		};
+		F82224CA214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "StencilSwiftKit::StencilSwiftKit";
+			remoteInfo = StencilSwiftKit;
+		};
+		F82224CB214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Stencil::Stencil";
+			remoteInfo = Stencil;
+		};
+		F82224CC214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Spectre::Spectre";
+			remoteInfo = Spectre;
+		};
+		F82224CD214A986B00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "PathKit::PathKit";
+			remoteInfo = PathKit;
+		};
+		F82224CE214A986D00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "ContractCodegen::ContractCodegenFramework";
+			remoteInfo = ContractCodegenFramework;
+		};
+		F82224CF214A986D00F29CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "ContractCodegen::CLICodegenTests";
+			remoteInfo = CLICodegenTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		"ContractCodegen::CLICodegenTests::Product" /* CLICodegenTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = CLICodegenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"ContractCodegen::ContractCodegenFramework::Product" /* ContractCodegenFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ContractCodegenFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"ContractCodegen::contractgen::Product" /* contractgen */ = {isa = PBXFileReference; lastKnownFileType = text; path = contractgen; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_11 /* ABIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABIElement.swift; sourceTree = "<group>"; };
+		OBJ_12 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		OBJ_13 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		OBJ_14 /* GenerateCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCommand.swift; sourceTree = "<group>"; };
+		OBJ_15 /* ParameterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterParser.swift; sourceTree = "<group>"; };
+		OBJ_16 /* ParsingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingError.swift; sourceTree = "<group>"; };
+		OBJ_17 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		OBJ_20 /* CLICodegenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLICodegenTests.swift; sourceTree = "<group>"; };
+		OBJ_21 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = SOURCE_ROOT; };
+		OBJ_22 /* templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = templates; sourceTree = SOURCE_ROOT; };
+		OBJ_25 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/StencilSwiftKit--9114214731077982381/Package.swift"; sourceTree = "<group>"; };
+		OBJ_27 /* CallMacroNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMacroNodes.swift; sourceTree = "<group>"; };
+		OBJ_28 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		OBJ_29 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		OBJ_30 /* Filters+Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filters+Numbers.swift"; sourceTree = "<group>"; };
+		OBJ_31 /* Filters+Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filters+Strings.swift"; sourceTree = "<group>"; };
+		OBJ_32 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		OBJ_33 /* MapNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNode.swift; sourceTree = "<group>"; };
+		OBJ_34 /* Parameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
+		OBJ_35 /* SetNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNode.swift; sourceTree = "<group>"; };
+		OBJ_36 /* StencilSwiftTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StencilSwiftTemplate.swift; sourceTree = "<group>"; };
+		OBJ_37 /* SwiftIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftIdentifier.swift; sourceTree = "<group>"; };
+		OBJ_39 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Stencil.git-7635584243355970173/Package.swift"; sourceTree = "<group>"; };
+		OBJ_40 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		OBJ_41 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		OBJ_42 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		OBJ_43 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
+		OBJ_44 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		OBJ_45 /* FilterTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTag.swift; sourceTree = "<group>"; };
+		OBJ_46 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		OBJ_47 /* ForTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForTag.swift; sourceTree = "<group>"; };
+		OBJ_48 /* IfTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IfTag.swift; sourceTree = "<group>"; };
+		OBJ_49 /* Include.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Include.swift; sourceTree = "<group>"; };
+		OBJ_50 /* Inheritence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inheritence.swift; sourceTree = "<group>"; };
+		OBJ_51 /* Lexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lexer.swift; sourceTree = "<group>"; };
+		OBJ_52 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		OBJ_53 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		OBJ_54 /* NowTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowTag.swift; sourceTree = "<group>"; };
+		OBJ_55 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		OBJ_56 /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
+		OBJ_57 /* Tokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		OBJ_58 /* Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_60 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/PathKit--9185519632264250829/Package.swift"; sourceTree = "<group>"; };
+		OBJ_61 /* PathKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathKit.swift; sourceTree = "<group>"; };
+		OBJ_64 /* Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Case.swift; sourceTree = "<group>"; };
+		OBJ_65 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		OBJ_66 /* Expectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expectation.swift; sourceTree = "<group>"; };
+		OBJ_67 /* Failure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failure.swift; sourceTree = "<group>"; };
+		OBJ_68 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		OBJ_69 /* GlobalContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalContext.swift; sourceTree = "<group>"; };
+		OBJ_70 /* Reporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reporter.swift; sourceTree = "<group>"; };
+		OBJ_71 /* Reporters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reporters.swift; sourceTree = "<group>"; };
+		OBJ_72 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/Spectre.git--7655155069707042687/Package.swift"; sourceTree = "<group>"; };
+		OBJ_75 /* ArgumentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentList.swift; sourceTree = "<group>"; };
+		OBJ_76 /* ArgumentListManipulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentListManipulator.swift; sourceTree = "<group>"; };
+		OBJ_77 /* CLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
+		OBJ_78 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		OBJ_79 /* Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compatibility.swift; sourceTree = "<group>"; };
+		OBJ_80 /* CompletionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionGenerator.swift; sourceTree = "<group>"; };
+		OBJ_81 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		OBJ_82 /* HelpCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCommand.swift; sourceTree = "<group>"; };
+		OBJ_83 /* HelpMessageGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMessageGenerator.swift; sourceTree = "<group>"; };
+		OBJ_84 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		OBJ_85 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		OBJ_86 /* OptionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionGroup.swift; sourceTree = "<group>"; };
+		OBJ_87 /* OptionRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionRegistry.swift; sourceTree = "<group>"; };
+		OBJ_88 /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
+		OBJ_89 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		OBJ_9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		OBJ_90 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		OBJ_91 /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		OBJ_92 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		OBJ_93 /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
+		OBJ_94 /* VersionCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionCommand.swift; sourceTree = "<group>"; };
+		OBJ_95 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/marekfort/Development/ackee/EthereumProjectTemplate/ContractCodegen/.build/checkouts/SwiftCLI-8466703425035036135/Package.swift"; sourceTree = "<group>"; };
+		"PathKit::PathKit::Product" /* PathKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PathKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Spectre::Spectre::Product" /* Spectre.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Spectre.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"Stencil::Stencil::Product" /* Stencil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Stencil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"StencilSwiftKit::StencilSwiftKit::Product" /* StencilSwiftKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = StencilSwiftKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftCLI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_111 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_112 /* SwiftCLI.framework in Frameworks */,
+				OBJ_113 /* ContractCodegenFramework.framework in Frameworks */,
+				OBJ_114 /* StencilSwiftKit.framework in Frameworks */,
+				OBJ_115 /* Stencil.framework in Frameworks */,
+				OBJ_116 /* Spectre.framework in Frameworks */,
+				OBJ_117 /* PathKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_146 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_147 /* StencilSwiftKit.framework in Frameworks */,
+				OBJ_148 /* Stencil.framework in Frameworks */,
+				OBJ_149 /* Spectre.framework in Frameworks */,
+				OBJ_150 /* PathKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_171 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_190 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_221 /* Spectre.framework in Frameworks */,
+				OBJ_222 /* PathKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_246 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_247 /* Stencil.framework in Frameworks */,
+				OBJ_248 /* Spectre.framework in Frameworks */,
+				OBJ_249 /* PathKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_283 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_296 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_297 /* SwiftCLI.framework in Frameworks */,
+				OBJ_298 /* ContractCodegenFramework.framework in Frameworks */,
+				OBJ_299 /* StencilSwiftKit.framework in Frameworks */,
+				OBJ_300 /* Stencil.framework in Frameworks */,
+				OBJ_301 /* Spectre.framework in Frameworks */,
+				OBJ_302 /* PathKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		OBJ_10 /* ContractCodegenFramework */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* ABIElement.swift */,
+				OBJ_12 /* Event.swift */,
+				OBJ_13 /* Function.swift */,
+				OBJ_14 /* GenerateCommand.swift */,
+				OBJ_15 /* ParameterParser.swift */,
+				OBJ_16 /* ParsingError.swift */,
+				OBJ_17 /* StringExtension.swift */,
+			);
+			name = ContractCodegenFramework;
+			path = Sources/ContractCodegenFramework;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_18 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_19 /* CLICodegenTests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_19 /* CLICodegenTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_20 /* CLICodegenTests.swift */,
+			);
+			name = CLICodegenTests;
+			path = Tests/CLICodegenTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_23 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_24 /* StencilSwiftKit 2.5.0 */,
+				OBJ_38 /* Stencil 0.11.0 */,
+				OBJ_59 /* PathKit 0.9.1 */,
+				OBJ_62 /* Spectre 0.8.0 */,
+				OBJ_73 /* SwiftCLI 5.2.0 */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		OBJ_24 /* StencilSwiftKit 2.5.0 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_25 /* Package.swift */,
+				OBJ_26 /* Sources */,
+			);
+			name = "StencilSwiftKit 2.5.0";
+			path = ".build/checkouts/StencilSwiftKit--9114214731077982381";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_26 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_27 /* CallMacroNodes.swift */,
+				OBJ_28 /* Context.swift */,
+				OBJ_29 /* Environment.swift */,
+				OBJ_30 /* Filters+Numbers.swift */,
+				OBJ_31 /* Filters+Strings.swift */,
+				OBJ_32 /* Filters.swift */,
+				OBJ_33 /* MapNode.swift */,
+				OBJ_34 /* Parameters.swift */,
+				OBJ_35 /* SetNode.swift */,
+				OBJ_36 /* StencilSwiftTemplate.swift */,
+				OBJ_37 /* SwiftIdentifier.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		OBJ_38 /* Stencil 0.11.0 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_39 /* Package.swift */,
+				OBJ_40 /* Context.swift */,
+				OBJ_41 /* Environment.swift */,
+				OBJ_42 /* Errors.swift */,
+				OBJ_43 /* Expression.swift */,
+				OBJ_44 /* Extension.swift */,
+				OBJ_45 /* FilterTag.swift */,
+				OBJ_46 /* Filters.swift */,
+				OBJ_47 /* ForTag.swift */,
+				OBJ_48 /* IfTag.swift */,
+				OBJ_49 /* Include.swift */,
+				OBJ_50 /* Inheritence.swift */,
+				OBJ_51 /* Lexer.swift */,
+				OBJ_52 /* Loader.swift */,
+				OBJ_53 /* Node.swift */,
+				OBJ_54 /* NowTag.swift */,
+				OBJ_55 /* Parser.swift */,
+				OBJ_56 /* Template.swift */,
+				OBJ_57 /* Tokenizer.swift */,
+				OBJ_58 /* Variable.swift */,
+			);
+			name = "Stencil 0.11.0";
+			path = ".build/checkouts/Stencil.git-7635584243355970173/Sources";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_5 /*  */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_18 /* Tests */,
+				OBJ_21 /* bin */,
+				OBJ_22 /* templates */,
+				OBJ_23 /* Dependencies */,
+				OBJ_96 /* Products */,
+			);
+			name = "";
+			sourceTree = "<group>";
+		};
+		OBJ_59 /* PathKit 0.9.1 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_60 /* Package.swift */,
+				OBJ_61 /* PathKit.swift */,
+			);
+			name = "PathKit 0.9.1";
+			path = ".build/checkouts/PathKit--9185519632264250829/Sources";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_62 /* Spectre 0.8.0 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_63 /* Spectre */,
+				OBJ_72 /* Package.swift */,
+			);
+			name = "Spectre 0.8.0";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_63 /* Spectre */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_64 /* Case.swift */,
+				OBJ_65 /* Context.swift */,
+				OBJ_66 /* Expectation.swift */,
+				OBJ_67 /* Failure.swift */,
+				OBJ_68 /* Global.swift */,
+				OBJ_69 /* GlobalContext.swift */,
+				OBJ_70 /* Reporter.swift */,
+				OBJ_71 /* Reporters.swift */,
+			);
+			name = Spectre;
+			path = ".build/checkouts/Spectre.git--7655155069707042687/Sources/Spectre";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* contractgen */,
+				OBJ_10 /* ContractCodegenFramework */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_73 /* SwiftCLI 5.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_74 /* SwiftCLI */,
+				OBJ_95 /* Package.swift */,
+			);
+			name = "SwiftCLI 5.2.0";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_74 /* SwiftCLI */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_75 /* ArgumentList.swift */,
+				OBJ_76 /* ArgumentListManipulator.swift */,
+				OBJ_77 /* CLI.swift */,
+				OBJ_78 /* Command.swift */,
+				OBJ_79 /* Compatibility.swift */,
+				OBJ_80 /* CompletionGenerator.swift */,
+				OBJ_81 /* Error.swift */,
+				OBJ_82 /* HelpCommand.swift */,
+				OBJ_83 /* HelpMessageGenerator.swift */,
+				OBJ_84 /* Input.swift */,
+				OBJ_85 /* Option.swift */,
+				OBJ_86 /* OptionGroup.swift */,
+				OBJ_87 /* OptionRegistry.swift */,
+				OBJ_88 /* Parameter.swift */,
+				OBJ_89 /* Parser.swift */,
+				OBJ_90 /* Path.swift */,
+				OBJ_91 /* Stream.swift */,
+				OBJ_92 /* Task.swift */,
+				OBJ_93 /* Term.swift */,
+				OBJ_94 /* VersionCommand.swift */,
+			);
+			name = SwiftCLI;
+			path = ".build/checkouts/SwiftCLI-8466703425035036135/Sources/SwiftCLI";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* contractgen */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* main.swift */,
+			);
+			name = contractgen;
+			path = Sources/contractgen;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"ContractCodegen::contractgen::Product" /* contractgen */,
+				"ContractCodegen::ContractCodegenFramework::Product" /* ContractCodegenFramework.framework */,
+				"SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */,
+				"PathKit::PathKit::Product" /* PathKit.framework */,
+				"StencilSwiftKit::StencilSwiftKit::Product" /* StencilSwiftKit.framework */,
+				"Stencil::Stencil::Product" /* Stencil.framework */,
+				"Spectre::Spectre::Product" /* Spectre.framework */,
+				"ContractCodegen::CLICodegenTests::Product" /* CLICodegenTests.xctest */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"ContractCodegen::CLICodegenTests" /* CLICodegenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_106 /* Build configuration list for PBXNativeTarget "CLICodegenTests" */;
+			buildPhases = (
+				OBJ_109 /* Sources */,
+				OBJ_111 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_118 /* PBXTargetDependency */,
+				OBJ_120 /* PBXTargetDependency */,
+				OBJ_122 /* PBXTargetDependency */,
+				OBJ_124 /* PBXTargetDependency */,
+				OBJ_126 /* PBXTargetDependency */,
+				OBJ_128 /* PBXTargetDependency */,
+			);
+			name = CLICodegenTests;
+			productName = CLICodegenTests;
+			productReference = "ContractCodegen::CLICodegenTests::Product" /* CLICodegenTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"ContractCodegen::ContractCodegenFramework" /* ContractCodegenFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_135 /* Build configuration list for PBXNativeTarget "ContractCodegenFramework" */;
+			buildPhases = (
+				OBJ_138 /* Sources */,
+				OBJ_146 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_151 /* PBXTargetDependency */,
+				OBJ_152 /* PBXTargetDependency */,
+				OBJ_153 /* PBXTargetDependency */,
+				OBJ_154 /* PBXTargetDependency */,
+			);
+			name = ContractCodegenFramework;
+			productName = ContractCodegenFramework;
+			productReference = "ContractCodegen::ContractCodegenFramework::Product" /* ContractCodegenFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"ContractCodegen::SwiftPMPackageDescription" /* ContractCodegenPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_156 /* Build configuration list for PBXNativeTarget "ContractCodegenPackageDescription" */;
+			buildPhases = (
+				OBJ_159 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ContractCodegenPackageDescription;
+			productName = ContractCodegenPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"ContractCodegen::contractgen" /* contractgen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_291 /* Build configuration list for PBXNativeTarget "contractgen" */;
+			buildPhases = (
+				OBJ_294 /* Sources */,
+				OBJ_296 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_303 /* PBXTargetDependency */,
+				OBJ_304 /* PBXTargetDependency */,
+				OBJ_305 /* PBXTargetDependency */,
+				OBJ_306 /* PBXTargetDependency */,
+				OBJ_307 /* PBXTargetDependency */,
+				OBJ_308 /* PBXTargetDependency */,
+			);
+			name = contractgen;
+			productName = contractgen;
+			productReference = "ContractCodegen::contractgen::Product" /* contractgen */;
+			productType = "com.apple.product-type.tool";
+		};
+		"PathKit::PathKit" /* PathKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_166 /* Build configuration list for PBXNativeTarget "PathKit" */;
+			buildPhases = (
+				OBJ_169 /* Sources */,
+				OBJ_171 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PathKit;
+			productName = PathKit;
+			productReference = "PathKit::PathKit::Product" /* PathKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"PathKit::SwiftPMPackageDescription" /* PathKitPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_173 /* Build configuration list for PBXNativeTarget "PathKitPackageDescription" */;
+			buildPhases = (
+				OBJ_176 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PathKitPackageDescription;
+			productName = PathKitPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"Spectre::Spectre" /* Spectre */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_178 /* Build configuration list for PBXNativeTarget "Spectre" */;
+			buildPhases = (
+				OBJ_181 /* Sources */,
+				OBJ_190 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Spectre;
+			productName = Spectre;
+			productReference = "Spectre::Spectre::Product" /* Spectre.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Spectre::SwiftPMPackageDescription" /* SpectrePackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_192 /* Build configuration list for PBXNativeTarget "SpectrePackageDescription" */;
+			buildPhases = (
+				OBJ_195 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpectrePackageDescription;
+			productName = SpectrePackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"Stencil::Stencil" /* Stencil */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_197 /* Build configuration list for PBXNativeTarget "Stencil" */;
+			buildPhases = (
+				OBJ_200 /* Sources */,
+				OBJ_220 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_223 /* PBXTargetDependency */,
+				OBJ_224 /* PBXTargetDependency */,
+			);
+			name = Stencil;
+			productName = Stencil;
+			productReference = "Stencil::Stencil::Product" /* Stencil.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"Stencil::SwiftPMPackageDescription" /* StencilPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_226 /* Build configuration list for PBXNativeTarget "StencilPackageDescription" */;
+			buildPhases = (
+				OBJ_229 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StencilPackageDescription;
+			productName = StencilPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"StencilSwiftKit::StencilSwiftKit" /* StencilSwiftKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_231 /* Build configuration list for PBXNativeTarget "StencilSwiftKit" */;
+			buildPhases = (
+				OBJ_234 /* Sources */,
+				OBJ_246 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_250 /* PBXTargetDependency */,
+				OBJ_251 /* PBXTargetDependency */,
+				OBJ_252 /* PBXTargetDependency */,
+			);
+			name = StencilSwiftKit;
+			productName = StencilSwiftKit;
+			productReference = "StencilSwiftKit::StencilSwiftKit::Product" /* StencilSwiftKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"StencilSwiftKit::SwiftPMPackageDescription" /* StencilSwiftKitPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_254 /* Build configuration list for PBXNativeTarget "StencilSwiftKitPackageDescription" */;
+			buildPhases = (
+				OBJ_257 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StencilSwiftKitPackageDescription;
+			productName = StencilSwiftKitPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"SwiftCLI::SwiftCLI" /* SwiftCLI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_259 /* Build configuration list for PBXNativeTarget "SwiftCLI" */;
+			buildPhases = (
+				OBJ_262 /* Sources */,
+				OBJ_283 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftCLI;
+			productName = SwiftCLI;
+			productReference = "SwiftCLI::SwiftCLI::Product" /* SwiftCLI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"SwiftCLI::SwiftPMPackageDescription" /* SwiftCLIPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_285 /* Build configuration list for PBXNativeTarget "SwiftCLIPackageDescription" */;
+			buildPhases = (
+				OBJ_288 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftCLIPackageDescription;
+			productName = SwiftCLIPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "ContractCodegen" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_96 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"ContractCodegen::CLICodegenTests" /* CLICodegenTests */,
+				"ContractCodegen::ContractCodegen::ProductTarget" /* ContractCodegen */,
+				"ContractCodegen::ContractCodegenFramework" /* ContractCodegenFramework */,
+				"ContractCodegen::SwiftPMPackageDescription" /* ContractCodegenPackageDescription */,
+				"ContractCodegen::ContractCodegenPackageTests::ProductTarget" /* ContractCodegenPackageTests */,
+				"PathKit::PathKit" /* PathKit */,
+				"PathKit::SwiftPMPackageDescription" /* PathKitPackageDescription */,
+				"Spectre::Spectre" /* Spectre */,
+				"Spectre::SwiftPMPackageDescription" /* SpectrePackageDescription */,
+				"Stencil::Stencil" /* Stencil */,
+				"Stencil::SwiftPMPackageDescription" /* StencilPackageDescription */,
+				"StencilSwiftKit::StencilSwiftKit" /* StencilSwiftKit */,
+				"StencilSwiftKit::SwiftPMPackageDescription" /* StencilSwiftKitPackageDescription */,
+				"SwiftCLI::SwiftCLI" /* SwiftCLI */,
+				"SwiftCLI::SwiftPMPackageDescription" /* SwiftCLIPackageDescription */,
+				"ContractCodegen::contractgen" /* contractgen */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_109 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_110 /* CLICodegenTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_138 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_139 /* ABIElement.swift in Sources */,
+				OBJ_140 /* Event.swift in Sources */,
+				OBJ_141 /* Function.swift in Sources */,
+				OBJ_142 /* GenerateCommand.swift in Sources */,
+				OBJ_143 /* ParameterParser.swift in Sources */,
+				OBJ_144 /* ParsingError.swift in Sources */,
+				OBJ_145 /* StringExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_159 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_160 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_169 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_170 /* PathKit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_176 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_177 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_181 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_182 /* Case.swift in Sources */,
+				OBJ_183 /* Context.swift in Sources */,
+				OBJ_184 /* Expectation.swift in Sources */,
+				OBJ_185 /* Failure.swift in Sources */,
+				OBJ_186 /* Global.swift in Sources */,
+				OBJ_187 /* GlobalContext.swift in Sources */,
+				OBJ_188 /* Reporter.swift in Sources */,
+				OBJ_189 /* Reporters.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_195 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_196 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_200 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_201 /* Context.swift in Sources */,
+				OBJ_202 /* Environment.swift in Sources */,
+				OBJ_203 /* Errors.swift in Sources */,
+				OBJ_204 /* Expression.swift in Sources */,
+				OBJ_205 /* Extension.swift in Sources */,
+				OBJ_206 /* FilterTag.swift in Sources */,
+				OBJ_207 /* Filters.swift in Sources */,
+				OBJ_208 /* ForTag.swift in Sources */,
+				OBJ_209 /* IfTag.swift in Sources */,
+				OBJ_210 /* Include.swift in Sources */,
+				OBJ_211 /* Inheritence.swift in Sources */,
+				OBJ_212 /* Lexer.swift in Sources */,
+				OBJ_213 /* Loader.swift in Sources */,
+				OBJ_214 /* Node.swift in Sources */,
+				OBJ_215 /* NowTag.swift in Sources */,
+				OBJ_216 /* Parser.swift in Sources */,
+				OBJ_217 /* Template.swift in Sources */,
+				OBJ_218 /* Tokenizer.swift in Sources */,
+				OBJ_219 /* Variable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_230 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_234 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_235 /* CallMacroNodes.swift in Sources */,
+				OBJ_236 /* Context.swift in Sources */,
+				OBJ_237 /* Environment.swift in Sources */,
+				OBJ_238 /* Filters+Numbers.swift in Sources */,
+				OBJ_239 /* Filters+Strings.swift in Sources */,
+				OBJ_240 /* Filters.swift in Sources */,
+				OBJ_241 /* MapNode.swift in Sources */,
+				OBJ_242 /* Parameters.swift in Sources */,
+				OBJ_243 /* SetNode.swift in Sources */,
+				OBJ_244 /* StencilSwiftTemplate.swift in Sources */,
+				OBJ_245 /* SwiftIdentifier.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_257 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_258 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_262 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_263 /* ArgumentList.swift in Sources */,
+				OBJ_264 /* ArgumentListManipulator.swift in Sources */,
+				OBJ_265 /* CLI.swift in Sources */,
+				OBJ_266 /* Command.swift in Sources */,
+				OBJ_267 /* Compatibility.swift in Sources */,
+				OBJ_268 /* CompletionGenerator.swift in Sources */,
+				OBJ_269 /* Error.swift in Sources */,
+				OBJ_270 /* HelpCommand.swift in Sources */,
+				OBJ_271 /* HelpMessageGenerator.swift in Sources */,
+				OBJ_272 /* Input.swift in Sources */,
+				OBJ_273 /* Option.swift in Sources */,
+				OBJ_274 /* OptionGroup.swift in Sources */,
+				OBJ_275 /* OptionRegistry.swift in Sources */,
+				OBJ_276 /* Parameter.swift in Sources */,
+				OBJ_277 /* Parser.swift in Sources */,
+				OBJ_278 /* Path.swift in Sources */,
+				OBJ_279 /* Stream.swift in Sources */,
+				OBJ_280 /* Task.swift in Sources */,
+				OBJ_281 /* Term.swift in Sources */,
+				OBJ_282 /* VersionCommand.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_288 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_289 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_294 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_295 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_118 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = F82224C8214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_120 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "ContractCodegen::ContractCodegenFramework" /* ContractCodegenFramework */;
+			targetProxy = F82224C9214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_122 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "StencilSwiftKit::StencilSwiftKit" /* StencilSwiftKit */;
+			targetProxy = F82224CA214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_124 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Stencil::Stencil" /* Stencil */;
+			targetProxy = F82224CB214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_126 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Spectre::Spectre" /* Spectre */;
+			targetProxy = F82224CC214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_128 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "PathKit::PathKit" /* PathKit */;
+			targetProxy = F82224CD214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_134 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "ContractCodegen::ContractCodegenFramework" /* ContractCodegenFramework */;
+			targetProxy = F82224CE214A986D00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_151 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "StencilSwiftKit::StencilSwiftKit" /* StencilSwiftKit */;
+			targetProxy = F82224BB214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_152 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Stencil::Stencil" /* Stencil */;
+			targetProxy = F82224C1214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_153 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Spectre::Spectre" /* Spectre */;
+			targetProxy = F82224C2214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_154 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "PathKit::PathKit" /* PathKit */;
+			targetProxy = F82224C3214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_165 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "ContractCodegen::CLICodegenTests" /* CLICodegenTests */;
+			targetProxy = F82224CF214A986D00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_223 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Spectre::Spectre" /* Spectre */;
+			targetProxy = F82224BD214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_224 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "PathKit::PathKit" /* PathKit */;
+			targetProxy = F82224BE214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_250 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Stencil::Stencil" /* Stencil */;
+			targetProxy = F82224BC214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_251 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Spectre::Spectre" /* Spectre */;
+			targetProxy = F82224BF214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_252 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "PathKit::PathKit" /* PathKit */;
+			targetProxy = F82224C0214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_303 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "SwiftCLI::SwiftCLI" /* SwiftCLI */;
+			targetProxy = F82224B9214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_304 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "ContractCodegen::ContractCodegenFramework" /* ContractCodegenFramework */;
+			targetProxy = F82224BA214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_305 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "StencilSwiftKit::StencilSwiftKit" /* StencilSwiftKit */;
+			targetProxy = F82224C4214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_306 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Stencil::Stencil" /* Stencil */;
+			targetProxy = F82224C5214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_307 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "Spectre::Spectre" /* Spectre */;
+			targetProxy = F82224C6214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+		OBJ_308 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "PathKit::PathKit" /* PathKit */;
+			targetProxy = F82224C7214A986B00F29CFF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_107 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/CLICodegenTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = CLICodegenTests;
+			};
+			name = Debug;
+		};
+		OBJ_108 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/CLICodegenTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = CLICodegenTests;
+			};
+			name = Release;
+		};
+		OBJ_132 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_133 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/ContractCodegenFramework_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = ContractCodegenFramework;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = ContractCodegenFramework;
+			};
+			name = Debug;
+		};
+		OBJ_137 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/ContractCodegenFramework_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = ContractCodegenFramework;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = ContractCodegenFramework;
+			};
+			name = Release;
+		};
+		OBJ_157 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		OBJ_158 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		OBJ_163 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_164 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/PathKit_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PathKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PathKit;
+			};
+			name = Debug;
+		};
+		OBJ_168 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/PathKit_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = PathKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = PathKit;
+			};
+			name = Release;
+		};
+		OBJ_174 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		OBJ_175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		OBJ_179 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/Spectre_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Spectre;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Spectre;
+			};
+			name = Debug;
+		};
+		OBJ_180 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/Spectre_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Spectre;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = Spectre;
+			};
+			name = Release;
+		};
+		OBJ_193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		OBJ_194 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		OBJ_198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/Stencil_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Stencil;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGET_NAME = Stencil;
+			};
+			name = Debug;
+		};
+		OBJ_199 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/Stencil_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Stencil;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGET_NAME = Stencil;
+			};
+			name = Release;
+		};
+		OBJ_227 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 3 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/3 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		OBJ_228 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 3 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/3 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		OBJ_232 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/StencilSwiftKit_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = StencilSwiftKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = StencilSwiftKit;
+			};
+			name = Debug;
+		};
+		OBJ_233 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/StencilSwiftKit_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = StencilSwiftKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = StencilSwiftKit;
+			};
+			name = Release;
+		};
+		OBJ_255 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		OBJ_256 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		OBJ_260 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/SwiftCLI_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftCLI;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SwiftCLI;
+			};
+			name = Debug;
+		};
+		OBJ_261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/SwiftCLI_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftCLI;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = SwiftCLI;
+			};
+			name = Release;
+		};
+		OBJ_286 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		OBJ_287 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Users/marekfort/Development/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		OBJ_292 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/contractgen_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = contractgen;
+			};
+			name = Debug;
+		};
+		OBJ_293 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = ContractCodegen.xcodeproj/contractgen_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
+				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
+				SWIFT_VERSION = 4.0;
+				TARGET_NAME = contractgen;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_106 /* Build configuration list for PBXNativeTarget "CLICodegenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_107 /* Debug */,
+				OBJ_108 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_131 /* Build configuration list for PBXAggregateTarget "ContractCodegen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_132 /* Debug */,
+				OBJ_133 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_135 /* Build configuration list for PBXNativeTarget "ContractCodegenFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_136 /* Debug */,
+				OBJ_137 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_156 /* Build configuration list for PBXNativeTarget "ContractCodegenPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_157 /* Debug */,
+				OBJ_158 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_162 /* Build configuration list for PBXAggregateTarget "ContractCodegenPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_163 /* Debug */,
+				OBJ_164 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_166 /* Build configuration list for PBXNativeTarget "PathKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_167 /* Debug */,
+				OBJ_168 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_173 /* Build configuration list for PBXNativeTarget "PathKitPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_174 /* Debug */,
+				OBJ_175 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_178 /* Build configuration list for PBXNativeTarget "Spectre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_179 /* Debug */,
+				OBJ_180 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_192 /* Build configuration list for PBXNativeTarget "SpectrePackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_193 /* Debug */,
+				OBJ_194 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_197 /* Build configuration list for PBXNativeTarget "Stencil" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_198 /* Debug */,
+				OBJ_199 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_2 /* Build configuration list for PBXProject "ContractCodegen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_226 /* Build configuration list for PBXNativeTarget "StencilPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_227 /* Debug */,
+				OBJ_228 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_231 /* Build configuration list for PBXNativeTarget "StencilSwiftKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_232 /* Debug */,
+				OBJ_233 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_254 /* Build configuration list for PBXNativeTarget "StencilSwiftKitPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_255 /* Debug */,
+				OBJ_256 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_259 /* Build configuration list for PBXNativeTarget "SwiftCLI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_260 /* Debug */,
+				OBJ_261 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_285 /* Build configuration list for PBXNativeTarget "SwiftCLIPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_286 /* Debug */,
+				OBJ_287 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_291 /* Build configuration list for PBXNativeTarget "contractgen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_292 /* Debug */,
+				OBJ_293 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = OBJ_1 /* Project object */;
+}
