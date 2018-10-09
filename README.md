@@ -1,3 +1,5 @@
+![ackee|Ethereum-iOS-Dev-Kit](Resources/ackee_git_ethereum.png)
+
 # Ethereum iOS Dev Kit
 
 ## Installation
