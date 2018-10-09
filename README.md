@@ -1,4 +1,4 @@
-![ackee|Ethereum-iOS-Dev-Kit](Resources/cover-image.png)
+![ackee|Ethereum-iOS-Dev-Kit](Resources/ackee_git_ethereum.png)
 
 # Ethereum iOS Dev Kit
 
