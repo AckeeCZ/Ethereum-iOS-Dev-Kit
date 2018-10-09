@@ -1,3 +1,5 @@
+![ackee|Ethereum-iOS-Dev-Kit](Resources/cover-image.png)
+
 # Ethereum iOS Dev Kit
 
 ## Installation
