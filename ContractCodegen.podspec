@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'ContractCodegen'
-    s.version          = '0.0.5'
+    s.version          = '0.0.6'
     s.summary          = 'Generate code from abi.json'
   
   # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
     s.preserve_paths = 'ContractCodegen/bin/contractgen', 'ContractCodegen/Rakefile', 'ContractCodegen/templates/**', 'ContractCodegen/LICENSE'
     s.ios.deployment_target = "10.0"
     s.swift_version = "4.2"
-    s.dependency 'EtherKit'
+    s.dependency 'EtherKit', '~> 0.2.0'
     s.dependency 'ReactiveSwift', '~> 4.0'        
   end
   
